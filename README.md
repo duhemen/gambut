@@ -39,7 +39,7 @@ Tampilan antarmuka **PeatFR-PyQt** yang modern, gelap, dan ramah pengguna. Semua
 
 ### 📊 1. Dashboard Ringkasan
 
-> *Pusat komando monitoring lahan gambut — KPI cards, grafik tren WT, diagram pie distribusi risiko, dan tabel historis dalam satu tampilan.*
+*Pusat komando monitoring lahan gambut — KPI cards, grafik tren WT, diagram pie distribusi risiko, dan tabel historis dalam satu tampilan.*
 
 <div align="center">
 
@@ -57,7 +57,7 @@ Tampilan antarmuka **PeatFR-PyQt** yang modern, gelap, dan ramah pengguna. Semua
 
 ### 📡 2. Data Bawaan Satelit
 
-> *Tarik data mentah satelit, tambal nilai kosong dengan algoritma imputasi (KNN / Spline / Linear), lalu simpan ke database pusat.*
+*Tarik data mentah satelit, tambal nilai kosong dengan algoritma imputasi (KNN / Spline / Linear), lalu simpan ke database pusat.*
 
 <div align="center">
 
@@ -75,7 +75,7 @@ Tampilan antarmuka **PeatFR-PyQt** yang modern, gelap, dan ramah pengguna. Semua
 
 ### ✍️ 3. Form Input Manual
 
-> *Input data observasi harian dari lapangan — lengkap dengan slider interaktif, pilihan model forecasting, dan analisis risiko otomatis.*
+*Input data observasi harian dari lapangan — lengkap dengan slider interaktif, pilihan model forecasting, dan analisis risiko otomatis.*
 
 <div align="center">
 
@@ -93,7 +93,7 @@ Tampilan antarmuka **PeatFR-PyQt** yang modern, gelap, dan ramah pengguna. Semua
 
 ### 📁 4. Unggah Berkas Excel/CSV
 
-> *Drag & drop file lapangan langsung ke GUI. Sistem otomatis validasi kolom dan simpan ke server.*
+*Drag & drop file lapangan langsung ke GUI. Sistem otomatis validasi kolom dan simpan ke server.*
 
 <div align="center">
 
@@ -111,7 +111,7 @@ Tampilan antarmuka **PeatFR-PyQt** yang modern, gelap, dan ramah pengguna. Semua
 
 ### ⚙️ 5. Pengaturan Aplikasi
 
-> *Kontrol penuh atas koneksi server & kredensial API satelit — semua tersimpan terpusat di server.*
+*Kontrol penuh atas koneksi server & kredensial API satelit — semua tersimpan terpusat di server.*
 
 <div align="center">
 
