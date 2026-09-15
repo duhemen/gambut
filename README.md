@@ -25,6 +25,101 @@
 
 ---
 
+---
+
+<!-- ========================================================= -->
+<!--                  VIEW APLIKASI (SCREENSHOTS)              -->
+<!-- ========================================================= -->
+
+## 📸 View Aplikasi
+
+Tampilan antarmuka **PeatFR-PyQt** yang modern, gelap, dan ramah pengguna. Semua screenshot diambil langsung dari versi produksi.
+
+---
+
+### 📊 1. Dashboard Ringkasan
+
+> *Pusat komando monitoring lahan gambut — KPI cards, grafik tren WT, diagram pie distribusi risiko, dan tabel historis dalam satu tampilan.*
+
+<div align="center">
+
+<img src="docs/screenshots/dashboard_ringkasan.png" alt="Dashboard Ringkasan" width="90%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+
+</div>
+
+**Highlight fitur:**
+- 🟢 **KPI Cards** dengan indikator warna dinamis (Aman / Siaga / Bahaya)
+- 📈 **Grafik Tren Tinggi Muka Air** — 10 hari terakhir
+- 🥧 **Diagram Pie** proporsi status risiko
+- 📋 **Tabel 10 Baris Data Terbaru** dengan styling dark mode
+
+---
+
+### 📡 2. Data Bawaan Satelit
+
+> *Tarik data mentah satelit, tambal nilai kosong dengan algoritma imputasi (KNN / Spline / Linear), lalu simpan ke database pusat.*
+
+<div align="center">
+
+<img src="docs/screenshots/data_bawaan_satelit.png" alt="Data Bawaan Satelit" width="90%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+
+</div>
+
+**Highlight fitur:**
+- 🛰️ **Dropdown Metode Imputasi** — pilih KNN / Spline / Linear
+- 🔄 **Tombol Sinkronisasi** — trigger proses ke server
+- 📋 **Tabel Data Satelit** dengan kolom lengkap (WT, SM, Rf, Temp)
+- 📊 **Status Log** — notifikasi hijau/merah realtime
+
+---
+
+### ✍️ 3. Form Input Manual
+
+> *Input data observasi harian dari lapangan — lengkap dengan slider interaktif, pilihan model forecasting, dan analisis risiko otomatis.*
+
+<div align="center">
+
+<img src="docs/screenshots/form_input_manual.png" alt="Form Input Manual" width="90%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+
+</div>
+
+**Highlight fitur:**
+- 🎚️ **Slider + Text Input** sinkron untuk tiap parameter (WT, SM, Rf, Temp)
+- 🧠 **Pilihan Algoritma** — KNN / Spline / Linear untuk imputasi
+- 🔮 **Pilihan Model Forecast** — ARIMA / LSTM / GRU
+- 🔥 **Tombol Analisis** — hitung indeks kerawanan + prediksi 7 hari
+
+---
+
+### 📁 4. Unggah Berkas Excel/CSV
+
+> *Drag & drop file lapangan langsung ke GUI. Sistem otomatis validasi kolom dan simpan ke server.*
+
+<div align="center">
+
+<img src="docs/screenshots/unggah_berkas_excel_csv.png" alt="Unggah Berkas" width="90%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+
+</div>
+
+**Highlight fitur:**
+- 📥 **Tombol Unduh Template** — dapat file `.xlsx` contoh siap isi
+- 🎯 **Drag & Drop Area** dengan animasi hover
+- 📖 **Tabel Panduan Format** — kolom wajib: `tanggal, wt, sm, rf, temp`
+- 🟢 **Status Box** — langsung kasih feedback sukses/gagal
+
+---
+
+### ⚙️ 5. Pengaturan Aplikasi
+
+> *Kontrol penuh atas koneksi server & kredensial API satelit — semua tersimpan terpusat di server.*
+
+<div align="center">
+
+<img src="docs/screenshots/pengaturan_aplikasi.png" alt="Pengaturan Aplikasi" width="90%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+
+</div>
+
+
 <!-- ========================================================= -->
 <!--                  TABLE OF CONTENTS                        -->
 <!-- ========================================================= -->
