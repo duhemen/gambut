@@ -1,4 +1,3 @@
-
 <!-- ========================================================= -->
 <!--                    BANNER HEADER                          -->
 <!-- ========================================================= -->
@@ -763,31 +762,5 @@ Versi **PyQt6 + FastAPI** ini dikembangkan sebagai implementasi lanjutan dengan:
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2ecc71,100:0d6efd&height=100&section=footer" width="100%" />
 
 </div>
-```
-
----
-
-## 📋 Ringkasan Tiga File
-
-| File | Baris | Isi Utama |
-|------|-------|-----------|
-| `.gitignore` | ~130 | Python + Conda + PyQt6 + VSCode + Windows + data lokal |
-| `requirements.txt` | ~60 | Gabungan client + server + roadmap comments |
-| `README.md` | ~600 | Header dinamis, badge, TOC, panduan lengkap, API docs, roadmap, kredit |
-
----
-
-## 🎯 Highlight README yang Emen Minta
-
-1. ✅ **Header dinamis** — pakai `capsule-render` (banner bergelombang animasi).
-2. ✅ **Badge profesional** — dari shields.io (Python, PyQt6, FastAPI, Anaconda, License).
-3. ✅ **TOC collapsible** — pakai `<details>` biar rapi.
-4. ✅ **Struktur folder** — dengan emoji + komentar.
-5. ✅ **Panduan instalasi step-by-step** — khusus Anaconda.
-6. ✅ **Panduan penggunaan** — 5 tab lengkap.
-7. ✅ **API endpoints table** — plus contoh cURL.
-8. ✅ **Roadmap pengembangan** — 6 fase (JWT, PostgreSQL, VPS, HTTPS, Docker, Web).
-9. ✅ **Kredit ke repo asli** — [mellygsln/peatfr](https://github.com/mellygsln/peatfr) dengan nama peneliti lengkap.
-10. ✅ **Footer dinamis** — banner penutup + quote inspiratif.
 
 ---
