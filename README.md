@@ -460,6 +460,8 @@ Tab pertama menampilkan **pusat komando** dengan:
 | WT antara -15 s.d. -10 cm | 🟡 SIAGA |
 | WT > -10 cm **dan** Temp ≤ 34 °C | 🟢 AMAN |
 
+![Dashboard Ringksasan](docs/screenshots/dashboard_ringkasan.png)
+
 ### 3. 📡 Data Bawaan Satelit
 
 **Tujuan:** Menarik data mentah satelit yang masih berisi nilai kosong, lalu menambalnya secara otomatis.
@@ -473,6 +475,8 @@ Tab pertama menampilkan **pusat komando** dengan:
 3. Tunggu proses (beberapa detik).
 4. Status berubah **hijau**: `🟢 SINKRONISASI BERHASIL: ...`
 5. Tabel akan menampilkan data yang sudah bersih.
+
+![Data Bawaan Satelit](docs/screenshots/data_bawaan_satelit.png)
 
 ### 4. ✍️ Form Input Manual
 
@@ -496,6 +500,8 @@ Tab pertama menampilkan **pusat komando** dengan:
    - Prediksi WT 7 hari ke depan (array)
 6. Data tersimpan di server → cek Dashboard.
 
+![From Input Manual](docs/screenshots/form_input_manual.png)
+
 ### 5. 📁 Unggah Berkas Excel/CSV
 
 **Tujuan:** Bulk import data lapangan dari file Excel/CSV.
@@ -517,6 +523,8 @@ Tab pertama menampilkan **pusat komando** dengan:
    - 🟢 **Hijau** → sukses import.
    - 🔴 **Merah** → ada kesalahan (misal kolom kurang).
 
+![Unggah Berkas Excel Csv](docs/screenshots/unggah_berkas_excel_csv.png)
+
 ### 6. ⚙️ Pengaturan Aplikasi
 
 > 🔒 **Tab ini hanya muncul untuk role `admin`.** Petugas tidak melihat menu ini.
@@ -526,6 +534,8 @@ Tab pertama menampilkan **pusat komando** dengan:
 - **API Endpoint URL** — endpoint satelit (misal Copernicus).
 - **API Key** — kredensial rahasia (ditampilkan sebagai bintang).
 - **Simpan Konfigurasi** — disimpan di server, jadi semua client dapat konfigurasi yang sama.
+
+![Pengaturan Aplikasi](docs/screenshots/pengaturan_aplikasi.png)
 
 ---
 
