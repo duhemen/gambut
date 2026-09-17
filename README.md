@@ -799,27 +799,46 @@ docker compose up -d
   - [x] Nelder-Mead optimization
   - [x] Imputasi KNN/Spline/Linear
 
-- [ ] 🔄 **Versi 2.0 — Security & Scale** *(in progress)*
-  - [x] **JWT Authentication** — login multi-user, token-based session, bcrypt password hashing
-  - [x] **Role-based access (admin / petugas)** — RBAC di server + UI dinamis (tab Setting auto-hidden untuk petugas)
-  - [x] **Login Dialog GUI** — dialog login modern dengan gradient header + show/hide password
-  - [ ] **Register dialog GUI** — form registrasi user baru langsung dari aplikasi
-  - [ ] **Admin panel user management** — kelola user dari GUI
-  - [ ] **PostgreSQL migration** — pindah dari CSV ke database relasional (untuk volume besar)
-  - [ ] **Refresh token** — auto-renew token sebelum expiry
+- [x] ✅ **Versi 1.5** — Authentication (bonus)
+
+  - [x] Login dialog GUI (gradient header, show/hide password)
+  - [x] JWT authentication (bcrypt password hashing)
+  - [x] Role-based access control (admin / petugas)
+  - [x] Session loop (logout → login ulang)
+  - [x] GUI: user display + logout button + RBAC tab
+
+- [ ] 🔄 **Versi 2.0 — Security & Scale** *(in progress, 50%)*
+
+  - [x] JWT Authentication
+  - [x] Role-based access (admin / petugas)
+  - [x] Login Dialog GUI
+  - [ ] Register dialog GUI
+  - [ ] Admin panel user management
+  - [ ] PostgreSQL migration
+  - [ ] Refresh token (auto-renew)
 
 - [ ] ⏳ **Versi 3.0 — Cloud Deployment**
   - [ ] Deploy ke VPS
-  - [ ] HTTPS + Nginx
+  - [ ] HTTPS + Nginx + Let's Encrypt
   - [ ] Docker Compose
   - [ ] Auto backup database
   - [ ] CI/CD pipeline (GitHub Actions)
 
 - [ ] 🔮 **Versi 4.0 — Web & Mobile**
-  - [ ] Web dashboard (React)
+  - [ ] Web dashboard (React/Vue)
   - [ ] Progressive Web App (PWA)
   - [ ] Mobile push notification
 
+---
+
+### 📌 Legend
+
+| Simbol | Arti |
+|--------|------|
+| ✅ | Selesai |
+| 🔄 | Sedang dikerjakan |
+| ⏳ | Rencana terdekat |
+| 🔮 | Visi jangka panjang |
 ---
 
 <!-- ========================================================= -->
