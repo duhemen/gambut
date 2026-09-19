@@ -1,25 +1,29 @@
+# 📝 README.md Baru untuk GambutFR
 <!-- ========================================================= -->
 <!--                    BANNER HEADER                          -->
 <!-- ========================================================= -->
 <div align="center">
 
-<!-- Header dinamis: ganti URL banner kalau punya gambar sendiri -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d6efd,100:2ecc71&height=200&section=header&text=PEATFR-PYQT&fontSize=70&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Peat%20Fire%20Risk%20Forecasting%20System&descAlignY=58&descSize=18" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d6efd,50:10b981,100:2ecc71&height=200&section=header&text=GAMBUTFR&fontSize=80&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Peat%20Fire%20Risk%20Monitoring%20Platform&descAlignY=58&descSize=18" width="100%" />
 
 <!-- ========================================================= -->
 <!--                      BADGES                               -->
 <!-- ========================================================= -->
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyQt6](https://img.shields.io/badge/PyQt6-6.6+-41CD52?style=for-the-badge&logo=qt&logoColor=white)](https://pypi.org/project/PyQt6/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Anaconda](https://img.shields.io/badge/Anaconda-Ready-44A833?style=for-the-badge&logo=anaconda&logoColor=white)](https://www.anaconda.com/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.10-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![NASA](https://img.shields.io/badge/NASA-FIRMS-0B3D91?style=for-the-badge&logo=nasa&logoColor=white)](https://firms.modaps.eosdis.nasa.gov/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Tunnel-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://www.cloudflare.com/)
+[![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://telegram.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](#-lisensi)
-[![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=for-the-badge)](#-roadmap)
 
-[![Client-Server](https://img.shields.io/badge/Architecture-Client%20%2B%20Server-0d6efd?style=flat-square)](#-arsitektur-sistem)
-[![REST API](https://img.shields.io/badge/API-REST%20%2F%20JSON-orange?style=flat-square)](#-api-endpoints)
-[![JWT](https://img.shields.io/badge/Auth-JWT%20Bearer-9b59b6?style=flat-square)](#-api-endpoints)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Hybrid%20Decentralized-0d6efd?style=flat-square)](#-arsitektur-sistem)
+[![REST API](https://img.shields.io/badge/API-REST%20%2F%20JSON-orange?style=flat-square)](http://gambutfr.osvpn.id/docs)
+[![Auth](https://img.shields.io/badge/Auth-JWT%20Bearer-9b59b6?style=flat-square)](#-api-endpoints)
+[![PWA](https://img.shields.io/badge/PWA-Mobile%20Ready-5A0FC8?style=flat-square)](https://gambutfr.osvpn.id/dashboard)
 [![Made in](https://img.shields.io/badge/Made%20in-Indonesia%20%F0%9F%87%AE%F0%9F%87%A9-red?style=flat-square)](#-kredit)
 
 </div>
@@ -37,28 +41,17 @@
 
 - [🌟 Tentang Proyek](#-tentang-proyek)
 - [🎯 Fitur Utama](#-fitur-utama)
+- [✨ Showcase](#-showcase)
 - [🏗️ Arsitektur Sistem](#️-arsitektur-sistem)
 - [📂 Struktur Folder](#-struktur-folder)
 - [🛠️ Persyaratan Sistem](#️-persyaratan-sistem)
 - [🚀 Panduan Instalasi](#-panduan-instalasi)
-  - [Tahap 1 — Clone Repository](#tahap-1--clone-repository)
-  - [Tahap 2 — Setup Anaconda Environment](#tahap-2--setup-anaconda-environment)
-  - [Tahap 3 — Install Dependensi](#tahap-3--install-dependensi)
 - [▶️ Cara Menjalankan](#️-cara-menjalankan)
-  - [Menjalankan Server](#menjalankan-server)
-  - [Menjalankan Client GUI](#menjalankan-client-gui)
-  - [Menjalankan Multi-Client](#menjalankan-multi-client-opsional)
 - [📚 Panduan Penggunaan](#-panduan-penggunaan)
-  - [1. Login Screen](#1--login-screen)
-  - [2. Dashboard Ringkasan](#2--dashboard-ringkasan)
-  - [3. Data Bawaan Satelit](#3--data-bawaan-satelit)
-  - [4. Form Input Manual](#4--form-input-manual)
-  - [5. Unggah Berkas Excel/CSV](#5--unggah-berkas-excelcsv)
-  - [6. Pengaturan Aplikasi](#6--pengaturan-aplikasi)
 - [🔌 API Endpoints](#-api-endpoints)
 - [🧪 Testing & Debugging](#-testing--debugging)
-- [🚢 Deployment (Roadmap)](#-deployment-roadmap)
-- [🗺️ Roadmap Pengembangan](#️-roadmap-pengembangan)
+- [🚢 Deployment](#-deployment)
+- [🗺️ Roadmap](#️-roadmap)
 - [🤝 Kontribusi](#-kontribusi)
 - [📜 Lisensi](#-lisensi)
 - [🙏 Kredit](#-kredit)
@@ -73,15 +66,20 @@
 
 ## 🌟 Tentang Proyek
 
-**PeatFR-PyQt** adalah aplikasi desktop **client-server modern** untuk **memprediksi dan memonitor risiko kebakaran lahan gambut tropis** menggunakan pendekatan *stochastic*, *machine learning*, dan *optimisasi matematis*.
+**GambutFR** adalah platform **monitoring & prediksi risiko kebakaran lahan gambut tropis** yang menggabungkan **data satelit real-time**, **machine learning**, dan **arsitektur hybrid decentralized** — dirancang untuk **petugas lapangan** yang butuh alat canggih tanpa ribet.
 
-Aplikasi ini adalah **port Python + GUI** dari paket R **`peatfr`** yang dikembangkan oleh **[Melly Sri Lestari, et al.](https://github.com/mellygsln/peatfr)** — sebuah paket R yang secara komprehensif menyatukan:
+Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **alert Telegram otomatis**, dan **deployment hybrid** yang bisa diakses dari **mana saja, kapan saja** — bahkan dari pelosok hutan gambut.
 
-1. **Data Imputation** — menambal data kosong hasil observasi lapangan/satelit.
-2. **Time Series Forecasting** — memprediksi tinggi muka air tanah ke depan.
-3. **Fire Risk Index** — menghitung indeks kerawanan kebakaran gambut dengan optimisasi Nelder-Mead.
+### 🌱 Yang Membuat GambutFR Berbeda
 
-> 💡 Versi PyQt6 ini dikembangkan untuk **petugas lapangan** yang butuh **GUI visual**, **multi-tab workflow**, **autentikasi multi-user**, dan **backend terpusat** yang bisa diakses banyak client sekaligus.
+- **Hybrid Decentralized** — server lokal tetap jalan offline, tapi bisa diakses dari seluruh dunia via Cloudflare Tunnel.
+- **Multi-Region Native** — petugas di Kalimantan, Sumatera, dan Papua input data mereka sendiri. Dashboard menampilkan **peta risiko per wilayah**.
+- **Real-Time Satellite** — integrasi langsung dengan **NASA FIRMS** untuk deteksi hotspot. Auto-fetch tiap 6 jam.
+- **AI Ensemble** — kombinasi **ARIMA + LSTM + GRU** untuk prediksi yang lebih akurat, dengan **confidence interval 95%**.
+- **Auto Alert** — Telegram bot kirim notifikasi **spesifik region** saat status BAHAYA/SIAGA terdeteksi.
+- **PWA Mobile** — install di HP seperti app native. Buka dari mana saja.
+
+> 💡 Terinspirasi dari riset akademik tentang prediksi risiko kebakaran gambut, GambutFR hadir sebagai **implementasi praktis** yang siap dipakai petugas lapangan di seluruh Indonesia.
 
 ---
 
@@ -91,20 +89,321 @@ Aplikasi ini adalah **port Python + GUI** dari paket R **`peatfr`** yang dikemba
 
 ## 🎯 Fitur Utama
 
-| No | Fitur | Deskripsi |
-|----|-------|-----------|
-| 1 | 🔐 **JWT Authentication** | Login multi-user dengan token JWT, password ter-hash bcrypt |
-| 2 | 🛡️ **Role-Based Access** | Admin (akses penuh) & Petugas (akses terbatas). Tab Setting auto-hidden untuk petugas |
-| 3 | 📊 **Dashboard Realtime** | KPI card (WT, Temp, Status), grafik tren WT, dan diagram pie distribusi risiko |
-| 4 | 🩹 **Auto Imputation** | Isi data kosong dengan 3 metode: KNN, Spline, Linear Interpolation |
-| 5 | 🤖 **Time Series Forecast** | Prediksi WT 7 hari ke depan dengan ARIMA / LSTM / GRU |
-| 6 | 🧮 **Nelder-Mead Optimization** | Optimisasi bobot indeks kerawanan secara otomatis |
-| 7 | 📁 **Upload Excel/CSV** | Drag & drop file lapangan langsung ke GUI |
-| 8 | 🔄 **Satellite Sync** | Tarik data mentah satelit, imputasi otomatis, simpan ke DB |
-| 9 | 👥 **Multi-Client Support** | Banyak client bisa akses data yang sama dari satu server |
-| 10 | 🟢 **Live Connection Status** | Status bar auto-check koneksi ke server tiap 10 detik |
-| 11 | ⚙️ **Configurable** | URL server & API key bisa diubah kapan saja dari GUI |
-| 12 | 🎨 **Dark Mode UI** | Desain modern dengan palet warna gelap + aksen neon |
+<table>
+<tr>
+<td width="50%">
+
+### 🛰️ **Real-Time Satellite**
+- Integrasi **NASA FIRMS** (VIIRS + MODIS)
+- Auto-fetch **3 region** tiap 6 jam
+- Konversi hotspot → parameter gambut
+- Filter confidence level
+- Snapshot per-region tersimpan
+
+### 🤖 **AI & Machine Learning**
+- **Ensemble forecast** (ARIMA + LSTM + GRU)
+- **Confidence Interval 95%** via bootstrap
+- **Time-Series K-Fold** cross-validation
+- **Anomaly detection** (Z-score + IQR + Isolation Forest)
+- **PFVI** dengan Nelder-Mead optimization
+
+### 📱 **Multi-Platform Access**
+- **Desktop App** (PyQt6) — admin & analis
+- **Web Dashboard** (PWA) — akses dari HP
+- **REST API** — integrasi pihak ketiga
+- **Mobile-Ready** — install seperti app native
+
+</td>
+<td width="50%">
+
+### 📢 **Alert & Notification**
+- **Telegram Bot** otomatis
+- **Region-specific** — sebut nama wilayah
+- **Cooldown** anti-spam (5 menit)
+- **Broadcast** ke semua region sekaligus
+- **HTML formatting** rapi
+
+### 🔐 **Security & Multi-User**
+- **JWT Authentication** stateless
+- **Role-Based Access** (admin / petugas)
+- **Bcrypt** password hashing
+- **Session management** di client
+- **CORS** configurable
+
+### ☁️ **Hybrid Deployment**
+- Server lokal (offline-first)
+- **Cloudflare Tunnel** gratis HTTPS
+- **PWA manifest** install di HP
+- **Auto-redirect** root → dashboard
+- **Multi-device** akses bersamaan
+
+</td>
+</tr>
+</table>
+
+---
+
+<!-- ========================================================= -->
+<!--                  SHOWCASE                                 -->
+<!-- ========================================================= -->
+
+## ✨ Showcase
+
+### 🌐 **Live Demo — Buka dari Mana Saja**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   🔥  https://gambutfr.osvpn.id/dashboard                   │
+│                                                             │
+│   • Dari laptop di kantor posko                             │
+│   • Dari HP di tengah hutan Kalimantan                      │
+│   • Dari tablet di kapal penelitian                         │
+│   • Dari warnet di pelosok Papua                            │
+│                                                             │
+│   Semuanya akses DASHBOARD yang SAMA.                       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🗺️ **Multi-Region Monitoring**
+
+Satu dashboard, semua wilayah terpantau. Setiap region punya **skor PFVI sendiri**:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  🗺️  RINGKASAN PER-REGION                                    │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  🌴 KALIMANTAN         🦜 PAPUA           🌳 SUMATERA        │
+│  ━━━━━━━━━━━━━━         ━━━━━━━━━━         ━━━━━━━━━━━━      │
+│  Hotspot: 9,375         Hotspot: 3,961      Hotspot: 2,553   │
+│  PFVI   : 76.0          PFVI   : 59.6       PFVI   : 54.0    │
+│  Status : 🔴 BAHAYA     Status : 🟡 SIAGA    Status : 🟡 SIAGA │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📢 **Auto Telegram Alert — Spesifik Region**
+
+Setiap kali satelit mendeteksi hotspot di level BAHAYA, bot Telegram langsung kirim **pesan terformat** ke grup petugas:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  🔴 PEATFR ALERT — KALIMANTAN                            │
+│  Status: BAHAYA                                          │
+│                                                          │
+│  Skor Kerawanan: 81.4/100                                │
+│  Region: KALIMANTAN                                      │
+│                                                          │
+│  Data Pengukuran:                                        │
+│    • Muka Air (WT): -24.9 cm                             │
+│    • Kelembapan Tanah: 38.1 %                            │
+│    • Curah Hujan: 10.1 mm                                │
+│    • Suhu: 36.0 °C                                       │
+│    • Tanggal: 2026-09-19                                 │
+│                                                          │
+│  🕐 2026-09-19 20:30:21 WIB                              │
+│                                                          │
+│  🔗 Buka Dashboard                                       │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+### ⏰ **Auto-Fetch Scheduler**
+
+Server Anda **bekerja sendiri** — fetch satelit tiap 6 jam, alert otomatis, dashboard ter-update:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  ⏰ SCHEDULER OTOMATIS                                     │
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│  Status       : 🟢 RUNNING                                 │
+│  Interval     : 6 jam                                      │
+│  Total Runs   : 12 kali (sejak server nyala)               │
+│  Errors       : 0                                          │
+│                                                            │
+│  Terakhir Jalan : 2026-09-19 20:55:45                      │
+│  Berikutnya     : 2026-09-20 02:55:45                      │
+│                                                            │
+│  Region Aktif  : kalimantan, sumatera, papua               │
+│                                                            │
+│  Hasil Terakhir:                                           │
+│    • kalimantan: 2,892 hotspot                             │
+│    • sumatera:     322 hotspot                             │
+│    • papua:        751 hotspot                             │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🔍 **Anomaly Detection**
+
+Sistem otomatis **menandai outlier** menggunakan **3 metode voting** — akurasi lebih tinggi dari metode tunggal:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  🔍 DETEKSI ANOMALI                                          │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Total Data   : 17 baris                                     │
+│  Anomali      : 1 baris                                      │
+│  Data Normal  : 16 baris                                     │
+│  Rasio        : 5.9 %                                        │
+│                                                              │
+│  ┌────────────┬───────────┬─────┬─────┬─────┬────────────┐  │
+│  │ Tanggal    │ WT        │ SM  │ RF  │ T°  │ Alasan     │  │
+│  ├────────────┼───────────┼─────┼─────┼─────┼────────────┤  │
+│  │ 2026-09-10 │ -5.00     │ 55  │12.5 │28.5 │ Z+IQR+IF   │  │
+│  └────────────┴───────────┴─────┴─────┴─────┴────────────┘  │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🧠 **AI Forecasting (Ensemble)**
+
+Prediksi muka air tanah dengan **3 model AI digabung**, plus **confidence interval 95%**:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  🧠 FORECAST MUKA AIR TANAH (7 HARI)                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Model          : ENSEMBLE (ARIMA + LSTM + GRU)             │
+│  Weights        : ARIMA 0.28, LSTM 0.35, GRU 0.37           │
+│                                                             │
+│  Hari  Prediksi   CI Bawah   CI Atas                        │
+│  ────  ─────────  ─────────  ───────                        │
+│   1    -10.5 cm   -11.2 cm   -9.8 cm                        │
+│   2    -10.8 cm   -11.9 cm   -9.7 cm                        │
+│   3    -11.2 cm   -12.4 cm   -10.0 cm                       │
+│   4    -11.5 cm   -13.0 cm   -10.0 cm                       │
+│   5    -11.9 cm   -13.6 cm   -10.2 cm                       │
+│   6    -12.2 cm   -14.1 cm   -10.3 cm                       │
+│   7    -12.6 cm   -14.8 cm   -10.4 cm                       │
+│                                                             │
+│  Akurasi (train/test split 80/20):                          │
+│    MSE : 0.8234   RMSE : 0.9074   MAE : 0.7231              │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📱 **PWA — Install di HP**
+
+Buka `https://gambutfr.osvpn.id/dashboard` di HP → **"Add to Home Screen"** → selesai. Icon 🔥 muncul di home screen, aplikasi jalan fullscreen seperti app native:
+
+```
+┌─────────────────────────────────┐
+│                                 │
+│   📱 Home Screen HP Anda        │
+│                                 │
+│   ┌───┐  ┌───┐  ┌───┐  ┌───┐   │
+│   │📞 │  │📷 │  │💬 │  │🔥 │   │
+│   └───┘  └───┘  └───┘  └───┘   │
+│  Telepon  Kamera  Chat  PeatFR  │
+│                                 │
+│   ← Klik icon 🔥               │
+│      → Buka fullscreen          │
+│      → Seperti app native       │
+│                                 │
+└─────────────────────────────────┘
+```
+
+---
+
+### 🔐 **Multi-User dengan JWT**
+
+Setiap petugas login dengan akun sendiri. Admin kelola user, petugas akses terbatas:
+
+```
+┌──────────────────────────────────────────────────────┐
+│  👥 MANAJEMEN USER                                   │
+├──────────────────────────────────────────────────────┤
+│                                                      │
+│  Username     Role      Full Name       Status      │
+│  ─────────    ─────     ──────────      ─────────   │
+│  admin        admin     Administrator   🟢 Active   │
+│  budi_riau    petugas   Budi Santoso    🟢 Active   │
+│  siti_kalteng petugas   Siti Nurhaliza  🟢 Active   │
+│  ahmad_papua  petugas   Ahmad Yusuf     🟢 Active   │
+│                                                      │
+│  Setiap user punya token JWT sendiri.                │
+│  Setiap aksi ter-audit di log server.                │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🚀 **Deploy Hybrid — Local + Cloud**
+
+Server lokal tetap aman di kantor, tapi bisa diakses dari internet:
+
+```
+                     🌐 INTERNET
+                          │
+                          ▼
+            ┌─────────────────────────┐
+            │  ☁️ CLOUDFLARE EDGE     │
+            │  • HTTPS gratis         │
+            │  • DDoS protection      │
+            │  • Global CDN           │
+            └────────────┬────────────┘
+                         │ Tunnel (encrypted)
+                         ▼
+            ┌─────────────────────────┐
+            │  💻 LAPTOP ANDA         │
+            │  D:\gambut\             │
+            │  • FastAPI :8000        │
+            │  • CSV database         │
+            │  • NASA scheduler       │
+            │  • Telegram bot         │
+            └─────────────────────────┘
+                         ▲
+                         │ LAN
+                         │
+            ┌────────────┴────────────┐
+            │  👥 MULTI-CLIENT        │
+            │  • Desktop PyQt6        │
+            │  • HP Petugas (PWA)     │
+            │  • Browser admin        │
+            └─────────────────────────┘
+```
+
+---
+
+### 🎨 **Aurora Dark Theme**
+
+UI dengan efek **Aurora gradient**, **glassmorphism cards**, dan **neon accents** — profesional tapi tetap elegan:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  🔥  GAMBUTFR                🔴 BAHAYA              │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐      │
+│  │ 17     │ │-22.5cm │ │ 36.5°C │ │  91    │      │
+│  │ TOTAL  │ │   WT   │ │  SUHU  │ │  PFVI  │      │
+│  └────────┘ └────────┘ └────────┘ └────────┘      │
+│                                                     │
+│  • Background: Deep navy + aurora glow              │
+│  • Card: Semi-transparent glassmorphism             │
+│  • Accent: Emerald / amber / crimson                │
+│  • Font: Inter / Segoe UI                           │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -115,63 +414,93 @@ Aplikasi ini adalah **port Python + GUI** dari paket R **`peatfr`** yang dikemba
 ## 🏗️ Arsitektur Sistem
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                       JARINGAN LAN / INTERNET                   │
-└─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                     🌐 INTERNET GLOBAL                      │
+└─────────────────────────────────────────────────────────────┘
                               │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-        ▼                     ▼                     ▼
-┌───────────────┐    ┌───────────────┐    ┌───────────────┐
-│  CLIENT 1     │    │  CLIENT 2     │    │  CLIENT N     │
-│  (PyQt6 GUI)  │    │  (PyQt6 GUI)  │    │  (PyQt6 GUI)  │
-│  Windows/Linux│    │  Windows/Linux│    │  Windows/Linux│
-└───────┬───────┘    └───────┬───────┘    └───────┬───────┘
-        │                    │                    │
-        │  ┌─────────────────┴────────────────┐   │
-        │  │  🔐 Login → JWT Token             │  │
-        │  │  Authorization: Bearer <token>   │   │
-        │  └─────────────────┬────────────────┘   │
-        └────────────────────┼────────────────────┘
-                             │  HTTP / JSON
-                             ▼
+              ┌───────────────┼───────────────┐
+              │               │               │
+              ▼               ▼               ▼
+     ┌────────────┐   ┌────────────┐  ┌────────────┐
+     │  📱 HP     │   │  💻 Laptop │  │  🖥️ Server │
+     │  Petugas   │   │  Rekan     │  │  Posko     │
+     │  (PWA)     │   │  (Browser) │  │  (Web)     │
+     └─────┬──────┘   └─────┬──────┘  └─────┬──────┘
+           │                │                │
+           └────────────────┼────────────────┘
+                            │
+                            ▼ HTTPS
               ┌──────────────────────────────┐
-              │       SERVER (FastAPI)       │
-              │  ┌────────────────────────┐  │
-              │  │  🔐 Auth Middleware    │  │
-              │  │  - JWT verify          │  │
-              │  │  - Role check (RBAC)   │  │
-              │  └────────────────────────┘  │
-              │  ┌────────────────────────┐  │
-              │  │  REST API Endpoints    │  │
-              │  │  /api/v1/auth/*        │  │
-              │  │  /api/v1/data          │  │
-              │  │  /api/v1/forecast      │  │
-              │  │  /api/v1/satellite/... │  │
-              │  │  /api/v1/index         │  │
-              │  │  /api/v1/config        │  │
-              │  └────────────────────────┘  │
-              │  ┌────────────────────────┐  │
-              │  │  Core Engine           │  │
-              │  │  - Imputation          │  │
-              │  │  - Forecasting (AI/ML) │  │
-              │  │  - Index Calc (Nelder) │  │
-              │  └────────────────────────┘  │
-              │  ┌────────────────────────┐  │
-              │  │  Storage (CSV/DB)      │  │
-              │  │  - database_gambut.csv │  │
-              │  │  - users.csv (bcrypt)  │  │
-              │  │  - config.json         │  │
-              │  └────────────────────────┘  │
-              └──────────────────────────────┘
+              │   ☁️ CLOUDFLARE EDGE         │
+              │   • SSL/TLS                  │
+              │   • DDoS Protection          │
+              │   • Web Application Firewall │
+              └──────────────┬───────────────┘
+                             │
+                             │ Tunnel (encrypted)
+                             │
+                             ▼
+    ┌──────────────────────────────────────────────────┐
+    │         💻 LOKAL SERVER (D:\gambut)              │
+    ├──────────────────────────────────────────────────┤
+    │                                                  │
+    │  ┌────────────────────────────────────────────┐  │
+    │  │  FastAPI Backend (:8000)                   │  │
+    │  │  ┌──────────────┐  ┌──────────────────┐   │  │
+    │  │  │ Auth Layer   │  │ Scheduler Layer  │   │  │
+    │  │  │ • JWT verify │  │ • Auto-fetch 6h  │   │  │
+    │  │  │ • RBAC       │  │ • NASA FIRMS     │   │  │
+    │  │  └──────────────┘  └──────────────────┘   │  │
+    │  │  ┌──────────────┐  ┌──────────────────┐   │  │
+    │  │  │ AI Engine    │  │ Alert Engine     │   │  │
+    │  │  │ • Ensemble   │  │ • Telegram Bot   │   │  │
+    │  │  │ • Anomaly    │  │ • Region-aware   │   │  │
+    │  │  │ • PFVI       │  │ • Cooldown       │   │  │
+    │  │  └──────────────┘  └──────────────────┘   │  │
+    │  └────────────────────────────────────────────┘  │
+    │                                                  │
+    │  ┌────────────────────────────────────────────┐  │
+    │  │  Storage Layer                             │  │
+    │  │  • database_gambut.csv  (data observasi)   │  │
+    │  │  • users.csv            (auth bcrypt)      │  │
+    │  │  • regional_latest.json (snapshot region)  │  │
+    │  │  • pfvi_params.json     (cached weights)   │  │
+    │  │  • alert_config.json    (telegram config)  │  │
+    │  └────────────────────────────────────────────┘  │
+    │                                                  │
+    │  ┌────────────────────────────────────────────┐  │
+    │  │  Data Sources                              │  │
+    │  │  • 🛰️ NASA FIRMS (satellite hotspot)       │  │
+    │  │  • ✍️ Manual input (petugas lapangan)      │  │
+    │  │  • 📁 Upload CSV/Excel                     │  │
+    │  └────────────────────────────────────────────┘  │
+    │                                                  │
+    └──────────────────────────────────────────────────┘
+                             ▲
+                             │
+                             │ LAN (opsional)
+                             │
+              ┌──────────────┴───────────────┐
+              │                              │
+              ▼                              ▼
+      ┌──────────────┐               ┌──────────────┐
+      │ 💻 Desktop 1 │               │ 💻 Desktop 2 │
+      │ PyQt6 Client │               │ PyQt6 Client │
+      │ (admin)      │               │ (petugas)    │
+      └──────────────┘               └──────────────┘
 ```
 
-**Kenapa client-server?**
-- 🎯 **Sentralisasi data** — tidak ada duplikasi di tiap komputer petugas.
-- 🔒 **Keamanan** — API key & logika AI tersimpan di server, tidak terekspos.
-- 🔐 **Multi-user dengan JWT** — setiap petugas punya akun sendiri, auditable.
-- 🚀 **Skalabilitas** — mudah naik ke PostgreSQL, Redis, dan load balancer.
-- 💻 **Cross-platform** — client bisa Windows, Linux, atau Mac.
+### 🎯 Prinsip Desain
+
+| Prinsip | Implementasi |
+|---|---|
+| **Local-First** | Server jalan di komputer lokal, data tetap aman |
+| **Cloud-Access** | Via Cloudflare Tunnel, bisa diakses dari mana saja |
+| **Offline-Ready** | Tidak butuh internet untuk operasi dasar |
+| **Multi-Region** | Setiap wilayah punya data & skor terpisah |
+| **Multi-User** | JWT + RBAC, setiap user punya akun sendiri |
+| **Autonomous** | Scheduler otomatis fetch + alert |
+| **Progressive** | PWA installable di HP tanpa Play Store |
 
 ---
 
@@ -182,66 +511,121 @@ Aplikasi ini adalah **port Python + GUI** dari paket R **`peatfr`** yang dikemba
 ## 📂 Struktur Folder
 
 ```
-peatfr-pyqt/
+gambut/
 │
-├── 📄 main.py                       # ⭐ Entry point CLIENT (PyQt6 GUI)
-├── 📄 README.md                     # Dokumentasi ini
-├── 📄 LICENSE                       # Lisensi MIT
-├── 📄 .gitignore                    # Git ignore rules (WAJIB: users.csv!)
-├── 📄 requirements.txt              # Semua dependensi (client + server)
-├── 📄 requirements-client.txt       # Dependensi khusus client
+├── 📄 run_hybrid_server.py         # ⭐ Entry point: server + tunnel
+├── 📄 README.md                    # Dokumentasi ini
+├── 📄 LICENSE                      # Lisensi MIT
+├── 📄 .gitignore                   # Git ignore rules
+├── 📄 .env.example                 # Template konfigurasi
+├── 📄 environment.yml              # Anaconda environment
+├── 📄 requirements-server.txt      # Deps server
+├── 📄 requirements-client.txt      # Deps client
+├── 📄 requirements-dev.txt         # Deps testing
+├── 📄 pytest.ini                   # Config pytest
+├── 📄 struktur.md                  # Dokumentasi struktur
 │
-├── 📁 app/                          # ⭐ KODE CLIENT
+├── 📁 client/                      # ⭐ DESKTOP APP (PyQt6)
 │   ├── __init__.py
-│   ├── 📁 api/                      # HTTP Client Layer
+│   ├── main.py                     # Entry point desktop
+│   ├── config.py                   # Config URL & timeout
+│   │
+│   ├── 📁 api/                     # HTTP Client
 │   │   ├── __init__.py
-│   │   └── client.py                # Singleton PeatFireClient (+ login/logout)
-│   ├── 📁 utils/                    # Helper
+│   │   └── client.py               # Singleton PeatFireClient
+│   │
+│   ├── 📁 core/                    # Business logic client
 │   │   ├── __init__.py
-│   │   └── data_processor.py        # Wrapper API (transparan)
-│   └── 📁 gui/                      # GUI Layer
-│       ├── __init__.py
-│       ├── main_window.py           # Window utama + sidebar + status bar + logout
-│       ├── login_dialog.py          # 🔐 NEW: Dialog login (gradient header)
-│       └── 📁 tabs/
-│           ├── __init__.py
-│           ├── tab_dashboard.py     # 📊 Dashboard
-│           ├── tab_default.py       # 📡 Satelit
-│           ├── tab_manual.py        # ✍️ Input Manual
-│           ├── tab_setting.py       # ⚙️ Pengaturan (admin-only)
-│           └── tab_upload.py        # 📁 Upload file
+│   │   ├── forecasting.py
+│   │   ├── imputation.py
+│   │   └── index_calc.py
+│   │
+│   ├── 📁 gui/                     # GUI Layer
+│   │   ├── __init__.py
+│   │   ├── theme.py                # 🎨 Tema Aurora Dark
+│   │   ├── widgets.py              # Reusable components
+│   │   ├── main_window.py          # Window utama + sidebar
+│   │   ├── login_dialog.py         # Dialog login
+│   │   └── 📁 tabs/
+│   │       ├── __init__.py
+│   │       ├── tab_dashboard.py    # 📊 Dashboard
+│   │       ├── tab_manual.py       # ✍️ Input manual (region-aware)
+│   │       ├── tab_upload.py       # 📁 Upload file (region-aware)
+│   │       ├── tab_anomaly.py      # 🔍 Deteksi anomali
+│   │       ├── tab_scheduler.py    # ⏰ Kontrol scheduler
+│   │       ├── tab_setting.py      # ⚙️ Pengaturan (admin-only)
+│   │       └── tab_placeholder.py  # Placeholder
+│   │
+│   ├── 📁 utils/                   # Helper
+│   │   ├── __init__.py
+│   │   └── data_processor.py
+│   │
+│   └── 📁 data/                    # Data lokal client
+│       └── template_input.xlsx     # Template upload
 │
-├── 📁 server/                       # ⭐ KODE SERVER (FastAPI)
+├── 📁 server/                      # ⭐ BACKEND (FastAPI)
 │   ├── __init__.py
-│   ├── main.py                      # Entry point FastAPI + bootstrap admin
-│   ├── models.py                    # Pydantic schemas (User, Token, dll)
-│   ├── database.py                  # Layer akses data (CSV + users)
-│   ├── requirements-server.txt      # Dependensi khusus server
+│   ├── main.py                     # Entry point FastAPI
+│   ├── models.py                   # Pydantic schemas
+│   ├── database.py                 # Layer akses CSV
 │   │
-│   ├── 📁 auth/                     # 🔐 NEW: Autentikasi JWT
+│   ├── 📁 auth/                    # 🔐 Autentikasi
 │   │   ├── __init__.py
-│   │   ├── password.py              # Hash & verify bcrypt
-│   │   ├── jwt_handler.py           # Generate & verify token
-│   │   └── dependencies.py          # get_current_user, require_role
+│   │   ├── password.py             # Hash & verify bcrypt
+│   │   ├── jwt_handler.py          # Generate & verify JWT
+│   │   └── dependencies.py         # get_current_user, require_role
 │   │
-│   ├── 📁 api/                      # REST endpoints
+│   ├── 📁 api/                     # REST endpoints
 │   │   ├── __init__.py
-│   │   └── routes.py                # + /auth/login, /auth/register, /auth/me
+│   │   ├── routes.py               # 30+ endpoints
+│   │   └── web.py                  # Serve dashboard HTML
 │   │
-│   ├── 📁 core/                     # ⭐ ENGINE UTAMA
+│   ├── 📁 core/                    # ⭐ AI ENGINE
 │   │   ├── __init__.py
-│   │   ├── imputation.py            # KNN / Spline / Linear
-│   │   ├── forecasting.py           # ARIMA / LSTM / GRU
-│   │   └── index_calc.py            # Nelder-Mead optimization
+│   │   ├── imputation.py           # KNN / Spline / Linear / Loess
+│   │   ├── forecasting.py          # ARIMA + Box-Cox
+│   │   ├── deep_learning.py        # LSTM / GRU (PyTorch)
+│   │   ├── ensemble.py             # Ensemble + CI + CV
+│   │   ├── index_calc.py           # PFVI Nelder-Mead
+│   │   ├── anomaly.py              # Z-score + IQR + IF
+│   │   ├── satellite.py            # NASA FIRMS integration
+│   │   ├── scheduler.py            # Auto-fetch scheduler
+│   │   ├── alert.py                # Telegram notifications
+│   │   ├── pfvi_cache.py           # Cached PFVI params
+│   │   └── autopeatfr.py           # All-in-one pipeline
 │   │
-│   └── 📁 data/                     # 💾 Storage (JANGAN DI-COMMIT!)
-│       ├── database_gambut.csv      # (auto-generated)
-│       ├── sample_satellite.csv     # File mentah satelit
-│       ├── users.csv                # 🔐 User & password hash
-│       └── config.json              # (auto-generated)
+│   ├── 📁 templates/               # Web dashboard
+│   │   ├── dashboard.html          # Main dashboard
+│   │   ├── manifest.json           # PWA manifest
+│   │   └── sw.js                   # Service worker
+│   │
+│   ├── 📁 static/                  # Static assets
+│   │   └── 📁 icons/
+│   │       ├── icon-192.png
+│   │       └── icon-512.png
+│   │
+│   └── 📁 data/                    # 💾 Storage (JANGAN DI-COMMIT!)
+│       ├── database_gambut.csv     # Data observasi
+│       ├── sample_satellite.csv    # Sample (boleh di-commit)
+│       ├── users.csv               # 🔐 User (auto-generated)
+│       ├── config.json             # (auto-generated)
+│       ├── alert_config.json       # 🔐 Telegram config
+│       ├── pfvi_params.json        # Cached params
+│       └── regional_latest.json    # Snapshot region
 │
-└── 📁 data/                         # 💾 Data lokal client
-    └── template_input.xlsx          # (auto-generated saat unduh template)
+├── 📁 docs/                        # 📚 Documentation
+│   ├── 📁 cloudflared/
+│   │   └── config.yml.example      # Template tunnel config
+│   └── 📁 screenshots/             # Screenshot assets
+│
+├── 📁 tests/                       # 🧪 Unit tests
+│   ├── __init__.py
+│   ├── test_pfvi.py
+│   ├── test_imputation.py
+│   └── test_anomaly.py
+│
+└── 📁 scripts/                     # 🛠️ Utility scripts
+    └── migrate_add_region.py       # Database migration
 ```
 
 ---
@@ -255,11 +639,14 @@ peatfr-pyqt/
 | Komponen | Minimum | Rekomendasi |
 |----------|---------|-------------|
 | **OS** | Windows 10 / Ubuntu 20.04 / macOS 11 | Windows 11 / Ubuntu 22.04 |
-| **Python** | 3.10 | 3.11 atau 3.12 |
+| **Python** | 3.11 | 3.11.x (tested) |
 | **RAM** | 4 GB | 8 GB+ (untuk LSTM/GRU) |
-| **Storage** | 500 MB | 2 GB (untuk ML models) |
+| **Storage** | 2 GB | 5 GB (dengan PyTorch + TensorFlow) |
 | **Anaconda** | Miniconda | Anaconda Full Distribution |
-| **Jaringan** | LAN lokal | Internet (untuk API satelit) |
+| **Jaringan** | LAN lokal | Internet (untuk satelit & tunnel) |
+| **Cloudflare Account** | Gratis | Gratis (Free plan) |
+| **NASA FIRMS API Key** | Gratis | Gratis |
+| **Telegram Bot** | Gratis | Gratis |
 
 ---
 
@@ -272,65 +659,93 @@ peatfr-pyqt/
 ### Tahap 1 — Clone Repository
 
 ```bash
-# Via HTTPS
-git clone https://github.com/your-username/peatfr-pyqt.git
-cd peatfr-pyqt
-
-# Atau via SSH (kalau sudah setup SSH key)
-git clone git@github.com:your-username/peatfr-pyqt.git
-cd peatfr-pyqt
+git clone https://github.com/duhemen/gambut.git
+cd gambut
 ```
 
 ### Tahap 2 — Setup Anaconda Environment
 
-Buka **Anaconda Prompt**, lalu jalankan:
+Buka **Anaconda Prompt**:
 
 ```bash
-# Buat environment baru khusus proyek
-conda create -n peatfr_env python=3.11 -y
+# Buat environment dari file
+conda env create -f environment.yml
 
-# Aktifkan environment
+# Aktifkan
 conda activate peatfr_env
+
+# Verifikasi
+python --version
+# Output: Python 3.11.x
 ```
 
-**Cek environment aktif:**
-```bash
-where python
-# Output harusnya: C:\Users\<user>\anaconda3\envs\peatfr_env\python.exe
-```
+### Tahap 3 — Install Deep Learning Backend (Opsional)
 
-### Tahap 3 — Install Dependensi
-
-**Opsi A — Install Semua Sekaligus (paling simpel):**
-```bash
-pip install -r requirements.txt
-```
-
-**Opsi B — Install Terpisah (server & client di komputer berbeda):**
+Untuk fitur LSTM/GRU asli:
 
 ```bash
-# Di komputer server
-pip install -r server/requirements-server.txt
+# Opsi A: PyTorch (ringan ~200 MB) — REKOMENDASI
+pip install torch --index-url https://download.pytorch.org/whl/cpu
 
-# Di komputer client
-pip install -r requirements-client.txt
+# Opsi B: TensorFlow (berat ~600 MB)
+pip install tensorflow-cpu
 ```
 
-**Verifikasi instalasi:**
+Cek backend terdeteksi:
+
 ```bash
-pip list | findstr "fastapi uvicorn PyQt6 pmdarima bcrypt"
+python -c "from server.core.deep_learning import get_backend_info; import json; print(json.dumps(get_backend_info(), indent=2))"
 ```
 
-> ⚠️ **Catatan `pmdarima` di Windows:** kalau gagal compile, jalankan:
-> ```bash
-> pip install pmdarima --only-binary :all:
-> ```
+### Tahap 4 — Setup Konfigurasi `.env`
 
-> 🔐 **Catatan `bcrypt` (PENTING):** `passlib` 1.7.4 **tidak kompatibel** dengan `bcrypt >= 4.1`. Kalau muncul error `module 'bcrypt' has no attribute '__about__'` atau `password cannot be longer than 72 bytes`, jalankan:
-> ```bash
-> pip install "bcrypt==4.0.1"
-> ```
-> Sudah di-pin di `requirements.txt` — jangan naikkan versinya sampai `passlib` di-update.
+```bash
+# Copy template
+cp .env.example .env
+
+# Edit dengan text editor
+notepad .env  # Windows
+nano .env     # Linux/Mac
+```
+
+**Isi field wajib:**
+
+```env
+# Generate secret key (jalankan: python -c "import secrets; print(secrets.token_urlsafe(48))")
+PEATFR_SECRET_KEY=<paste-hasil-generate>
+
+# NASA FIRMS (daftar gratis: https://firms.modaps.eosdis.nasa.gov/api/map_key/)
+NASA_FIRMS_API_KEY=<paste-api-key-anda>
+
+# Telegram (lihat panduan di bawah)
+TELEGRAM_BOT_TOKEN=<paste-bot-token>
+TELEGRAM_CHAT_IDS=<paste-chat-id>
+```
+
+### Tahap 5 — Dapatkan API Keys
+
+<details>
+<summary><b>🔑 Cara Dapat NASA FIRMS API Key (Gratis, 5 menit)</b></summary>
+
+1. Buka https://firms.modaps.eosdis.nasa.gov/api/map_key/
+2. Isi email Anda
+3. Cek inbox → dapat **MAP_KEY** (32 karakter hex)
+4. Paste ke `.env`
+
+</details>
+
+<details>
+<summary><b>🔑 Cara Dapat Telegram Bot Token (Gratis, 3 menit)</b></summary>
+
+1. Buka Telegram → chat **@BotFather**
+2. Ketik `/newbot`
+3. Beri nama bot (mis. `PeatFR Alert Bot`)
+4. Beri username (mis. `peatfr_alert_bot`)
+5. Copy **BOT_TOKEN**
+6. Chat **@userinfobot** → klik START → dapat **CHAT_ID**
+7. Paste keduanya ke `.env`
+
+</details>
 
 ---
 
@@ -340,74 +755,55 @@ pip list | findstr "fastapi uvicorn PyQt6 pmdarima bcrypt"
 
 ## ▶️ Cara Menjalankan
 
-### Menjalankan Server
+### 🚀 Opsi 1: Hybrid Mode (Server + Cloudflare Tunnel)
 
-Buka **Anaconda Prompt #1**:
+Cara paling powerful — server lokal + akses global:
 
 ```bash
-# 1. Aktifkan environment
-conda activate peatfr_env
-
-# 2. Masuk ke ROOT proyek (bukan folder server!)
-cd C:\Users\<user>\peatfr-pyqt
-
-# 3. Jalankan server
-python -m uvicorn server.main:app --host 0.0.0.0 --port 8000 --reload
+# Terminal 1 — jalankan server + tunnel
+python run_hybrid_server.py
 ```
 
 **Log sukses:**
 ```
-🔐 [BOOTSTRAP] User 'admin' dibuat (password: admin123)
-✅ [SERVER] Database, satellite & users siap.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+✅ [ENV] Loaded from: D:\gambut\.env
+✅ [JWT] PEATFR_SECRET_KEY loaded (64 chars).
+✅ [DL] Backend: PyTorch 2.10.0
+✅ [SERVER] Database, satellite, users siap.
+✅ [SCHEDULER] Aktif — interval 6 jam
+☁️ [TUNNEL] Cloudflare Tunnel started
 ```
 
-> 🟢 **Server WAJIB tetap hidup** selama client dipakai. Jangan tutup terminal ini.
-
-> ⚠️ **Penting:** jalankan dari **root proyek**, bukan dari dalam `server/`. Kalau salah, akan muncul `ModuleNotFoundError: No module named 'server'`.
-
-### Menjalankan Client GUI
-
-Buka **Anaconda Prompt #2** (terminal BARU):
+### 🖥️ Opsi 2: Server Only (Local)
 
 ```bash
-# 1. Aktifkan environment
-conda activate peatfr_env
-
-# 2. Masuk ke root proyek
-cd C:\Users\<user>\peatfr-pyqt
-
-# 3. Jalankan client
-python main.py
+# Terminal 1 — server
+python -m uvicorn server.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-**Yang akan terjadi:**
-1. Dialog **Login PeatFR** muncul dengan gradient header biru-hijau.
-2. Isi kredensial default:
-   - **Username:** `admin`
-   - **Password:** `admin123`
-3. Klik **🔓 MASUK** → window utama muncul.
-4. Status bar bawah → `🛡️ Administrator (admin) | 🟢 Terhubung | 🚪 Logout`
-5. Sidebar kiri menampilkan 5 menu (semua tersedia untuk admin).
-6. Data otomatis ditarik dari server.
-
-> ⚠️ **Ganti password default** setelah login pertama! Untuk user baru, gunakan endpoint `/api/v1/auth/register` (lihat bagian [API Endpoints](#-api-endpoints)).
-
-> 💡 **Login sebagai petugas:** Sidebar hanya menampilkan 4 menu (tanpa Pengaturan Aplikasi), karena tab Setting adalah admin-only.
-
-### Menjalankan Multi-Client (Opsional)
-
-Untuk membuktikan arsitektur client-server bekerja:
+### 💻 Jalankan Desktop Client
 
 ```bash
-# Buka Anaconda Prompt #3 (BARU)
-conda activate peatfr_env
-cd C:\Users\<user>\peatfr-pyqt
-python main.py
+# Terminal 2 — client
+python -m client.main
 ```
 
-Window client kedua muncul → login dengan user berbeda → input data di Client 1 → klik Dashboard di Client 2 → **data muncul juga!** ✅
+**Login default:**
+- Username: `admin`
+- Password: `admin123`
+
+> ⚠️ **Ganti password default** setelah login pertama!
+
+### 🌐 Akses Web Dashboard
+
+- **Lokal**: http://localhost:8000/dashboard
+- **Cloudflare**: https://gambutfr.osvpn.id/dashboard
+
+### 📱 Install PWA di HP
+
+1. Buka `https://gambutfr.osvpn.id/dashboard` di Chrome/Safari HP
+2. Menu → **"Add to Home Screen"**
+3. Icon 🔥 muncul → buka seperti app native
 
 ---
 
@@ -419,123 +815,59 @@ Window client kedua muncul → login dengan user berbeda → input data di Clien
 
 ### 1. 🔐 Login Screen
 
-_Pintu masuk aplikasi — autentikasi JWT dengan tampilan modern, gradient header, dan toggle show/hide password._
+Dialog login dengan tema **Aurora Dark**, gradient header, dan feedback visual.
 
-**Highlight fitur:**
+- ✅ JWT authentication
+- ✅ Password ter-hash bcrypt
+- ✅ Session auto-attach ke setiap request
+- ✅ Role-based UI (tab Setting hanya untuk admin)
 
-- 🎨 **Gradient Header** — banner biru → hijau sebagai identitas visual aplikasi
-- 👁 **Show/Hide Password** — toggle visibility password sekali klik
-- ⚡ **Animated Loading** — indikator proses dengan dot animasi (Memproses. → .. → ...)
-- ✅ **Feedback Sukses** — notifikasi hijau sebelum masuk ke dashboard
-- ⚠️ **Validasi Pintar** — pesan error spesifik per field (username/password)
-- 🛡️ **JWT Session** — token disimpan aman di memory, auto-attach ke setiap request
-- 📌 **Footer Version** — menampilkan versi aplikasi + bantuan kontak admin
+### 2. 📊 Dashboard
 
-![Login Screen](docs/screenshots/login.png)
+Pusat komando dengan:
+- **KPI Cards**: Total observasi, WT terkini, Suhu, PFVI
+- **Tabel Data Petugas**: Per-region feed terbaru
+- **Kartu Regional**: Ringkasan per region (Kalimantan, Sumatera, Papua)
+- **Chart Tren WT** (line chart interaktif)
+- **Diagram Pie** distribusi status
+- **Tombol Sync Satelit** & **Broadcast Alert**
 
-**Aturan klasifikasi role:**
+### 3. ✍️ Input Manual (Region-Aware)
 
-| Role | Akses |
-|------|-------|
-| `admin` | Semua tab termasuk ⚙️ Pengaturan Aplikasi |
-| `petugas` | 4 tab (Dashboard, Satelit, Manual, Upload) — tanpa Setting |
+Form input dengan **dropdown region**:
+- Pilih region: `kalimantan` / `sumatera` / `papua` / dll
+- Isi 4 parameter: WT, SM, RF, Temp
+- Preview PFVI real-time
+- Klik Simpan → auto-alert kalau BAHAYA/SIAGA
 
-### 2. 📊 Dashboard Ringkasan
+### 4. 📁 Upload Data (Region-Aware)
 
-Tab pertama menampilkan **pusat komando** dengan:
+Bulk import dengan **selector region**:
+- Pilih region tujuan
+- Drag & drop file CSV/Excel
+- Auto-validasi kolom
+- Preview data sebelum simpan
 
-- **KPI Cards:**
-  - Tinggi Muka Air (WT) terkini
-  - Suhu Lahan terkini
-  - Status Risiko (🟢 AMAN / 🟡 SIAGA / 🔴 BAHAYA)
-- **Grafik Tren WT** (10 hari terakhir)
-- **Diagram Pie** distribusi status risiko
-- **Tabel Historis** 10 baris data terbaru
+### 5. 🔍 Anomali Detection
 
-**Aturan Klasifikasi Otomatis:**
+Deteksi outlier dengan **ensemble voting**:
+- Total data & rasio anomali
+- Tabel detail anomali (tanggal, WT, votes, alasan)
+- Klik **"Deteksi Sekarang"** untuk refresh
 
-| Kondisi | Status |
-|---------|--------|
-| WT < -15 cm **atau** Temp > 34 °C | 🔴 BAHAYA |
-| WT antara -15 s.d. -10 cm | 🟡 SIAGA |
-| WT > -10 cm **dan** Temp ≤ 34 °C | 🟢 AMAN |
+### 6. ⏰ Scheduler
 
-![Dashboard Ringksasan](docs/screenshots/dashboard_ringkasan.png)
+Kontrol auto-fetch satelit:
+- **Status**: RUNNING / STOPPED
+- **Interval**: 1-72 jam (configurable)
+- **Total runs** & errors
+- Tombol: Start / Stop / **Trigger Sekarang**
 
-### 3. 📡 Data Bawaan Satelit
+### 7. ⚙️ Pengaturan (Admin Only)
 
-**Tujuan:** Menarik data mentah satelit yang masih berisi nilai kosong, lalu menambalnya secara otomatis.
-
-**Langkah:**
-1. Pilih metode imputasi dari dropdown:
-   - `KNN Imputer` — berbasis kemiripan tetangga terdekat
-   - `Spline Curve` — interpolasi kurva halus
-   - `Linear Method` — interpolasi garis lurus
-2. Klik **🔄 Sinkronisasi Data Satelit**.
-3. Tunggu proses (beberapa detik).
-4. Status berubah **hijau**: `🟢 SINKRONISASI BERHASIL: ...`
-5. Tabel akan menampilkan data yang sudah bersih.
-
-![Data Bawaan Satelit](docs/screenshots/data_bawaan_satelit.png)
-
-### 4. ✍️ Form Input Manual
-
-**Tujuan:** Memasukkan data observasi lapangan secara manual harian.
-
-**Langkah:**
-1. Isi 4 parameter:
-   - **WT** (Water Table) — bisa negatif
-   - **SM** (Soil Moisture) — 0-100 %
-   - **Rf** (Rainfall) — mm
-   - **Temp** (Temperature) — °C
-2. Atau geser slider untuk nilai cepat.
-3. Pilih **Model Forecasting**:
-   - `ARIMA Stochastic` — model statistik klasik
-   - `LSTM Deep Learning` — neural network
-   - `GRU Deep Learning` — varian LSTM lebih ringan
-4. Klik **🔥 JALANKAN ANALISIS PREDIKSI RISIKO**.
-5. Popup hasil muncul:
-   - Skor indeks kerawanan (0-100)
-   - Status risiko
-   - Prediksi WT 7 hari ke depan (array)
-6. Data tersimpan di server → cek Dashboard.
-
-![From Input Manual](docs/screenshots/form_input_manual.png)
-
-### 5. 📁 Unggah Berkas Excel/CSV
-
-**Tujuan:** Bulk import data lapangan dari file Excel/CSV.
-
-**Format file wajib:**
-
-| tanggal | wt | sm | rf | temp |
-|---------|-----|-----|-----|------|
-| 2026-09-15 | -12 | 45 | 0 | 32.5 |
-| 2026-09-16 | -15 | 42 | 0.0 | 33.1 |
-
-> ⚠️ Kolom **harus persis** `tanggal, wt, sm, rf, temp` (huruf kecil semua).
-
-**Langkah:**
-1. Klik **📥 Unduh Template (.xlsx)** untuk dapat file contoh.
-2. Isi file dengan Excel.
-3. Drag file ke **Drop Area** atau klik **Pilih Berkas Komputer**.
-4. Status box berubah:
-   - 🟢 **Hijau** → sukses import.
-   - 🔴 **Merah** → ada kesalahan (misal kolom kurang).
-
-![Unggah Berkas Excel Csv](docs/screenshots/unggah_berkas_excel_csv.png)
-
-### 6. ⚙️ Pengaturan Aplikasi
-
-> 🔒 **Tab ini hanya muncul untuk role `admin`.** Petugas tidak melihat menu ini.
-
-**Fitur:**
-- **URL Server** — ganti alamat server kapan saja (misal dari `localhost` ke `192.168.1.100`).
-- **API Endpoint URL** — endpoint satelit (misal Copernicus).
-- **API Key** — kredensial rahasia (ditampilkan sebagai bintang).
-- **Simpan Konfigurasi** — disimpan di server, jadi semua client dapat konfigurasi yang sama.
-
-![Pengaturan Aplikasi](docs/screenshots/pengaturan_aplikasi.png)
+- URL Server configuration
+- API Satelit credentials
+- Tema aplikasi (Dark / Light)
 
 ---
 
@@ -545,61 +877,62 @@ Tab pertama menampilkan **pusat komando** dengan:
 
 ## 🔌 API Endpoints
 
-Akses **Swagger UI** untuk dokumentasi interaktif:
-```
-http://localhost:8000/docs
-```
+**Swagger UI**: http://localhost:8000/docs
 
 ### 🔐 Authentication
 
 | Method | Endpoint | Fungsi | Auth |
 |--------|----------|--------|------|
-| `POST` | `/api/v1/auth/register` | Daftarkan user baru | Public |
-| `POST` | `/api/v1/auth/login` | Login → dapat JWT token | Public |
-| `GET` | `/api/v1/auth/me` | Info user yang sedang login | Bearer |
-| `GET` | `/api/v1/auth/users` | Daftar semua user | Bearer (admin) |
+| `POST` | `/api/v1/auth/register` | Daftar user baru | Admin |
+| `POST` | `/api/v1/auth/login` | Login → JWT token | Public |
+| `GET` | `/api/v1/auth/me` | Info user login | Bearer |
+| `GET` | `/api/v1/auth/users` | Daftar user | Admin |
 
 ### 📊 Data & Analytics
 
 | Method | Endpoint | Fungsi | Auth |
 |--------|----------|--------|------|
-| `GET` | `/health` | Cek status server | Public |
-| `GET` | `/api/v1/data` | Ambil semua data historis | Bearer |
-| `POST` | `/api/v1/data` | Simpan input manual | Bearer |
-| `POST` | `/api/v1/data/upload` | Upload file CSV/Excel | Bearer |
-| `POST` | `/api/v1/satellite/sync` | Sinkronisasi & imputasi satelit | Bearer |
-| `POST` | `/api/v1/forecast` | Jalankan prediksi WT | Bearer |
-| `POST` | `/api/v1/index` | Hitung indeks kerawanan | Bearer |
-| `GET` | `/api/v1/config` | Baca konfigurasi | Bearer (admin) |
-| `POST` | `/api/v1/config` | Simpan konfigurasi | Bearer (admin) |
+| `GET` | `/api/v1/data` | Data historis | Bearer |
+| `POST` | `/api/v1/data` | Input manual | Bearer |
+| `POST` | `/api/v1/data/upload` | Upload CSV/Excel | Bearer |
+| `GET` | `/api/v1/data/public` | Public data feed | Public |
 
-### 📝 Contoh cURL
+### 🛰️ Satellite
 
-```bash
-# 1. Login → dapat token
-curl -X POST http://localhost:8000/api/v1/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin123"}'
+| Method | Endpoint | Fungsi | Auth |
+|--------|----------|--------|------|
+| `POST` | `/api/v1/satellite/fetch` | Fetch NASA FIRMS | Admin |
+| `GET` | `/api/v1/satellite/regions` | List region | Bearer |
+| `GET` | `/api/v1/satellite/regional-summary` | Ringkasan per region | Public |
 
-# 2. Simpan token dari response ke variabel (bash)
-TOKEN="eyJhbGciOiJIUzI1NiIs..."
+### 🧠 AI & Forecasting
 
-# 3. Akses endpoint terproteksi dengan Bearer token
-curl http://localhost:8000/api/v1/data \
-  -H "Authorization: Bearer $TOKEN"
+| Method | Endpoint | Fungsi | Auth |
+|--------|----------|--------|------|
+| `POST` | `/api/v1/forecast` | Forecast WT | Bearer |
+| `POST` | `/api/v1/forecast/ensemble` | Ensemble + CI | Bearer |
+| `POST` | `/api/v1/forecast/cross-validate` | K-Fold CV | Bearer |
+| `POST` | `/api/v1/index` | Hitung PFVI | Bearer |
+| `POST` | `/api/v1/anomaly/detect` | Deteksi anomali | Bearer |
+| `POST` | `/api/v1/autopeatfr` | All-in-one pipeline | Bearer |
 
-# 4. Input manual (dengan token)
-curl -X POST http://localhost:8000/api/v1/data \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"wt": -12, "sm": 45, "rf": 5, "temp": 32}'
+### 📢 Alert
 
-# 5. Forecast ARIMA 7 hari
-curl -X POST http://localhost:8000/api/v1/forecast \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"model": "ARIMA Stochastic", "steps": 7}'
-```
+| Method | Endpoint | Fungsi | Auth |
+|--------|----------|--------|------|
+| `GET` | `/api/v1/alert/status` | Status alert | Bearer |
+| `POST` | `/api/v1/alert/config` | Update config | Admin |
+| `POST` | `/api/v1/alert/test` | Test kirim | Admin |
+| `POST` | `/api/v1/alert/broadcast-public` | Broadcast semua region | Public |
+
+### ⏰ Scheduler
+
+| Method | Endpoint | Fungsi | Auth |
+|--------|----------|--------|------|
+| `GET` | `/api/v1/scheduler/status` | Status scheduler | Bearer |
+| `POST` | `/api/v1/scheduler/start` | Start scheduler | Admin |
+| `POST` | `/api/v1/scheduler/stop` | Stop scheduler | Admin |
+| `POST` | `/api/v1/scheduler/trigger` | Trigger manual | Admin |
 
 ---
 
@@ -609,236 +942,168 @@ curl -X POST http://localhost:8000/api/v1/forecast \
 
 ## 🧪 Testing & Debugging
 
-### Test Koneksi Server
+### Run Unit Tests
 
 ```bash
-curl http://localhost:8000/health
-# {"status": "healthy"}
+# Semua test
+pytest
+
+# Dengan coverage
+pytest --cov=server --cov=client --cov-report=term-missing
+
+# Test spesifik
+pytest tests/test_pfvi.py -v
 ```
 
-### Test Login & Token
+### Test API Manual
 
 ```bash
-# 1. Login untuk dapat token
+# Health check
+curl http://localhost:8000/health
+
+# Login
 curl -X POST http://localhost:8000/api/v1/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "admin123"}'
 
-# Expected: {"success": true, "access_token": "eyJ...", "user": {...}}
-
-# 2. Cek endpoint terproteksi TANPA token → harus 401
-curl http://localhost:8000/api/v1/data
-# Expected: {"detail": "Header Authorization tidak ditemukan."}
-
-# 3. Cek DENGAN token → 200
+# Cek data (dengan token)
 curl http://localhost:8000/api/v1/data \
-  -H "Authorization: Bearer <PASTE_TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
-### Reset / Hapus User
+### Reset Database
 
 ```bash
-# Hapus file users.csv lalu restart server → bootstrap admin otomatis
-# Windows:
+# Windows
 Remove-Item server\data\users.csv
 
-# Linux/macOS:
+# Linux/Mac
 rm server/data/users.csv
-```
-
-> ⚠️ **PENTING:** file `server/data/users.csv` **JANGAN PERNAH** di-commit ke Git! Pastikan ada di `.gitignore`.
-
-### Log Server (Live Monitoring)
-
-Setiap request client akan tercatat di terminal server:
-```
-INFO:     127.0.0.1:55028 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55030 - "GET /api/v1/data HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55032 - "POST /api/v1/forecast HTTP/1.1" 200 OK
-```
-
-### Port Sudah Dipakai?
-
-```bash
-# Cari PID yang pakai port 8000
-netstat -ano | findstr :8000
-
-# Kill proses
-taskkill /PID <PID> /F
+# Restart server → admin auto-generated
 ```
 
 ---
 
 <!-- ========================================================= -->
-<!--                  DEPLOYMENT ROADMAP                       -->
+<!--                  DEPLOYMENT                               -->
 <!-- ========================================================= -->
 
-## 🚢 Deployment (Roadmap)
+## 🚢 Deployment
+
+### ☁️ Cloudflare Tunnel Setup
 
 <details>
-<summary><b>🔐 1. JWT Authentication</b> — Autentikasi per Petugas ✅ <i>DONE</i></summary>
+<summary><b>Klik untuk expand — Setup Cloudflare Tunnel (Free)</b></summary>
 
-**Tujuan:** Setiap petugas login dengan kredensial sendiri.
+#### 1. Prasyarat
+- Domain (mis. `gambutfr.osvpn.id`)
+- Akun Cloudflare (gratis)
 
-**Stack:**
-- `python-jose[cryptography]` — generate & verify JWT token
-- `passlib[bcrypt]` + `bcrypt==4.0.1` — hash password
-- Endpoint baru: `/api/v1/auth/login`, `/api/v1/auth/register`, `/api/v1/auth/me`
+#### 2. Install Cloudflared
 
-**Alur:**
-1. Petugas login via GUI → POST `/auth/login` → dapat token
-2. Client simpan token di memory → sertakan di header tiap request
-3. Server verifikasi token di middleware sebelum proses
-
-**Status:** ✅ Implemented di v2.0
-</details>
-
-<details>
-<summary><b>🛡️ 2. Role-Based Access Control (RBAC)</b> ✅ <i>DONE</i></summary>
-
-**Tujuan:** Bedakan akses admin vs petugas.
-
-**Implementasi:**
-- Kolom `role` di `users.csv` (`admin` | `petugas`)
-- Dependency `require_role("admin")` di endpoint sensitif
-- GUI dinamis: tab Setting **auto-hidden** untuk petugas
-- Status bar menampilkan user + role
-
-**Status:** ✅ Implemented di v2.0
-</details>
-
-<details>
-<summary><b>🗄️ 3. PostgreSQL Migration</b> — Untuk Data Volume Besar</summary>
-
-**Tujuan:** Ganti CSV ke database relasional.
-
-**Stack:**
-- `sqlalchemy>=2.0` — ORM
-- `psycopg2-binary` — PostgreSQL driver
-- `alembic` — migrasi skema
-
-**Langkah:**
-1. Definisikan model SQLAlchemy di `server/models_db.py`
-2. Buat skrip migrasi Alembic
-3. Refactor `server/database.py` untuk pakai session SQLAlchemy
-4. API endpoint tidak perlu berubah (interface sama)
-</details>
-
-<details>
-<summary><b>☁️ 4. Deploy Server ke VPS</b></summary>
-
-**Provider rekomendasi:** DigitalOcean, Linode, Vultr, AWS Lightsail.
-
-**Langkah umum:**
-1. Sewa VPS (min 2 vCPU, 4 GB RAM)
-2. Setup SSH key
-3. Install Python 3.11 + Anaconda
-4. Clone repo
-5. Jalankan dengan `gunicorn` + `uvicorn worker`
-6. Setup `systemd` service agar auto-restart
-</details>
-
-<details>
-<summary><b>🔒 5. HTTPS dengan Nginx + Let's Encrypt</b></summary>
-
-**Tujuan:** Enkripsi komunikasi client-server.
-
-**Stack:**
-- **Nginx** sebagai reverse proxy
-- **Certbot** (Let's Encrypt) untuk SSL gratis
-
-**Langkah:**
-1. `apt install nginx certbot python3-certbot-nginx`
-2. Konfigurasi Nginx proxy ke `localhost:8000`
-3. `certbot --nginx -d peatfr.domainku.com`
-4. Auto-renew SSL tiap 90 hari
-</details>
-
-<details>
-<summary><b>🐳 6. Docker Containerization</b></summary>
-
-**Tujuan:** Server portable & reproducible.
-
-**File yang dibutuhkan:**
-- `Dockerfile` — image server
-- `docker-compose.yml` — orkestrasi server + PostgreSQL
-- `.dockerignore`
-
-**Perintah:**
 ```bash
-docker compose up -d
+# Windows
+winget install Cloudflare.cloudflared
+
+# Linux
+sudo apt install cloudflared
+
+# macOS
+brew install cloudflared
 ```
+
+#### 3. Login & Buat Tunnel
+
+```bash
+cloudflared tunnel login
+cloudflared tunnel create gambut-server
+```
+
+Catat **UUID** yang muncul.
+
+#### 4. Configure Public Hostname
+
+Buka **Cloudflare Zero Trust Dashboard**:
+- `https://one.dash.cloudflare.com/`
+- Networks → Tunnels → pilih tunnel Anda
+- Tab **Public Hostname** → **Add a public hostname**
+- Isi:
+  - Subdomain: `gambutfr`
+  - Domain: `osvpn.id`
+  - Service Type: `HTTP`
+  - Service URL: `localhost:8000`
+- **Save**
+
+#### 5. Jalankan
+
+```bash
+python run_hybrid_server.py
+```
+
+#### 6. Akses
+
+```
+https://gambutfr.osvpn.id/dashboard
+```
+
 </details>
 
-<details>
-<summary><b>🌐 7. Web Dashboard (React/Vue)</b></summary>
+### 🐳 Docker (Rencana)
 
-**Tujuan:** Alternatif client GUI untuk monitoring via browser.
-
-**Stack:**
-- **React** atau **Vue 3** + Vite
-- **Axios** untuk HTTP
-- **Chart.js** / **Recharts** untuk grafik
-- Deploy statis di Vercel / Netlify
-
-**Reuse:** Semua endpoint API yang sudah ada bisa langsung dipakai.
-</details>
+Roadmap: Dockerfile + docker-compose untuk deployment containerized.
 
 ---
 
 <!-- ========================================================= -->
-<!--                  ROADMAP PENGEMBANGAN                     -->
+<!--                  ROADMAP                                  -->
 <!-- ========================================================= -->
 
-## 🗺️ Roadmap Pengembangan
+## 🗺️ Roadmap
 
-- [x] ✅ **Versi 1.0** — Client-server PyQt6 + FastAPI dasar
-  - [x] GUI 5 tab (Dashboard, Satelit, Manual, Upload, Setting)
-  - [x] REST API endpoints
-  - [x] AI forecasting (ARIMA/LSTM/GRU)
-  - [x] Nelder-Mead optimization
-  - [x] Imputasi KNN/Spline/Linear
-
-- [x] ✅ **Versi 1.5** — Authentication (bonus)
-
-  - [x] Login dialog GUI (gradient header, show/hide password)
-  - [x] JWT authentication (bcrypt password hashing)
-  - [x] Role-based access control (admin / petugas)
-  - [x] Session loop (logout → login ulang)
-  - [x] GUI: user display + logout button + RBAC tab
-
-- [ ] 🔄 **Versi 2.0 — Security & Scale** *(in progress, 50%)*
-
-  - [x] JWT Authentication
+- [x] ✅ **v1.0** — Client-server dasar (PyQt6 + FastAPI)
+- [x] ✅ **v1.5** — JWT Authentication + RBAC
+- [x] ✅ **v2.0** — Security & Multi-User
+  - [x] Login dialog + show/hide password
   - [x] Role-based access (admin / petugas)
-  - [x] Login Dialog GUI
-  - [ ] Register dialog GUI
-  - [ ] Admin panel user management
+  - [x] Admin panel user management
+- [x] ✅ **v3.0** — Satellite & AI Integration
+  - [x] NASA FIRMS integration
+  - [x] Auto-fetch scheduler
+  - [x] Multi-region support
+  - [x] Ensemble forecasting (ARIMA + LSTM + GRU)
+  - [x] Confidence Interval 95%
+  - [x] Time-series cross-validation
+  - [x] Anomaly detection (Z+IQR+IF)
+  - [x] PFVI Nelder-Mead optimization
+  - [x] Telegram alert system
+  - [x] Web Dashboard (PWA)
+  - [x] Cloudflare Tunnel deployment
+
+- [ ] 🔄 **v3.1** — Enhancement (in progress)
+  - [x] Region-specific alerts
+  - [x] Broadcast alert system
+  - [ ] Interactive map (Leaflet / Mapbox)
+  - [ ] Chart export (PNG/PDF)
+  - [ ] Email notification
   - [ ] PostgreSQL migration
-  - [ ] Refresh token (auto-renew)
+  - [ ] Docker support
 
-- [ ] ⏳ **Versi 3.0 — Cloud Deployment**
-  - [ ] Deploy ke VPS
-  - [ ] HTTPS + Nginx + Let's Encrypt
-  - [ ] Docker Compose
-  - [ ] Auto backup database
-  - [ ] CI/CD pipeline (GitHub Actions)
+- [ ] ⏳ **v4.0** — Advanced Features
+  - [ ] Real-time WebSocket push
+  - [ ] Mobile native app (Flutter)
+  - [ ] Multi-language support
+  - [ ] Advanced ML (Transformer)
+  - [ ] Load balancing
+  - [ ] Redis caching
+  - [ ] CI/CD pipeline
 
-- [ ] 🔮 **Versi 4.0 — Web & Mobile**
-  - [ ] Web dashboard (React/Vue)
-  - [ ] Progressive Web App (PWA)
-  - [ ] Mobile push notification
+- [ ] 🔮 **v5.0** — Vision
+  - [ ] IoT sensor integration
+  - [ ] Drone imagery analysis
+  - [ ] Public API for researchers
+  - [ ] Integration with BMKG & BNPB
+  - [ ] National-scale deployment
 
----
-
-### 📌 Legend
-
-| Simbol | Arti |
-|--------|------|
-| ✅ | Selesai |
-| 🔄 | Sedang dikerjakan |
-| ⏳ | Rencana terdekat |
-| 🔮 | Visi jangka panjang |
 ---
 
 <!-- ========================================================= -->
@@ -847,82 +1112,88 @@ docker compose up -d
 
 ## 🤝 Kontribusi
 
-Kami menerima kontribusi dalam bentuk apapun! Silakan buat **fork** dan **pull request**.
+Kami menerima kontribusi dalam bentuk apapun!
 
 **Alur kontribusi:**
-1. Fork repository ini.
-2. Buat branch fitur: `git checkout -b feature/FiturKeren`.
-3. Commit: `git commit -m "Add: FiturKeren"`.
-4. Push: `git push origin feature/FiturKeren`.
-5. Buka Pull Request.
+1. Fork repository
+2. Buat branch: `git checkout -b feature/FiturKeren`
+3. Commit: `git commit -m "Add: FiturKeren"`
+4. Push: `git push origin feature/FiturKeren`
+5. Buka Pull Request
 
 **Konvensi Commit:**
-- `Add:` untuk fitur baru
-- `Fix:` untuk bug fix
-- `Docs:` untuk dokumentasi
-- `Refactor:` untuk perbaikan kode tanpa ubah behavior
-- `Test:` untuk testing
-- `Security:` untuk perbaikan keamanan
+- `Add:` fitur baru
+- `Fix:` bug fix
+- `Docs:` dokumentasi
+- `Refactor:` perbaikan kode
+- `Test:` testing
+- `Security:` perbaikan keamanan
+- `Perf:` performance improvement
 
 ---
 
 <!-- ========================================================= -->
-<!--                  LISENSI                                 -->
+<!--                  LISENSI                                  -->
 <!-- ========================================================= -->
 
 ## 📜 Lisensi
 
-Proyek ini dilisensikan di bawah **MIT License**. Lihat file [LICENSE](LICENSE) untuk detail.
+**MIT License** — bebas dipakai, dimodifikasi, dan didistribusikan, asal sertakan atribusi.
 
-Singkatnya: **bebas dipakai, dimodifikasi, dan didistribusikan**, asal sertakan atribusi original.
+Lihat [LICENSE](LICENSE) untuk detail.
 
 ---
 
 <!-- ========================================================= -->
-<!--                  KREDIT                                  -->
+<!--                  KREDIT                                   -->
 <!-- ========================================================= -->
 
 ## 🙏 Kredit
 
-### 🎓 Proyek Asli (Original Research)
+### 🎓 Inspirasi Ilmiah
 
-Aplikasi ini dikembangkan dari hasil penelitian dan paket R **`peatfr`**:
+Proyek ini terinspirasi dari riset dan pengembangan metodologi **prediksi risiko kebakaran gambut tropis** yang menggunakan pendekatan:
 
-> **Peatfr: An R package to forecast tropical peatland fire risk with stochastic, machine learning, and optimisation methods**
+- **Stochastic methods** — ARIMA + Box-Cox transformation
+- **Machine learning** — LSTM & GRU neural networks
+- **Optimization** — Nelder-Mead untuk kalibrasi indeks kerawanan
 
-- 📦 **Repository asli:** [https://github.com/mellygsln/peatfr](https://github.com/mellygsln/peatfr)
-- 👥 **Penulis penelitian:**
-  - Adilan W. Mahdiyasa
-  - **Melly** (Melly G. S.) — [GitHub](https://github.com/mellygsln)
-  - Udjianna S. Pasaribu
-  - Muh Taufik
-  - Bagus P. Muljadi
-- 📄 **Publikasi:** Tersedia di jurnal internasional (2025).
+Terima kasih kepada para peneliti yang telah membuka jalan di bidang ini. 🌱
 
-### 🐍 Port & Pengembangan Python
+### 🔧 Library & Framework
 
-Versi **PyQt6 + FastAPI** ini dikembangkan sebagai implementasi lanjutan dengan:
-- GUI desktop modern untuk petugas lapangan
-- Arsitektur client-server multi-user
-- Autentikasi JWT + role-based access
-- Integrasi HTTP/JSON
-- Skalabilitas untuk deploy cloud
-
-**Terima kasih** kepada seluruh peneliti dan kontributor asli yang telah membuat fondasi ilmiah dari proyek ini. 🌱
-
-### 🔧 Library Open Source yang Dipakai
-
-- [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) — GUI framework
+**Backend:**
 - [FastAPI](https://fastapi.tiangolo.com/) — REST API framework
-- [pandas](https://pandas.pydata.org/) — data manipulation
-- [scikit-learn](https://scikit-learn.org/) — KNN imputation
-- [statsmodels](https://www.statsmodels.org/) — ARIMA
-- [pmdarima](https://github.com/alkaline-ml/pmdarima) — auto-ARIMA
-- [scipy](https://scipy.org/) — Nelder-Mead optimization
-- [matplotlib](https://matplotlib.org/) — charting
-- [python-jose](https://github.com/mpdavis/python-jose) — JWT token generation & verification
-- [passlib](https://passlib.readthedocs.io/) — password hashing framework
-- [bcrypt](https://github.com/pyca/bcrypt/) — bcrypt password hashing backend
+- [Uvicorn](https://www.uvicorn.org/) — ASGI server
+- [Pydantic](https://docs.pydantic.dev/) — Data validation
+- [python-jose](https://github.com/mpdavis/python-jose) — JWT
+- [passlib](https://passlib.readthedocs.io/) + [bcrypt](https://github.com/pyca/bcrypt/) — Password hashing
+- [APScheduler](https://apscheduler.readthedocs.io/) — Task scheduling
+
+**Data Science & ML:**
+- [pandas](https://pandas.pydata.org/) — Data manipulation
+- [numpy](https://numpy.org/) — Numerical computing
+- [scikit-learn](https://scikit-learn.org/) — ML algorithms
+- [statsmodels](https://www.statsmodels.org/) — Statistical models
+- [pmdarima](https://github.com/alkaline-ml/pmdarima) — Auto-ARIMA
+- [scipy](https://scipy.org/) — Scientific computing
+- [PyTorch](https://pytorch.org/) — Deep learning
+- [TensorFlow](https://tensorflow.org/) — Deep learning (alternatif)
+- [matplotlib](https://matplotlib.org/) — Plotting
+
+**Frontend & UI:**
+- [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) — Desktop GUI
+- [Chart.js](https://www.chartjs.org/) — Interactive charts
+- [Tailwind-inspired CSS](https://tailwindcss.com/) — Styling
+
+**Integrasi:**
+- [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) — Satellite data
+- [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/) — Secure tunneling
+- [Telegram Bot API](https://core.telegram.org/bots/api) — Notifications
+
+### 🌟 Made in Indonesia
+
+**Dibuat dengan ❤️ untuk konservasi lahan gambut tropis Indonesia** 🇮🇩
 
 ---
 
@@ -934,48 +1205,10 @@ Versi **PyQt6 + FastAPI** ini dikembangkan sebagai implementasi lanjutan dengan:
 
 ### 🌱 "Deteksi dini, lahan gambut aman, Indonesia bebas kabut asap!" 🇮🇩
 
-**Dibuat dengan ❤️ untuk penelitian dan konservasi lahan gambut tropis.**
+**GambutFR © 2026** — Open Source under MIT License
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2ecc71,100:0d6efd&height=100&section=footer" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2ecc71,50:10b981,100:0d6efd&height=100&section=footer" width="100%" />
 
 </div>
-```
-
----
-
-## 📋 Yang Berubah dari Versi Sebelumnya
-
-| # | Section | Perubahan |
-|---|---------|-----------|
-| 1 | **Badges** | Tambah badge JWT |
-| 2 | **TOC** | Tambah entry Login Screen |
-| 3 | **Fitur Utama** | Tambah 2 fitur (JWT + RBAC) di posisi teratas |
-| 4 | **Arsitektur** | Tambah layer Auth Middleware + `users.csv` di storage |
-| 5 | **Struktur Folder** | Tambah `auth/` folder, `login_dialog.py`, `users.csv` |
-| 6 | **Installasi** | Tambah catatan bcrypt pin 4.0.1 |
-| 7 | **Cara Menjalankan Client** | Tambah langkah login + kredensial default |
-| 8 | **Panduan Penggunaan** | Tambah section #1 Login Screen, renumber sisanya |
-| 9 | **API Endpoints** | Split jadi 2 tabel (Auth + Data), tambah kolom Auth |
-| 10 | **cURL Examples** | Tambah contoh login + Bearer token |
-| 11 | **Testing** | Tambah test auth + reset user |
-| 12 | **Deployment** | Section 1 & 2 di-mark DONE |
-| 13 | **Roadmap 2.0** | JWT ✅, RBAC ✅, Login dialog ✅, PostgreSQL masih ⏳ |
-| 14 | **Kontribusi** | Tambah konvensi `Security:` |
-| 15 | **Kredit** | Tambah python-jose, passlib, bcrypt |
-
----
-
-## 🎬 Cara Pakai
-
-1. **Copy** seluruh kode markdown di atas
-2. **Timpa** isi `README.md` di repo kamu
-3. **Pastikan** `docs/screenshots/login.png` ada
-4. **Preview** di GitHub → cek rendering
-5. **Commit**:
-   ```bash
-   git add README.md docs/screenshots/login.png
-   git commit -m "Docs: update README - login screen, JWT auth, RBAC, roadmap v2.0"
-   git push
-   ```
 
 ---
