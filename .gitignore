@@ -1,0 +1,92 @@
+﻿# ============================================================
+# GAMBUT FR — Git Ignore
+# ============================================================
+
+# === Environment & Secrets ===
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# === Virtual Environments ===
+.venv/
+venv/
+ENV/
+env/
+.conda/
+.condarc
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === Testing ===
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# === Runtime Data (JANGAN COMMIT!) ===
+server/data/database_gambut.csv
+server/data/database_gambut.csv.bak
+server/data/users.csv
+server/data/config.json
+server/data/alert_config.json
+server/data/pfvi_params.json
+server/data/regional_latest.json
+server/data/blockchain.jsonl
+server/data/*.bak
+
+# === Logs ===
+*.log
+logs/
+
+# === Backup ===
+*.bak
+*.backup
+*_backup_*/
+
+# === Distribusi ===
+*.zip
+*.tar.gz
+*.exe
+*.msi
+
+# === Cloudflare ===
+cloudflared/
+*.pem
+!docs/cloudflared/config.yml.example
+
+# === Keep Sample Files ===
+!server/data/sample_satellite.csv
