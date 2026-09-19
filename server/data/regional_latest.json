@@ -1,0 +1,47 @@
+{
+  "kalimantan": {
+    "region": "kalimantan",
+    "fetched": 2892,
+    "updated_at": "2026-09-19T21:10:00",
+    "data": [
+      {
+        "tanggal": "2026-09-19",
+        "wt": -24.95,
+        "sm": 38.09,
+        "rf": 10.11,
+        "temp": 35.98,
+        "region": "kalimantan"
+      }
+    ]
+  },
+  "sumatera": {
+    "region": "sumatera",
+    "fetched": 322,
+    "updated_at": "2026-09-19T21:10:03",
+    "data": [
+      {
+        "tanggal": "2026-09-19",
+        "wt": -19.54,
+        "sm": 46.74,
+        "rf": 20.93,
+        "temp": 33.81,
+        "region": "sumatera"
+      }
+    ]
+  },
+  "papua": {
+    "region": "papua",
+    "fetched": 751,
+    "updated_at": "2026-09-19T21:10:05",
+    "data": [
+      {
+        "tanggal": "2026-09-19",
+        "wt": -21.42,
+        "sm": 43.72,
+        "rf": 17.15,
+        "temp": 34.57,
+        "region": "papua"
+      }
+    ]
+  }
+}

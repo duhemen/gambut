@@ -1,0 +1,13 @@
+# ⚠️ INI HANYA TEMPLATE — jangan jalankan dari sini.
+# Copy isinya ke:
+#   Windows : C:\Users\<NAMA_KAMU>\.cloudflared\config.yml
+#   Linux/Mac: ~/.cloudflared/config.yml
+#
+# Dapatkan <UUID> dari perintah: cloudflared tunnel list
+
+tunnel: gambut-server
+credentials-file: C:\Users\<NAMA_KAMU>\.cloudflared\<UUID>.json
+ingress:
+  - hostname: api.gambut-chain.my.id
+    service: http://localhost:8000
+  - service: http_status:404

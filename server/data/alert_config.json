@@ -1,0 +1,11 @@
+{
+    "enabled": true,
+    "bot_token": "Your_APIKEY_BOT",
+    "chat_ids": [
+        "Your_APIKEY_BOT"
+    ],
+    "min_status": "SIAGA",
+    "cooldown_minutes": 5,
+    "include_link": true,
+    "dashboard_url": "http://127.0.0.1:8000/dashboard"
+}

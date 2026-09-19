@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#10b981">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PeatFR">
+<title>PeatFR Web Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- PWA: Register service worker -->
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('✅ [PWA] Service worker terdaftar'))
+        .catch(err => console.warn('⚠️ [PWA] Gagal register SW:', err));
+}
+</script>
+<style>
+:root {
+    --bg-primary: #0b0f19;
+    --bg-card: #1e293b;
+    --border: #334155;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-neon: #10b981;
+    --accent-warning: #f59e0b;
+    --accent-danger: #ef4444;
+    --accent-primary: #0d6efd;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+/* Aurora glow */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+body::before {
+    top: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(16,185,129,0.35), transparent 70%);
+}
+body::after {
+    bottom: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(13,110,253,0.3), transparent 70%);
+}
+.container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+/* Header */
+.header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px;
+    background: rgba(30,41,59,0.7);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-emoji { font-size: 36px; }
+.logo-text h1 { font-size: 20px; font-weight: 700; }
+.logo-text p { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+.status-badge {
+    padding: 8px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 700;
+    border: 1px solid currentColor;
+}
+.status-aman { color: var(--accent-neon); background: rgba(16,185,129,0.15); }
+.status-siaga { color: var(--accent-warning); background: rgba(245,158,11,0.15); }
+.status-bahaya { color: var(--accent-danger); background: rgba(239,68,68,0.15); }
+
+/* KPI grid */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--accent-neon); }
+.kpi-label { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.kpi-value { font-size: 32px; font-weight: 700; margin: 8px 0 4px; }
+.kpi-sub { font-size: 11px; color: var(--text-muted); }
+.kpi-value.blue { color: var(--accent-primary); }
+.kpi-value.green { color: var(--accent-neon); }
+.kpi-value.amber { color: var(--accent-warning); }
+.kpi-value.red { color: var(--accent-danger); }
+
+/* Chart layout */
+.chart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+.chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+.chart-title { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+.chart-wrap { position: relative; height: 280px; }
+
+/* Table */
+.table-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+    background: rgba(15,23,42,0.5);
+    padding: 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+}
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    font-size: 13px;
+}
+tr:hover td { background: rgba(51,65,85,0.2); }
+
+/* Footer */
+.footer { text-align: center; padding: 24px; color: var(--text-muted); font-size: 12px; }
+.footer a { color: var(--accent-neon); text-decoration: none; }
+
+/* Loading */
+.loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--text-muted); }
+.spinner {
+    width: 20px; height: 20px; border: 2px solid var(--border);
+    border-top-color: var(--accent-neon); border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin-right: 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    .kpi-value { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-emoji">🔥</div>
+            <div class="logo-text">
+                <h1>PeatFR Web Dashboard</h1>
+                <p>PEAT FIRE RISK MONITORING</p>
+            </div>
+        </div>
+        <div id="statusBadge" class="status-badge status-aman">🟢 AMAN</div>
+    </div>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-label">Total Observasi</div>
+            <div class="kpi-value blue" id="kpiTotal">—</div>
+            <div class="kpi-sub">baris data lapangan</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Muka Air (WT)</div>
+            <div class="kpi-value green" id="kpiWt">—</div>
+            <div class="kpi-sub">cm (terbaru)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Suhu</div>
+            <div class="kpi-value amber" id="kpiTemp">—</div>
+            <div class="kpi-sub">°C (terbaru)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Indeks Kerawanan</div>
+            <div class="kpi-value red" id="kpiScore">—</div>
+            <div class="kpi-sub">skor 0–100</div>
+        </div>
+    </div>
+
+    <!-- Manual Input Feed -->
+    <div class="chart-card" style="margin-bottom: 24px;">
+        <div class="chart-title">👥 Data Input Petugas Lapangan (per Region)</div>
+        <div id="manualFeed" style="margin-top: 16px;">
+            <div class="loading"><div class="spinner"></div> Memuat data petugas...</div>
+        </div>
+    </div>
+
+    <!-- Regional Overview -->
+    <div class="chart-card" style="margin-bottom: 24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="chart-title">🗺️ Ringkasan Per-Region</div>
+            <button id="btnBroadcast" style="
+                background: rgba(239,68,68,0.15);
+                color: #ef4444;
+                border: 1px solid #ef4444;
+                border-radius: 6px;
+                padding: 6px 14px;
+                font-size: 11px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(239,68,68,0.3)'"
+            onmouseout="this.style.background='rgba(239,68,68,0.15)'">
+                📢 Broadcast Alert
+            </button>
+        </div>
+        <div id="regionalGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 16px;">
+            <div class="loading"><div class="spinner"></div> Memuat regional...</div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-grid">
+        <div class="chart-card">
+            <div class="chart-title">📈 Tren Muka Air Tanah</div>
+            <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+            <div class="chart-title">🥧 Distribusi Status</div>
+            <div class="chart-wrap"><canvas id="pieChart"></canvas></div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-card">
+        <div class="chart-title">📋 Data Terbaru</div>
+        <div id="tableContainer">
+            <div class="loading"><div class="spinner"></div> Memuat data...</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        PeatFR © 2026 — <a href="/docs">API Docs</a> · <a href="/api/v1/scheduler/status">Scheduler Status</a>
+    </div>
+
+</div>
+
+<script>
+const API_BASE = window.location.origin;
+let trendChart, pieChart;
+
+// ── Fetch data (butuh auth) ──
+async function fetchData() {
+    // Untuk demo, kita pakai endpoint publik read-only
+    // Di produksi, pakai login + JWT
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/data/public`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        return json.data || [];
+    } catch (e) {
+        console.error('Fetch error:', e);
+        return [];
+    }
+}
+
+function quickScore(wt, temp) {
+    if (typeof wt !== 'number' || typeof temp !== 'number') return 0;
+    return Math.max(0, Math.min(100, (-wt * 3) + ((temp - 25) * 2)));
+}
+
+function scoreToStatus(s) {
+    if (s >= 65) return 'bahaya';
+    if (s >= 40) return 'siaga';
+    return 'aman';
+}
+
+function scoreToLabel(s) {
+    if (s >= 65) return '🔴 BAHAYA';
+    if (s >= 40) return '🟡 SIAGA';
+    return '🟢 AMAN';
+}
+
+// ── Update KPI ──
+function updateKpi(data) {
+    document.getElementById('kpiTotal').textContent = data.length;
+
+    if (data.length === 0) return;
+    const latest = data[0];  // server return desc
+
+    const wt = parseFloat(latest.wt);
+    const temp = parseFloat(latest.temp);
+
+    document.getElementById('kpiWt').textContent = wt.toFixed(1);
+    document.getElementById('kpiTemp').textContent = temp.toFixed(1);
+
+    const score = quickScore(wt, temp);
+    document.getElementById('kpiScore').textContent = Math.round(score);
+
+    // Status badge
+    const badge = document.getElementById('statusBadge');
+    const status = scoreToStatus(score);
+    badge.textContent = scoreToLabel(score);
+    badge.className = `status-badge status-${status}`;
+}
+
+// ── Regional Summary ──
+async function fetchRegionalSummary() {
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/satellite/regional-summary`, {
+            headers: {
+                // Public read untuk demo — kalau butuh auth, tambah token
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!res.ok) return [];
+        const json = await res.json();
+        return json.data || [];
+    } catch (e) {
+        console.error('Regional fetch error:', e);
+        return [];
+    }
+}
+
+function renderRegionalGrid(regions) {
+    const container = document.getElementById('regionalGrid');
+
+    if (!regions.length) {
+        container.innerHTML = '<div class="loading">Belum ada data regional. Fetch satelit terlebih dahulu.</div>';
+        return;
+    }
+
+    const regionFlags = {
+        'kalimantan': '🌴',
+        'sumatera': '🌳',
+        'papua': '🦜',
+        'indonesia': '🇮🇩',
+    };
+
+    container.innerHTML = regions.map(r => {
+        const flag = regionFlags[r.region] || '📍';
+        const statusClass = r.status.includes('BAHAYA') ? 'status-bahaya'
+                          : r.status.includes('SIAGA') ? 'status-siaga'
+                          : 'status-aman';
+        const statusLabel = r.status;
+
+        return `
+            <div style="
+                background: rgba(15,23,42,0.5);
+                border: 1px solid #334155;
+                border-radius: 10px;
+                padding: 14px;
+                transition: transform 0.2s;
+            " onmouseover="this.style.transform='translateY(-2px)'"
+               onmouseout="this.style.transform='translateY(0)'">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <div style="font-size:14px; font-weight:700;">
+                        ${flag} ${r.region.charAt(0).toUpperCase() + r.region.slice(1)}
+                    </div>
+                    <div class="status-badge ${statusClass}" style="font-size:10px; padding:4px 8px;">
+                        ${statusLabel}
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:11px;">
+                    <div>
+                        <div style="color:#64748b;">Hotspot</div>
+                        <div style="color:#f59e0b; font-weight:700; font-size:15px;">${r.fetched.toLocaleString()}</div>
+                    </div>
+                    <div>
+                        <div style="color:#64748b;">PFVI Score</div>
+                        <div style="color:#ef4444; font-weight:700; font-size:15px;">${r.pfvi_score}</div>
+                    </div>
+                    <div>
+                        <div style="color:#64748b;">WT</div>
+                        <div style="color:#10b981; font-weight:600;">${r.avg_wt} cm</div>
+                    </div>
+                    <div>
+                        <div style="color:#64748b;">Temp</div>
+                        <div style="color:#f59e0b; font-weight:600;">${r.avg_temp}°C</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ── Line chart ──
+function renderTrendChart(data) {
+    const sorted = [...data].sort((a, b) => a.tanggal.localeCompare(b.tanggal));
+    const last7 = sorted.slice(-7);
+
+    const labels = last7.map(d => d.tanggal.slice(5));
+    const values = last7.map(d => parseFloat(d.wt));
+
+    const ctx = document.getElementById('trendChart').getContext('2d');
+
+    if (trendChart) trendChart.destroy();
+
+    trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: 'WT (cm)',
+                data: values,
+                borderColor: '#10b981',
+                backgroundColor: 'rgba(16,185,129,0.15)',
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointBackgroundColor: '#10b981',
+                pointBorderColor: '#0b0f19',
+                pointBorderWidth: 2,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                    titleColor: '#f8fafc',
+                    bodyColor: '#cbd5e1',
+                }
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(51,65,85,0.5)' },
+                    ticks: { color: '#94a3b8', font: { size: 10 } }
+                },
+                y: {
+                    grid: { color: 'rgba(51,65,85,0.5)' },
+                    ticks: { color: '#94a3b8', font: { size: 10 } }
+                }
+            }
+        }
+    });
+}
+
+// ── Pie chart ──
+function renderPieChart(data) {
+    let aman = 0, siaga = 0, bahaya = 0;
+
+    data.forEach(d => {
+        const score = quickScore(parseFloat(d.wt), parseFloat(d.temp));
+        if (score >= 65) bahaya++;
+        else if (score >= 40) siaga++;
+        else aman++;
+    });
+
+    const labels = [], sizes = [], colors = [];
+    if (aman > 0) { labels.push(`Aman (${aman})`); sizes.push(aman); colors.push('#10b981'); }
+    if (siaga > 0) { labels.push(`Siaga (${siaga})`); sizes.push(siaga); colors.push('#f59e0b'); }
+    if (bahaya > 0) { labels.push(`Bahaya (${bahaya})`); sizes.push(bahaya); colors.push('#ef4444'); }
+
+    if (sizes.length === 0) {
+        labels.push('Belum ada data');
+        sizes.push(1);
+        colors.push('#334155');
+    }
+
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    if (pieChart) pieChart.destroy();
+
+    pieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels,
+            datasets: [{
+                data: sizes,
+                backgroundColor: colors,
+                borderColor: '#0b0f19',
+                borderWidth: 3,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '55%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#cbd5e1', font: { size: 12 }, padding: 12 }
+                },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                }
+            }
+        }
+    });
+}
+
+// ── Table ──
+function renderTable(data) {
+    if (data.length === 0) {
+        document.getElementById('tableContainer').innerHTML =
+            '<div class="loading">Belum ada data</div>';
+        return;
+    }
+
+    const rows = data.slice(0, 10).map(d => `
+        <tr>
+            <td>${d.tanggal || '—'}</td>
+            <td>${parseFloat(d.wt || 0).toFixed(2)}</td>
+            <td>${parseFloat(d.sm || 0).toFixed(2)}</td>
+            <td>${parseFloat(d.rf || 0).toFixed(2)}</td>
+            <td>${parseFloat(d.temp || 0).toFixed(2)}</td>
+        </tr>
+    `).join('');
+
+    document.getElementById('tableContainer').innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>WT (cm)</th>
+                    <th>SM (%)</th>
+                    <th>RF (mm)</th>
+                    <th>Suhu (°C)</th>
+                </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+        </table>
+    `;
+}
+
+// ── Fetch manual feed (exclude satelit: temp < 45 & region != indonesia) ──
+async function fetchManualFeed() {
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/data/public?limit=200`);
+        if (!res.ok) return [];
+        const json = await res.json();
+        // Filter: hanya data manual (bukan satelit)
+        // Satelit: temp > 45°C atau region=indonesia dengan nilai unik satelit
+        return (json.data || []).filter(d => {
+            const temp = parseFloat(d.temp);
+            return temp < 45;  // satelit pakai brightness temp (>45)
+        });
+    } catch (e) {
+        return [];
+    }
+}
+
+function renderManualFeed(data) {
+    const container = document.getElementById('manualFeed');
+
+    // Group by region, ambil data terbaru per region
+    const byRegion = {};
+    data.forEach(d => {
+        const reg = d.region || 'indonesia';
+        if (!byRegion[reg] || d.tanggal > byRegion[reg].tanggal) {
+            byRegion[reg] = d;
+        }
+    });
+
+    const regions = Object.values(byRegion).sort((a, b) =>
+        (b.pfvi_score || 0) - (a.pfvi_score || 0)
+    );
+
+    if (!regions.length) {
+        container.innerHTML = '<div class="loading">Belum ada input petugas.</div>';
+        return;
+    }
+
+    const regionFlags = {
+        'kalimantan': '🌴', 'sumatera': '🌳', 'papua': '🦜',
+        'jawa': '🏙️', 'sulawesi': '🦎', 'bali-nusra': '🏝️',
+        'maluku': '🌺', 'indonesia': '🇮🇩',
+    };
+
+    container.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Tanggal</th>
+                    <th>WT (cm)</th>
+                    <th>SM (%)</th>
+                    <th>RF (mm)</th>
+                    <th>Suhu (°C)</th>
+                    <th>PFVI</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${regions.map(d => {
+                    const score = d.pfvi_score !== undefined ? d.pfvi_score : 0;
+                    const statusLabel = d.pfvi_status || '🟢 AMAN';
+                    const statusClass = statusLabel.includes('BAHAYA') ? 'status-bahaya'
+                                      : statusLabel.includes('SIAGA') ? 'status-siaga'
+                                      : 'status-aman';
+                    const flag = regionFlags[d.region] || '📍';
+
+                    return `
+                        <tr>
+                            <td><span style="color:#10b981; font-weight:600;">${flag} ${d.region || 'indonesia'}</span></td>
+                            <td>${d.tanggal || '—'}</td>
+                            <td>${parseFloat(d.wt || 0).toFixed(1)}</td>
+                            <td>${parseFloat(d.sm || 0).toFixed(1)}</td>
+                            <td>${parseFloat(d.rf || 0).toFixed(1)}</td>
+                            <td>${parseFloat(d.temp || 0).toFixed(1)}</td>
+                            <td style="font-weight:700; color:#f59e0b;">${score.toFixed(1)}</td>
+                            <td><span class="status-badge ${statusClass}" style="font-size:10px; padding:3px 8px;">${statusLabel}</span></td>
+                        </tr>
+                    `;
+                }).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+// ── Main ──
+async function init() {
+    const [data, regions, manual] = await Promise.all([
+        fetchData(),
+        fetchRegionalSummary(),
+        fetchManualFeed(),
+    ]);
+    updateKpi(data);
+    renderTrendChart(data);
+    renderPieChart(data);
+    renderTable(data);
+    renderRegionalGrid(regions);
+    renderManualFeed(manual);   // ← TAMBAH
+}
+
+init();
+// Auto-refresh tiap 60 detik
+setInterval(init, 60000);
+// ── Broadcast alert ke semua region ──
+document.getElementById('btnBroadcast')?.addEventListener('click', async () => {
+    if (!confirm('📢 Kirim alert ke Telegram untuk semua region dengan status BAHAYA/SIAGA?')) {
+        return;
+    }
+
+    const btn = document.getElementById('btnBroadcast');
+    btn.disabled = true;
+    btn.textContent = '⏳ Mengirim...';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/alert/broadcast-public`, {
+            method: 'POST',
+        });
+        const json = await res.json();
+
+        if (json.success) {
+            alert(`✅ ${json.message}`);
+        } else {
+            alert(`⚠️ ${json.message}`);
+        }
+    } catch (e) {
+        alert(`❌ Error: ${e.message}`);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '📢 Broadcast Alert';
+    }
+});
+</script>
+</body>
+</html>
