@@ -148,25 +148,6 @@ Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **ale
 
 ## ✨ Showcase
 
-### 🌐 **Live Demo — Buka dari Mana Saja**
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│   🔥  https://gambutfr.osvpn.id/dashboard                   │
-│                                                             │
-│   • Dari laptop di kantor posko                             │
-│   • Dari HP di tengah hutan Kalimantan                      │
-│   • Dari tablet di kapal penelitian                         │
-│   • Dari warnet di pelosok Papua                            │
-│                                                             │
-│   Semuanya akses DASHBOARD yang SAMA.                       │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
 ### 🗺️ **Multi-Region Monitoring**
 
 Satu dashboard, semua wilayah terpantau. Setiap region punya **skor PFVI sendiri**:
