@@ -20,9 +20,9 @@
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)]()
 [![Architecture](https://img.shields.io/badge/Architecture-Hybrid%20Decentralized-0d6efd?style=flat-square)](#-arsitektur-sistem)
-[![REST API](https://img.shields.io/badge/API-REST%20%2F%20JSON-orange?style=flat-square)](http://gambutfr.osvpn.id/docs)
+[![REST API](https://img.shields.io/badge/API-REST%20%2F%20JSON-orange?style=flat-square)](http://cloudflare_tunnel_anda/docs)
 [![Auth](https://img.shields.io/badge/Auth-JWT%20Bearer-9b59b6?style=flat-square)](#-api-endpoints)
-[![PWA](https://img.shields.io/badge/PWA-Mobile%20Ready-5A0FC8?style=flat-square)](https://gambutfr.osvpn.id/dashboard)
+[![PWA](https://img.shields.io/badge/PWA-Mobile%20Ready-5A0FC8?style=flat-square)](https://cloudflare_tunnel_anda/dashboard)
 [![Made in](https://img.shields.io/badge/Made%20in-Indonesia%20%F0%9F%87%AE%F0%9F%87%A9-red?style=flat-square)](#-kredit)
 
 </div>
@@ -281,7 +281,7 @@ Prediksi muka air tanah dengan **3 model AI digabung**, plus **confidence interv
 
 ### 📱 **PWA — Install di HP**
 
-Buka `https://gambutfr.osvpn.id/dashboard` di HP → **"Add to Home Screen"** → selesai. Icon 🔥 muncul di home screen, aplikasi jalan fullscreen seperti app native:
+Buka `https://cloudflare_tunnel_anda/dashboard` di HP → **"Add to Home Screen"** → selesai. Icon 🔥 muncul di home screen, aplikasi jalan fullscreen seperti app native:
 
 ```
 ┌─────────────────────────────────┐
@@ -777,11 +777,11 @@ python -m client.main
 ### 🌐 Akses Web Dashboard
 
 - **Lokal**: http://localhost:8000/dashboard
-- **Cloudflare**: https://gambutfr.osvpn.id/dashboard
+- **Cloudflare**: https://cloudflare_tunnel_anda/dashboard
 
 ### 📱 Install PWA di HP
 
-1. Buka `https://gambutfr.osvpn.id/dashboard` di Chrome/Safari HP
+1. Buka `https://cloudflare_tunnel_anda/dashboard` di Chrome/Safari HP
 2. Menu → **"Add to Home Screen"**
 3. Icon 🔥 muncul → buka seperti app native
 
@@ -976,7 +976,7 @@ rm server/data/users.csv
 <summary><b>Klik untuk expand — Setup Cloudflare Tunnel (Free)</b></summary>
 
 #### 1. Prasyarat
-- Domain (mis. `gambutfr.osvpn.id`)
+- Domain (mis. `cloudflare_tunnel_anda`)
 - Akun Cloudflare (gratis)
 
 #### 2. Install Cloudflared
