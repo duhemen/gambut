@@ -1008,8 +1008,8 @@ Buka **Cloudflare Zero Trust Dashboard**:
 - Networks → Tunnels → pilih tunnel Anda
 - Tab **Public Hostname** → **Add a public hostname**
 - Isi:
-  - Subdomain: `gambutfr`
-  - Domain: `osvpn.id`
+  - Subdomain: `subdomain_anda`
+  - Domain: `domain_anda`
   - Service Type: `HTTP`
   - Service URL: `localhost:8000`
 - **Save**
@@ -1023,7 +1023,7 @@ python run_hybrid_server.py
 #### 6. Akses
 
 ```
-https://gambutfr.osvpn.id/dashboard
+https://cloudflare_tunnel_anda/dashboard
 ```
 
 </details>
