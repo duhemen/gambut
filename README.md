@@ -1106,12 +1106,49 @@ Lihat [LICENSE](LICENSE) untuk detail.
 
 ## 🙏 Kredit
 
-### 📊 Data Sumber
+> **GambutFR tidak akan selengkap ini tanpa kontribusi dari komunitas open source Indonesia dan dunia.** Terima kasih khusus untuk:
 
-- **Wilayah Indonesia**: [cahyadsn/wilayah](https://github.com/cahyadsn/wilayah) — sesuai **Kepmendagri No 300.2.2-2430 Tahun 2025**
-  - 38 Provinsi, 514 Kabupaten/Kota, 7.285 Kecamatan, 83.762 Desa/Kelurahan
-- **Satelit**: [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) (Fire Information for Resource Management System)
-- **Tiles Peta**: [Esri World Dark Gray](https://www.esri.com/)
+---
+
+### 🌟 Special Thanks
+
+#### 📊 **[cahyadsn/wilayah](https://github.com/cahyadsn/wilayah)** — Data Wilayah Indonesia Terlengkap
+
+> **Terima kasih tak terhingga untuk [@cahyadsn](https://github.com/cahyadsn)** yang telah menyediakan database wilayah administrasi Indonesia **paling lengkap** dan **up-to-date** sesuai **Kepmendagri No 300.2.2-2430 Tahun 2025**.
+>
+> Berkat repo ini, GambutFR bisa menyediakan:
+> - ✅ **38 Provinsi** dengan kode BPS resmi
+> - ✅ **514 Kabupaten/Kota** dengan boundaries
+> - ✅ **7.285 Kecamatan** terstruktur
+> - ✅ **83.762 Desa/Kelurahan** — data paling detail yang tersedia publik
+> - ✅ Metadata bonus: **luas wilayah**, **jumlah penduduk**, **17.380 pulau**
+>
+> **Total: 91.599 records** yang membuat fitur **drill-down sampai desa** di GambutFR menjadi mungkin. 🇮🇩
+>
+> 📦 Repository: [https://github.com/cahyadsn/wilayah](https://github.com/cahyadsn/wilayah)  
+> 📅 Update terakhir: **September 2026** — data Kemendagri terbaru  
+> 🎁 Gratis & open source — silakan dukung dengan ⭐ di repo-nya!
+
+---
+
+#### 🗺️ **[Esri ArcGIS](https://www.esri.com/)** — Peta Choropleth Berkualitas Tinggi
+
+> **Terima kasih kepada Esri** yang menyediakan **Esri World Dark Gray Base Map** secara **gratis** untuk non-commercial use.
+>
+> Berkat tile layer berkualitas tinggi ini, peta choropleth GambutFR bisa:
+> - ✅ Tampil **cantik tanpa watermark** di dark mode
+> - ✅ **Performa cepat** — server Esri global & stabil
+> - ✅ **Loading smooth** di semua device (desktop, tablet, HP)
+> - ✅ **Zoom sampai level jalan** tanpa pecah
+> - ✅ Cocok dengan **tema Aurora Dark** aplikasi
+>
+> Service yang kami pakai: **World Dark Gray Base Map**  
+> 🔗 [https://www.esri.com/](https://www.esri.com/)  
+> 📖 Dokumentasi: [ArcGIS REST Services](https://server.arcgisonline.com/ArcGIS/rest/services)
+>
+> Terima kasih Esri sudah mendukung komunitas open source & penelitian! 🌏
+
+---
 
 ### 🎓 Inspirasi Ilmiah
 
@@ -1122,6 +1159,20 @@ Proyek ini terinspirasi dari riset dan pengembangan metodologi **prediksi risiko
 - **Optimization** — Nelder-Mead untuk kalibrasi indeks kerawanan
 
 Terima kasih kepada para peneliti yang telah membuka jalan di bidang ini. 🌱
+
+---
+
+### 📡 Data & Layanan
+
+| Sumber | Fungsi | Website |
+|---|---|---|
+| 🌴 **[cahyadsn/wilayah](https://github.com/cahyadsn/wilayah)** | Database wilayah administrasi Indonesia (Kemendagri 2025) | [GitHub](https://github.com/cahyadsn/wilayah) |
+| 🗺️ **[Esri ArcGIS](https://www.esri.com/)** | Tile layer peta World Dark Gray Base | [esri.com](https://www.esri.com/) |
+| 🛰️ **[NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/)** | Data hotspot satelit (VIIRS + MODIS) | [firms.modaps.eosdis.nasa.gov](https://firms.modaps.eosdis.nasa.gov/) |
+| 🗺️ **[OpenStreetMap](https://www.openstreetmap.org/)** | Fallback tile layer (community-driven) | [openstreetmap.org](https://www.openstreetmap.org/) |
+| 📢 **[Telegram Bot API](https://core.telegram.org/bots/api)** | Notifikasi real-time ke petugas | [core.telegram.org](https://core.telegram.org/bots/api) |
+
+---
 
 ### 🔧 Library & Framework
 
@@ -1148,14 +1199,11 @@ Terima kasih kepada para peneliti yang telah membuka jalan di bidang ini. 🌱
 - [Chart.js](https://www.chartjs.org/) — Interactive charts
 - [Leaflet.js](https://leafletjs.com/) — Interactive maps
 
-**Integrasi:**
-- [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) — Satellite data
-- [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/) — Secure tunneling
-- [Telegram Bot API](https://core.telegram.org/bots/api) — Notifications
-
 ### 🌟 Made in Indonesia
 
 **Dibuat dengan ❤️ untuk konservasi lahan gambut tropis Indonesia** 🇮🇩
+
+**Terima kasih khusus untuk komunitas open source Indonesia yang terus berkarya!** 🙏
 
 ---
 
