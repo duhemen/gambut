@@ -104,3 +104,19 @@ cloudflared/
 !server/data/sample_satellite.csv
 !server/data/alert_config.example.json
 !server/data/regions.json
+# === Client Runtime Data ===
+client/data/*.csv
+client/data/*.json
+!client/data/sample_satellite.csv
+!client/data/template_input.xlsx
+
+# === Server Runtime Data ===
+server/data/*.jsonl
+server/data/audit_log.jsonl
+
+# === Source Data (besar) ===
+wilayah_indonesia.json
+
+# === Folder Typo / Duplikat ===
+test/
+server/gui/
