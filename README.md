@@ -1237,12 +1237,14 @@ GambutFR berdiri di atas fondasi dari dua proyek open source hebat dari komunita
 - [Chart.js](https://www.chartjs.org/) — Interactive charts
 - [Leaflet.js](https://leafletjs.com/) — Interactive maps
 
+<div align="center">
 ### 🌟 Made in Indonesia
 
 **Dibuat dengan ❤️ untuk konservasi lahan gambut tropis Indonesia** 🇮🇩
 
 **Terima kasih khusus untuk komunitas open source Indonesia yang terus berkarya!** 🙏
 
+</div>
 ---
 
 <!-- ========================================================= -->
