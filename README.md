@@ -1,4 +1,3 @@
-# 📝 README.md Baru untuk GambutFR
 <!-- ========================================================= -->
 <!--                    BANNER HEADER                          -->
 <!-- ========================================================= -->
@@ -17,13 +16,15 @@
 [![NASA](https://img.shields.io/badge/NASA-FIRMS-0B3D91?style=for-the-badge&logo=nasa&logoColor=white)](https://firms.modaps.eosdis.nasa.gov/)
 [![Cloudflare](https://img.shields.io/badge/Cloudflare-Tunnel-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://www.cloudflare.com/)
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://telegram.org/)
+[![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](#-lisensi)
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)]()
 [![Architecture](https://img.shields.io/badge/Architecture-Hybrid%20Decentralized-0d6efd?style=flat-square)](#-arsitektur-sistem)
-[![REST API](https://img.shields.io/badge/API-REST%20%2F%20JSON-orange?style=flat-square)](http://gambutfr.osvpn.id/docs)
+[![REST API](https://img.shields.io/badge/API-REST%20%2F%20JSON-orange?style=flat-square)](http://cloudflare.tunel.anda/docs)
 [![Auth](https://img.shields.io/badge/Auth-JWT%20Bearer-9b59b6?style=flat-square)](#-api-endpoints)
-[![PWA](https://img.shields.io/badge/PWA-Mobile%20Ready-5A0FC8?style=flat-square)](https://gambutfr.osvpn.id/dashboard)
+[![PWA](https://img.shields.io/badge/PWA-Mobile%20Ready-5A0FC8?style=flat-square)](https://cloudflare.tunel.anda/dashboard)
+[![Wilayah](https://img.shields.io/badge/Wilayah-91.599%20records-success?style=flat-square)](#-peta-choropleth)
 [![Made in](https://img.shields.io/badge/Made%20in-Indonesia%20%F0%9F%87%AE%F0%9F%87%A9-red?style=flat-square)](#-kredit)
 
 </div>
@@ -68,16 +69,21 @@
 
 **GambutFR** adalah platform **monitoring & prediksi risiko kebakaran lahan gambut tropis** yang menggabungkan **data satelit real-time**, **machine learning**, dan **arsitektur hybrid decentralized** — dirancang untuk **petugas lapangan** yang butuh alat canggih tanpa ribet.
 
-Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **alert Telegram otomatis**, dan **deployment hybrid** yang bisa diakses dari **mana saja, kapan saja** — bahkan dari pelosok hutan gambut.
+Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **drill-down wilayah sampai desa**, **peta choropleth interaktif**, **alert Telegram otomatis**, dan **deployment hybrid** yang bisa diakses dari **mana saja, kapan saja** — bahkan dari pelosok hutan gambut.
 
 ### 🌱 Yang Membuat GambutFR Berbeda
 
-- **Hybrid Decentralized** — server lokal tetap jalan offline, tapi bisa diakses dari seluruh dunia via Cloudflare Tunnel.
-- **Multi-Region Native** — petugas di Kalimantan, Sumatera, dan Papua input data mereka sendiri. Dashboard menampilkan **peta risiko per wilayah**.
-- **Real-Time Satellite** — integrasi langsung dengan **NASA FIRMS** untuk deteksi hotspot. Auto-fetch tiap 6 jam.
-- **AI Ensemble** — kombinasi **ARIMA + LSTM + GRU** untuk prediksi yang lebih akurat, dengan **confidence interval 95%**.
-- **Auto Alert** — Telegram bot kirim notifikasi **spesifik region** saat status BAHAYA/SIAGA terdeteksi.
-- **PWA Mobile** — install di HP seperti app native. Buka dari mana saja.
+- 🛰️ **Real-Time Satellite** — integrasi langsung dengan **NASA FIRMS** untuk deteksi hotspot, auto-fetch tiap 6 jam
+- 🗺️ **Peta Choropleth Interaktif** — visualisasi PFVI per kabupaten, klik marker untuk drill-down
+- 🎯 **Cascade PFVI** — Region → Provinsi → Kabupaten → Kecamatan → Desa
+- 📊 **91.599 Records Wilayah** — data Kemendagri 2025 terlengkap di Indonesia
+- 🤖 **AI Ensemble** — kombinasi **ARIMA + LSTM + GRU** dengan **confidence interval 95%**
+- 📢 **Region-Specific Alert** — Telegram bot kirim notifikasi spesifik wilayah
+- 📱 **PWA Mobile** — install di HP seperti app native
+- ☁️ **Hybrid Decentralized** — server lokal offline-first, akses global via Cloudflare Tunnel
+- 📈 **Export Excel & PDF** — laporan siap kirim ke stakeholder
+- 📝 **Audit Log** — semua aktivitas ter-trace
+- 👤 **Petugas Wilayah Assignment** — setiap petugas punya wilayah tugas sendiri
 
 > 💡 Terinspirasi dari riset akademik tentang prediksi risiko kebakaran gambut, GambutFR hadir sebagai **implementasi praktis** yang siap dipakai petugas lapangan di seluruh Indonesia.
 
@@ -93,48 +99,64 @@ Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **ale
 <tr>
 <td width="50%">
 
-### 🛰️ **Real-Time Satellite**
+### 🛰️ Real-Time Satellite
 - Integrasi **NASA FIRMS** (VIIRS + MODIS)
 - Auto-fetch **3 region** tiap 6 jam
 - Konversi hotspot → parameter gambut
 - Filter confidence level
 - Snapshot per-region tersimpan
 
-### 🤖 **AI & Machine Learning**
+### 🗺️ Peta Choropleth Interaktif
+- **Leaflet.js** + **Esri Dark Gray** tiles
+- Marker per kabupaten dengan warna PFVI
+- Klik marker → popup detail wilayah
+- Legend: 🟢 Aman 🟡 Siaga 🔴 Bahaya
+
+### 🎯 Cascade PFVI (5 Level)
+- Region → Provinsi → Kabupaten → Kecamatan → Desa
+- **Inherit cascade** — wilayah tanpa data inherit dari parent
+- Klik kabupaten → expand kecamatan → expand desa
+- Kode BPS lengkap per wilayah
+
+### 🤖 AI & Machine Learning
 - **Ensemble forecast** (ARIMA + LSTM + GRU)
 - **Confidence Interval 95%** via bootstrap
 - **Time-Series K-Fold** cross-validation
 - **Anomaly detection** (Z-score + IQR + Isolation Forest)
 - **PFVI** dengan Nelder-Mead optimization
 
-### 📱 **Multi-Platform Access**
-- **Desktop App** (PyQt6) — admin & analis
-- **Web Dashboard** (PWA) — akses dari HP
-- **REST API** — integrasi pihak ketiga
-- **Mobile-Ready** — install seperti app native
-
 </td>
 <td width="50%">
 
-### 📢 **Alert & Notification**
+### 📱 Multi-Platform Access
+- **Desktop App** (PyQt6) — admin & analis
+- **Web Dashboard** (PWA) — akses dari HP
+- **REST API** (FastAPI) — 40+ endpoint
+- **Mobile-Ready** — install seperti app native
+
+### 📢 Alert & Notification
 - **Telegram Bot** otomatis
 - **Region-specific** — sebut nama wilayah
-- **Cooldown** anti-spam (5 menit)
 - **Broadcast** ke semua region sekaligus
-- **HTML formatting** rapi
+- **Cooldown** anti-spam (5 menit)
 
-### 🔐 **Security & Multi-User**
+### 🔐 Security & Multi-User
 - **JWT Authentication** stateless
 - **Role-Based Access** (admin / petugas)
 - **Bcrypt** password hashing
-- **Session management** di client
-- **CORS** configurable
+- **Petugas wilayah assignment**
+- **Audit log** semua aktivitas
 
-### ☁️ **Hybrid Deployment**
+### 📊 Export & Report
+- **Excel** dengan conditional formatting
+- **HTML/PDF** untuk print
+- Auto-color berdasarkan PFVI status
+- Include wilayah lengkap
+
+### ☁️ Hybrid Deployment
 - Server lokal (offline-first)
 - **Cloudflare Tunnel** gratis HTTPS
 - **PWA manifest** install di HP
-- **Auto-redirect** root → dashboard
 - **Multi-device** akses bersamaan
 
 </td>
@@ -149,12 +171,12 @@ Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **ale
 
 ## ✨ Showcase
 
-### 🌐 **Live Demo — Buka dari Mana Saja**
+### 🌐 Live Demo — Buka dari Mana Saja
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│   🔥  https://gambutfr.osvpn.id/dashboard                   │
+│   🔥  https://cloudflare.tunel.anda/dashboard                   │
 │                                                             │
 │   • Dari laptop di kantor posko                             │
 │   • Dari HP di tengah hutan Kalimantan                      │
@@ -168,29 +190,71 @@ Sistem ini dibangun untuk **Indonesia**, dengan dukungan **multi-region**, **ale
 
 ---
 
-### 🗺️ **Multi-Region Monitoring**
+### 🗺️ Peta Choropleth Interaktif
 
-Satu dashboard, semua wilayah terpantau. Setiap region punya **skor PFVI sendiri**:
+Visualisasi PFVI per kabupaten langsung di atas peta Indonesia:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  🗺️  PETA RISIKO KEBAKARAN GAMBUT                          │
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│   Legend: ● Aman (0-39)  ● Siaga (40-64)  ● Bahaya (65+) │
+│                                                            │
+│   [Peta Indonesia dengan marker per kabupaten]            │
+│                                                            │
+│   • 🌴 Kalimantan: marker padat 🔴 BAHAYA                 │
+│   • 🌳 Sumatera: campuran 🟡🟢🟡                           │
+│   • 🦜 Papua: 🟡 SIAGA mayoritas                          │
+│                                                            │
+│   Klik marker → popup detail wilayah                      │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🎯 Drill-Down Wilayah (Sampai Desa)
+
+Dari overview region → sampai detail desa dengan PFVI:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  🗺️  RINGKASAN PER-REGION                                    │
+│  🌴 KALIMANTAN                                       [X]     │
+│  Drill-down wilayah administrasi (Kemendagri 2025)           │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
-│  🌴 KALIMANTAN         🦜 PAPUA           🌳 SUMATERA        │
-│  ━━━━━━━━━━━━━━         ━━━━━━━━━━         ━━━━━━━━━━━━      │
-│  Hotspot: 9,375         Hotspot: 3,961      Hotspot: 2,553   │
-│  PFVI   : 76.0          PFVI   : 59.6       PFVI   : 54.0    │
-│  Status : 🔴 BAHAYA     Status : 🟡 SIAGA    Status : 🟡 SIAGA │
+│  Provinsi: 5 │ Kabupaten: 56 │ Kecamatan: 626 │ Desa: 7.179 │
+│                                                              │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │  PFVI REGION INDUK: 83.9/100         🔴 BAHAYA     │     │
+│  └────────────────────────────────────────────────────┘     │
+│                                                              │
+│  ▼ 📍 Kalimantan Tengah  [3/14 AKTUAL]                      │
+│    ┌────────────────────┬───┬────┬───┬──────┬────────┐      │
+│    │ Kabupaten/Kota     │Kec│Des │Dat│ PFVI │ Status │      │
+│    ├────────────────────┼───┼────┼───┼──────┼────────┤      │
+│    │▾ Kota Palangka Raya│ 5 │ 30 │ 3 │ 74.2 │🔴BAHAYA│      │
+│    │  ┌──────────────────────────────────────────┐   │      │
+│    │  │ KECAMATAN (5)                             │   │      │
+│    │  │▸ Pahandut   │6 des│ 2 │74.2*│🔴BAHAYA    │   │      │
+│    │  │  ┌──────────────────────────────────────┐ │   │      │
+│    │  │  │ DESA/KELURAHAN (6)                   │ │   │      │
+│    │  │  │ • Pahandut    50* 🟡 SIAGA          │ │   │      │
+│    │  │  │ • Panarung    50* 🟡 SIAGA          │ │   │      │
+│    │  │  │ • Langkai     50* 🟡 SIAGA          │ │   │      │
+│    │  │  └──────────────────────────────────────┘ │   │      │
+│    │  └──────────────────────────────────────────┘   │      │
+│    └────────────────────┴───┴────┴───┴──────┴────────┘      │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-### 📢 **Auto Telegram Alert — Spesifik Region**
+### 📢 Auto Telegram Alert — Spesifik Region
 
-Setiap kali satelit mendeteksi hotspot di level BAHAYA, bot Telegram langsung kirim **pesan terformat** ke grup petugas:
+Setiap kali satelit mendeteksi hotspot di level BAHAYA:
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -208,16 +272,15 @@ Setiap kali satelit mendeteksi hotspot di level BAHAYA, bot Telegram langsung ki
 │    • Tanggal: 2026-09-19                                 │
 │                                                          │
 │  🕐 2026-09-19 20:30:21 WIB                              │
-│                                                          │
 │  🔗 Buka Dashboard                                       │
 └──────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-### ⏰ **Auto-Fetch Scheduler**
+### ⏰ Auto-Fetch Scheduler
 
-Server Anda **bekerja sendiri** — fetch satelit tiap 6 jam, alert otomatis, dashboard ter-update:
+Server bekerja sendiri — fetch satelit tiap 6 jam:
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -226,11 +289,11 @@ Server Anda **bekerja sendiri** — fetch satelit tiap 6 jam, alert otomatis, da
 │                                                            │
 │  Status       : 🟢 RUNNING                                 │
 │  Interval     : 6 jam                                      │
-│  Total Runs   : 12 kali (sejak server nyala)               │
+│  Total Runs   : 12 kali                                    │
 │  Errors       : 0                                          │
 │                                                            │
-│  Terakhir Jalan : 2026-09-19 20:55:45                      │
-│  Berikutnya     : 2026-09-20 02:55:45                      │
+│  Terakhir Jalan : 2026-09-21 14:06:13                      │
+│  Berikutnya     : 2026-09-21 20:06:13                      │
 │                                                            │
 │  Region Aktif  : kalimantan, sumatera, papua               │
 │                                                            │
@@ -244,34 +307,9 @@ Server Anda **bekerja sendiri** — fetch satelit tiap 6 jam, alert otomatis, da
 
 ---
 
-### 🔍 **Anomaly Detection**
+### 🧠 AI Ensemble Forecasting
 
-Sistem otomatis **menandai outlier** menggunakan **3 metode voting** — akurasi lebih tinggi dari metode tunggal:
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│  🔍 DETEKSI ANOMALI                                          │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Total Data   : 17 baris                                     │
-│  Anomali      : 1 baris                                      │
-│  Data Normal  : 16 baris                                     │
-│  Rasio        : 5.9 %                                        │
-│                                                              │
-│  ┌────────────┬───────────┬─────┬─────┬─────┬────────────┐  │
-│  │ Tanggal    │ WT        │ SM  │ RF  │ T°  │ Alasan     │  │
-│  ├────────────┼───────────┼─────┼─────┼─────┼────────────┤  │
-│  │ 2026-09-10 │ -5.00     │ 55  │12.5 │28.5 │ Z+IQR+IF   │  │
-│  └────────────┴───────────┴─────┴─────┴─────┴────────────┘  │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-```
-
----
-
-### 🧠 **AI Forecasting (Ensemble)**
-
-Prediksi muka air tanah dengan **3 model AI digabung**, plus **confidence interval 95%**:
+Prediksi muka air tanah dengan 3 model AI + CI 95%:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -299,9 +337,53 @@ Prediksi muka air tanah dengan **3 model AI digabung**, plus **confidence interv
 
 ---
 
-### 📱 **PWA — Install di HP**
+### 📊 Export Excel & PDF
 
-Buka `https://gambutfr.osvpn.id/dashboard` di HP → **"Add to Home Screen"** → selesai. Icon 🔥 muncul di home screen, aplikasi jalan fullscreen seperti app native:
+Laporan siap kirim dengan warna otomatis berdasarkan status:
+
+```
+📄 Laporan_Gambut_Kalimantan_2026-09-21.xlsx
+
+┌──────────────────────────────────────────────────────────────┐
+│ Laporan Data Gambut                                          │
+│ Generated: 21 September 2026 15:28 WIB                       │
+├───┬─────────┬───────┬─────┬────┬────┬────┬────┬────┬────┬────┤
+│ # │Tanggal  │Region │Prov │Kab │Kec │Desa│ WT │ SM │PFVI│St  │
+├───┼─────────┼───────┼─────┼────┼────┼────┼────┼────┼────┼────┤
+│ 1 │2026-09-21│kalim  │...  │... │... │... │-24 │39  │80.7│🔴  │
+│ 2 │2026-09-21│papua  │...  │... │... │... │-22 │42  │68  │🔴  │
+│ 3 │2026-09-21│suma   │...  │... │... │... │-17 │51  │33  │🟢  │
+└───┴─────────┴───────┴─────┴────┴────┴────┴────┴────┴────┴────┘
+```
+
+---
+
+### 🔐 Multi-User dengan Wilayah Assignment
+
+Setiap petugas punya wilayah tugas sendiri:
+
+```
+┌──────────────────────────────────────────────────────┐
+│  👥 MANAJEMEN USER                                   │
+├──────────────────────────────────────────────────────┤
+│                                                      │
+│  Username     Role      Wilayah         Status      │
+│  ─────────    ─────     ──────────      ─────────   │
+│  admin        admin     -               🟢 Active   │
+│  budi_riau    petugas   Pekanbaru       🟢 Active   │
+│  siti_kalteng petugas   Kalteng         🟢 Active   │
+│  ahmad_papua  petugas   Jayapura        🟢 Active   │
+│                                                      │
+│  Setiap aksi ter-audit di log server.                │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📱 PWA — Install di HP
+
+Buka di HP → "Add to Home Screen" → icon 🔥 muncul:
 
 ```
 ┌─────────────────────────────────┐
@@ -322,70 +404,9 @@ Buka `https://gambutfr.osvpn.id/dashboard` di HP → **"Add to Home Screen"** �
 
 ---
 
-### 🔐 **Multi-User dengan JWT**
+### 🎨 Aurora Dark Theme
 
-Setiap petugas login dengan akun sendiri. Admin kelola user, petugas akses terbatas:
-
-```
-┌──────────────────────────────────────────────────────┐
-│  👥 MANAJEMEN USER                                   │
-├──────────────────────────────────────────────────────┤
-│                                                      │
-│  Username     Role      Full Name       Status      │
-│  ─────────    ─────     ──────────      ─────────   │
-│  admin        admin     Administrator   🟢 Active   │
-│  budi_riau    petugas   Budi Santoso    🟢 Active   │
-│  siti_kalteng petugas   Siti Nurhaliza  🟢 Active   │
-│  ahmad_papua  petugas   Ahmad Yusuf     🟢 Active   │
-│                                                      │
-│  Setiap user punya token JWT sendiri.                │
-│  Setiap aksi ter-audit di log server.                │
-│                                                      │
-└──────────────────────────────────────────────────────┘
-```
-
----
-
-### 🚀 **Deploy Hybrid — Local + Cloud**
-
-Server lokal tetap aman di kantor, tapi bisa diakses dari internet:
-
-```
-                     🌐 INTERNET
-                          │
-                          ▼
-            ┌─────────────────────────┐
-            │  ☁️ CLOUDFLARE EDGE     │
-            │  • HTTPS gratis         │
-            │  • DDoS protection      │
-            │  • Global CDN           │
-            └────────────┬────────────┘
-                         │ Tunnel (encrypted)
-                         ▼
-            ┌─────────────────────────┐
-            │  💻 LAPTOP ANDA         │
-            │  D:\gambut\             │
-            │  • FastAPI :8000        │
-            │  • CSV database         │
-            │  • NASA scheduler       │
-            │  • Telegram bot         │
-            └─────────────────────────┘
-                         ▲
-                         │ LAN
-                         │
-            ┌────────────┴────────────┐
-            │  👥 MULTI-CLIENT        │
-            │  • Desktop PyQt6        │
-            │  • HP Petugas (PWA)     │
-            │  • Browser admin        │
-            └─────────────────────────┘
-```
-
----
-
-### 🎨 **Aurora Dark Theme**
-
-UI dengan efek **Aurora gradient**, **glassmorphism cards**, dan **neon accents** — profesional tapi tetap elegan:
+UI dengan efek **Aurora gradient** + **glassmorphism cards**:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -400,7 +421,6 @@ UI dengan efek **Aurora gradient**, **glassmorphism cards**, dan **neon accents*
 │  • Background: Deep navy + aurora glow              │
 │  • Card: Semi-transparent glassmorphism             │
 │  • Accent: Emerald / amber / crimson                │
-│  • Font: Inter / Segoe UI                           │
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -441,38 +461,31 @@ UI dengan efek **Aurora gradient**, **glassmorphism cards**, dan **neon accents*
                              │
                              ▼
     ┌──────────────────────────────────────────────────┐
-    │         💻 LOKAL SERVER (D:\gambut)              │
+    │         💻 LOKAL SERVER                          │
     ├──────────────────────────────────────────────────┤
     │                                                  │
     │  ┌────────────────────────────────────────────┐  │
-    │  │  FastAPI Backend (:8000)                   │  │
+    │  │  FastAPI Backend (:8000) — 40+ endpoints   │  │
     │  │  ┌──────────────┐  ┌──────────────────┐   │  │
     │  │  │ Auth Layer   │  │ Scheduler Layer  │   │  │
     │  │  │ • JWT verify │  │ • Auto-fetch 6h  │   │  │
     │  │  │ • RBAC       │  │ • NASA FIRMS     │   │  │
+    │  │  │ • Wilayah    │  │ • Alert          │   │  │
     │  │  └──────────────┘  └──────────────────┘   │  │
     │  │  ┌──────────────┐  ┌──────────────────┐   │  │
-    │  │  │ AI Engine    │  │ Alert Engine     │   │  │
-    │  │  │ • Ensemble   │  │ • Telegram Bot   │   │  │
-    │  │  │ • Anomaly    │  │ • Region-aware   │   │  │
-    │  │  │ • PFVI       │  │ • Cooldown       │   │  │
+    │  │  │ AI Engine    │  │ Audit & Export   │   │  │
+    │  │  │ • Ensemble   │  │ • Activity log   │   │  │
+    │  │  │ • Anomaly    │  │ • Excel + PDF    │   │  │
+    │  │  │ • PFVI       │  │ • Telegram Bot   │   │  │
     │  │  └──────────────┘  └──────────────────┘   │  │
     │  └────────────────────────────────────────────┘  │
     │                                                  │
     │  ┌────────────────────────────────────────────┐  │
     │  │  Storage Layer                             │  │
-    │  │  • database_gambut.csv  (data observasi)   │  │
-    │  │  • users.csv            (auth bcrypt)      │  │
-    │  │  • regional_latest.json (snapshot region)  │  │
-    │  │  • pfvi_params.json     (cached weights)   │  │
-    │  │  • alert_config.json    (telegram config)  │  │
-    │  └────────────────────────────────────────────┘  │
-    │                                                  │
-    │  ┌────────────────────────────────────────────┐  │
-    │  │  Data Sources                              │  │
-    │  │  • 🛰️ NASA FIRMS (satellite hotspot)       │  │
-    │  │  • ✍️ Manual input (petugas lapangan)      │  │
-    │  │  • 📁 Upload CSV/Excel                     │  │
+    │  │  • database_gambut.csv  (observasi)        │  │
+    │  │  • wilayah.db (SQLite, 91.599 records)     │  │
+    │  │  • users.csv, audit_log.jsonl              │  │
+    │  │  • regional_latest.json, pfvi_params.json  │  │
     │  └────────────────────────────────────────────┘  │
     │                                                  │
     └──────────────────────────────────────────────────┘
@@ -498,9 +511,10 @@ UI dengan efek **Aurora gradient**, **glassmorphism cards**, dan **neon accents*
 | **Cloud-Access** | Via Cloudflare Tunnel, bisa diakses dari mana saja |
 | **Offline-Ready** | Tidak butuh internet untuk operasi dasar |
 | **Multi-Region** | Setiap wilayah punya data & skor terpisah |
-| **Multi-User** | JWT + RBAC, setiap user punya akun sendiri |
+| **Multi-User** | JWT + RBAC + wilayah assignment |
 | **Autonomous** | Scheduler otomatis fetch + alert |
 | **Progressive** | PWA installable di HP tanpa Play Store |
+| **Traceable** | Audit log setiap aktivitas |
 
 ---
 
@@ -523,65 +537,35 @@ gambut/
 ├── 📄 requirements-client.txt      # Deps client
 ├── 📄 requirements-dev.txt         # Deps testing
 ├── 📄 pytest.ini                   # Config pytest
-├── 📄 struktur.md                  # Dokumentasi struktur
 │
 ├── 📁 client/                      # ⭐ DESKTOP APP (PyQt6)
-│   ├── __init__.py
 │   ├── main.py                     # Entry point desktop
 │   ├── config.py                   # Config URL & timeout
-│   │
-│   ├── 📁 api/                     # HTTP Client
-│   │   ├── __init__.py
-│   │   └── client.py               # Singleton PeatFireClient
-│   │
-│   ├── 📁 core/                    # Business logic client
-│   │   ├── __init__.py
-│   │   ├── forecasting.py
-│   │   ├── imputation.py
-│   │   └── index_calc.py
-│   │
-│   ├── 📁 gui/                     # GUI Layer
-│   │   ├── __init__.py
+│   ├── 📁 api/client.py            # HTTP Client
+│   ├── 📁 core/                    # Business logic
+│   ├── 📁 gui/
 │   │   ├── theme.py                # 🎨 Tema Aurora Dark
-│   │   ├── widgets.py              # Reusable components
-│   │   ├── main_window.py          # Window utama + sidebar
-│   │   ├── login_dialog.py         # Dialog login
-│   │   └── 📁 tabs/
-│   │       ├── __init__.py
-│   │       ├── tab_dashboard.py    # 📊 Dashboard
-│   │       ├── tab_manual.py       # ✍️ Input manual (region-aware)
-│   │       ├── tab_upload.py       # 📁 Upload file (region-aware)
-│   │       ├── tab_anomaly.py      # 🔍 Deteksi anomali
-│   │       ├── tab_scheduler.py    # ⏰ Kontrol scheduler
-│   │       ├── tab_setting.py      # ⚙️ Pengaturan (admin-only)
-│   │       └── tab_placeholder.py  # Placeholder
-│   │
-│   ├── 📁 utils/                   # Helper
-│   │   ├── __init__.py
-│   │   └── data_processor.py
-│   │
-│   └── 📁 data/                    # Data lokal client
-│       └── template_input.xlsx     # Template upload
+│   │   ├── widgets/                # KpiCard, RegionSelector
+│   │   ├── main_window.py
+│   │   ├── login_dialog.py
+│   │   └── 📁 tabs/                # 6 tab lengkap
+│   │       ├── tab_dashboard.py
+│   │       ├── tab_manual.py       # Region-aware
+│   │       ├── tab_upload.py       # Region-aware
+│   │       ├── tab_anomaly.py
+│   │       ├── tab_scheduler.py
+│   │       └── tab_setting.py
+│   └── 📁 utils/
 │
 ├── 📁 server/                      # ⭐ BACKEND (FastAPI)
-│   ├── __init__.py
-│   ├── main.py                     # Entry point FastAPI
-│   ├── models.py                   # Pydantic schemas
-│   ├── database.py                 # Layer akses CSV
-│   │
-│   ├── 📁 auth/                    # 🔐 Autentikasi
-│   │   ├── __init__.py
-│   │   ├── password.py             # Hash & verify bcrypt
-│   │   ├── jwt_handler.py          # Generate & verify JWT
-│   │   └── dependencies.py         # get_current_user, require_role
-│   │
-│   ├── 📁 api/                     # REST endpoints
-│   │   ├── __init__.py
-│   │   ├── routes.py               # 30+ endpoints
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── 📁 auth/                    # JWT + RBAC
+│   ├── 📁 api/
+│   │   ├── routes.py               # 40+ endpoints
 │   │   └── web.py                  # Serve dashboard HTML
-│   │
 │   ├── 📁 core/                    # ⭐ AI ENGINE
-│   │   ├── __init__.py
 │   │   ├── imputation.py           # KNN / Spline / Linear / Loess
 │   │   ├── forecasting.py          # ARIMA + Box-Cox
 │   │   ├── deep_learning.py        # LSTM / GRU (PyTorch)
@@ -591,41 +575,33 @@ gambut/
 │   │   ├── satellite.py            # NASA FIRMS integration
 │   │   ├── scheduler.py            # Auto-fetch scheduler
 │   │   ├── alert.py                # Telegram notifications
+│   │   ├── audit.py                # Activity log
+│   │   ├── export.py               # Excel + HTML export
+│   │   ├── regions.py              # Wilayah helper (SQLite)
 │   │   ├── pfvi_cache.py           # Cached PFVI params
 │   │   └── autopeatfr.py           # All-in-one pipeline
-│   │
-│   ├── 📁 templates/               # Web dashboard
-│   │   ├── dashboard.html          # Main dashboard
-│   │   ├── manifest.json           # PWA manifest
-│   │   └── sw.js                   # Service worker
-│   │
-│   ├── 📁 static/                  # Static assets
-│   │   └── 📁 icons/
-│   │       ├── icon-192.png
-│   │       └── icon-512.png
-│   │
-│   └── 📁 data/                    # 💾 Storage (JANGAN DI-COMMIT!)
-│       ├── database_gambut.csv     # Data observasi
-│       ├── sample_satellite.csv    # Sample (boleh di-commit)
-│       ├── users.csv               # 🔐 User (auto-generated)
-│       ├── config.json             # (auto-generated)
-│       ├── alert_config.json       # 🔐 Telegram config
-│       ├── pfvi_params.json        # Cached params
-│       └── regional_latest.json    # Snapshot region
+│   ├── 📁 templates/               # Web dashboard + PWA
+│   │   ├── dashboard.html
+│   │   ├── manifest.json
+│   │   └── sw.js
+│   ├── 📁 static/
+│   │   ├── 📁 geo/                 # GeoJSON peta
+│   │   └── 📁 icons/               # PWA icons
+│   └── 📁 data/                    # 💾 Storage (gitignored)
+│       ├── regions.json            # Template wilayah
+│       ├── sample_satellite.csv    # Sample
+│       └── wilayah.db              # SQLite (91.599 records)
 │
 ├── 📁 docs/                        # 📚 Documentation
 │   ├── 📁 cloudflared/
-│   │   └── config.yml.example      # Template tunnel config
-│   └── 📁 screenshots/             # Screenshot assets
+│   └── 📁 screenshots/
 │
 ├── 📁 tests/                       # 🧪 Unit tests
-│   ├── __init__.py
-│   ├── test_pfvi.py
-│   ├── test_imputation.py
-│   └── test_anomaly.py
 │
 └── 📁 scripts/                     # 🛠️ Utility scripts
-    └── migrate_add_region.py       # Database migration
+    ├── download_wilayah.py
+    ├── build_wilayah_db.py
+    └── migrate_add_region.py
 ```
 
 ---
@@ -641,7 +617,7 @@ gambut/
 | **OS** | Windows 10 / Ubuntu 20.04 / macOS 11 | Windows 11 / Ubuntu 22.04 |
 | **Python** | 3.11 | 3.11.x (tested) |
 | **RAM** | 4 GB | 8 GB+ (untuk LSTM/GRU) |
-| **Storage** | 2 GB | 5 GB (dengan PyTorch + TensorFlow) |
+| **Storage** | 2 GB | 5 GB (dengan PyTorch) |
 | **Anaconda** | Miniconda | Anaconda Full Distribution |
 | **Jaringan** | LAN lokal | Internet (untuk satelit & tunnel) |
 | **Cloudflare Account** | Gratis | Gratis (Free plan) |
@@ -665,8 +641,6 @@ cd gambut
 
 ### Tahap 2 — Setup Anaconda Environment
 
-Buka **Anaconda Prompt**:
-
 ```bash
 # Buat environment dari file
 conda env create -f environment.yml
@@ -680,8 +654,6 @@ python --version
 ```
 
 ### Tahap 3 — Install Deep Learning Backend (Opsional)
-
-Untuk fitur LSTM/GRU asli:
 
 ```bash
 # Opsi A: PyTorch (ringan ~200 MB) — REKOMENDASI
@@ -722,7 +694,17 @@ TELEGRAM_BOT_TOKEN=<paste-bot-token>
 TELEGRAM_CHAT_IDS=<paste-chat-id>
 ```
 
-### Tahap 5 — Dapatkan API Keys
+### Tahap 5 — Setup Wilayah Database (SQLite)
+
+```bash
+# Download wilayah.sql dari cahyadsn (Kemendagri 2025)
+python scripts/download_wilayah.py
+
+# Build SQLite database (~15 MB, 91.599 records)
+python scripts/build_wilayah_db.py
+```
+
+### Tahap 6 — Dapatkan API Keys
 
 <details>
 <summary><b>🔑 Cara Dapat NASA FIRMS API Key (Gratis, 5 menit)</b></summary>
@@ -757,8 +739,6 @@ TELEGRAM_CHAT_IDS=<paste-chat-id>
 
 ### 🚀 Opsi 1: Hybrid Mode (Server + Cloudflare Tunnel)
 
-Cara paling powerful — server lokal + akses global:
-
 ```bash
 # Terminal 1 — jalankan server + tunnel
 python run_hybrid_server.py
@@ -777,7 +757,6 @@ python run_hybrid_server.py
 ### 🖥️ Opsi 2: Server Only (Local)
 
 ```bash
-# Terminal 1 — server
 python -m uvicorn server.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
@@ -797,11 +776,11 @@ python -m client.main
 ### 🌐 Akses Web Dashboard
 
 - **Lokal**: http://localhost:8000/dashboard
-- **Cloudflare**: https://gambutfr.osvpn.id/dashboard
+- **Cloudflare**: https://cloudflare.tunel.anda/dashboard
 
 ### 📱 Install PWA di HP
 
-1. Buka `https://gambutfr.osvpn.id/dashboard` di Chrome/Safari HP
+1. Buka `https://cloudflare.tunel.anda/dashboard` di Chrome/Safari HP
 2. Menu → **"Add to Home Screen"**
 3. Icon 🔥 muncul → buka seperti app native
 
@@ -814,60 +793,50 @@ python -m client.main
 ## 📚 Panduan Penggunaan
 
 ### 1. 🔐 Login Screen
-
-Dialog login dengan tema **Aurora Dark**, gradient header, dan feedback visual.
-
-- ✅ JWT authentication
-- ✅ Password ter-hash bcrypt
-- ✅ Session auto-attach ke setiap request
-- ✅ Role-based UI (tab Setting hanya untuk admin)
+- JWT authentication
+- Password ter-hash bcrypt
+- Role-based UI (tab Setting hanya untuk admin)
 
 ### 2. 📊 Dashboard
-
-Pusat komando dengan:
-- **KPI Cards**: Total observasi, WT terkini, Suhu, PFVI
-- **Tabel Data Petugas**: Per-region feed terbaru
-- **Kartu Regional**: Ringkasan per region (Kalimantan, Sumatera, Papua)
-- **Chart Tren WT** (line chart interaktif)
-- **Diagram Pie** distribusi status
+- **KPI Cards**: Total observasi, WT, Suhu, PFVI
+- **Tabel Data Petugas**: Per-region feed
+- **Kartu Regional**: Ringkasan per region (klik → drill-down)
+- **Peta Choropleth**: Marker PFVI per kabupaten
+- **Chart Tren WT** + **Diagram Pie**
 - **Tombol Sync Satelit** & **Broadcast Alert**
+- **Export Excel/PDF**
 
-### 3. ✍️ Input Manual (Region-Aware)
+### 3. 🗺️ Peta Choropleth
+- Klik marker → popup detail wilayah
+- Klik kartu region → modal drill-down
+- Klik kabupaten → expand kecamatan
+- Klik kecamatan → expand desa
 
-Form input dengan **dropdown region**:
-- Pilih region: `kalimantan` / `sumatera` / `papua` / dll
-- Isi 4 parameter: WT, SM, RF, Temp
+### 4. ✍️ Input Manual (Region-Aware)
+- Cascading dropdown: Region → Provinsi → Kabupaten → Kecamatan → Desa
+- Isi WT, SM, RF, Temp
 - Preview PFVI real-time
-- Klik Simpan → auto-alert kalau BAHAYA/SIAGA
+- Auto-alert saat BAHAYA/SIAGA
 
-### 4. 📁 Upload Data (Region-Aware)
-
-Bulk import dengan **selector region**:
-- Pilih region tujuan
-- Drag & drop file CSV/Excel
+### 5. 📁 Upload Data (Region-Aware)
+- Cascading dropdown lokasi
+- Drag & drop CSV/Excel
 - Auto-validasi kolom
-- Preview data sebelum simpan
 
-### 5. 🔍 Anomali Detection
+### 6. 🔍 Anomaly Detection
+- Ensemble voting (Z-score + IQR + IF)
+- Deteksi outlier otomatis
+- Detail alasan per data
 
-Deteksi outlier dengan **ensemble voting**:
-- Total data & rasio anomali
-- Tabel detail anomali (tanggal, WT, votes, alasan)
-- Klik **"Deteksi Sekarang"** untuk refresh
+### 7. ⏰ Scheduler
+- Status RUNNING/STOPPED
+- Interval configurable
+- Trigger manual
 
-### 6. ⏰ Scheduler
-
-Kontrol auto-fetch satelit:
-- **Status**: RUNNING / STOPPED
-- **Interval**: 1-72 jam (configurable)
-- **Total runs** & errors
-- Tombol: Start / Stop / **Trigger Sekarang**
-
-### 7. ⚙️ Pengaturan (Admin Only)
-
-- URL Server configuration
-- API Satelit credentials
-- Tema aplikasi (Dark / Light)
+### 8. ⚙️ Pengaturan (Admin Only)
+- URL Server
+- API Satelit
+- Tema aplikasi
 
 ---
 
@@ -880,59 +849,70 @@ Kontrol auto-fetch satelit:
 **Swagger UI**: http://localhost:8000/docs
 
 ### 🔐 Authentication
-
-| Method | Endpoint | Fungsi | Auth |
-|--------|----------|--------|------|
-| `POST` | `/api/v1/auth/register` | Daftar user baru | Admin |
-| `POST` | `/api/v1/auth/login` | Login → JWT token | Public |
-| `GET` | `/api/v1/auth/me` | Info user login | Bearer |
-| `GET` | `/api/v1/auth/users` | Daftar user | Admin |
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `POST` | `/api/v1/auth/register` | Daftar user baru (admin) |
+| `POST` | `/api/v1/auth/login` | Login → JWT token |
+| `GET` | `/api/v1/auth/me` | Info user login |
+| `GET` | `/api/v1/auth/users` | Daftar user (admin) |
 
 ### 📊 Data & Analytics
-
-| Method | Endpoint | Fungsi | Auth |
-|--------|----------|--------|------|
-| `GET` | `/api/v1/data` | Data historis | Bearer |
-| `POST` | `/api/v1/data` | Input manual | Bearer |
-| `POST` | `/api/v1/data/upload` | Upload CSV/Excel | Bearer |
-| `GET` | `/api/v1/data/public` | Public data feed | Public |
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `GET` | `/api/v1/data` | Data historis |
+| `POST` | `/api/v1/data` | Input manual |
+| `POST` | `/api/v1/data/upload` | Upload CSV/Excel |
+| `GET` | `/api/v1/data/public` | Public data feed |
 
 ### 🛰️ Satellite
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `POST` | `/api/v1/satellite/fetch` | Fetch NASA FIRMS |
+| `GET` | `/api/v1/satellite/regional-summary` | Ringkasan per region |
 
-| Method | Endpoint | Fungsi | Auth |
-|--------|----------|--------|------|
-| `POST` | `/api/v1/satellite/fetch` | Fetch NASA FIRMS | Admin |
-| `GET` | `/api/v1/satellite/regions` | List region | Bearer |
-| `GET` | `/api/v1/satellite/regional-summary` | Ringkasan per region | Public |
+### 🗺️ Wilayah & Peta
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `GET` | `/api/v1/regions/tree` | Struktur region |
+| `GET` | `/api/v1/wilayah/provinces` | List provinsi |
+| `GET` | `/api/v1/wilayah/{prov}/regencies` | List kabupaten |
+| `GET` | `/api/v1/wilayah/regency/{kode}/districts-detail` | Kecamatan + PFVI |
+| `GET` | `/api/v1/wilayah/district/{kode}/villages-detail` | Desa + PFVI |
+| `GET` | `/api/v1/wilayah/stats/{region}` | Statistik + drill-down |
+| `GET` | `/api/v1/map/data` | Data untuk choropleth |
 
 ### 🧠 AI & Forecasting
-
-| Method | Endpoint | Fungsi | Auth |
-|--------|----------|--------|------|
-| `POST` | `/api/v1/forecast` | Forecast WT | Bearer |
-| `POST` | `/api/v1/forecast/ensemble` | Ensemble + CI | Bearer |
-| `POST` | `/api/v1/forecast/cross-validate` | K-Fold CV | Bearer |
-| `POST` | `/api/v1/index` | Hitung PFVI | Bearer |
-| `POST` | `/api/v1/anomaly/detect` | Deteksi anomali | Bearer |
-| `POST` | `/api/v1/autopeatfr` | All-in-one pipeline | Bearer |
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `POST` | `/api/v1/forecast` | Forecast WT |
+| `POST` | `/api/v1/forecast/ensemble` | Ensemble + CI |
+| `POST` | `/api/v1/forecast/cross-validate` | K-Fold CV |
+| `POST` | `/api/v1/index` | Hitung PFVI |
+| `POST` | `/api/v1/anomaly/detect` | Deteksi anomali |
+| `POST` | `/api/v1/autopeatfr` | All-in-one pipeline |
 
 ### 📢 Alert
-
-| Method | Endpoint | Fungsi | Auth |
-|--------|----------|--------|------|
-| `GET` | `/api/v1/alert/status` | Status alert | Bearer |
-| `POST` | `/api/v1/alert/config` | Update config | Admin |
-| `POST` | `/api/v1/alert/test` | Test kirim | Admin |
-| `POST` | `/api/v1/alert/broadcast-public` | Broadcast semua region | Public |
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `GET` | `/api/v1/alert/status` | Status alert |
+| `POST` | `/api/v1/alert/config` | Update config |
+| `POST` | `/api/v1/alert/broadcast-public` | Broadcast semua region |
 
 ### ⏰ Scheduler
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `GET` | `/api/v1/scheduler/status` | Status scheduler |
+| `POST` | `/api/v1/scheduler/start` | Start scheduler |
+| `POST` | `/api/v1/scheduler/stop` | Stop scheduler |
+| `POST` | `/api/v1/scheduler/trigger` | Trigger manual |
 
-| Method | Endpoint | Fungsi | Auth |
-|--------|----------|--------|------|
-| `GET` | `/api/v1/scheduler/status` | Status scheduler | Bearer |
-| `POST` | `/api/v1/scheduler/start` | Start scheduler | Admin |
-| `POST` | `/api/v1/scheduler/stop` | Stop scheduler | Admin |
-| `POST` | `/api/v1/scheduler/trigger` | Trigger manual | Admin |
+### 📊 Export & Audit
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| `GET` | `/api/v1/export/excel` | Download Excel |
+| `GET` | `/api/v1/export/html` | Download PDF (via HTML) |
+| `GET` | `/api/v1/audit/recent` | Audit log terbaru |
+| `GET` | `/api/v1/audit/stats` | Statistik audit |
 
 ---
 
@@ -941,8 +921,6 @@ Kontrol auto-fetch satelit:
 <!-- ========================================================= -->
 
 ## 🧪 Testing & Debugging
-
-### Run Unit Tests
 
 ```bash
 # Semua test
@@ -965,21 +943,6 @@ curl http://localhost:8000/health
 curl -X POST http://localhost:8000/api/v1/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "admin123"}'
-
-# Cek data (dengan token)
-curl http://localhost:8000/api/v1/data \
-  -H "Authorization: Bearer <TOKEN>"
-```
-
-### Reset Database
-
-```bash
-# Windows
-Remove-Item server\data\users.csv
-
-# Linux/Mac
-rm server/data/users.csv
-# Restart server → admin auto-generated
 ```
 
 ---
@@ -996,7 +959,7 @@ rm server/data/users.csv
 <summary><b>Klik untuk expand — Setup Cloudflare Tunnel (Free)</b></summary>
 
 #### 1. Prasyarat
-- Domain (mis. `gambutfr.osvpn.id`)
+- Domain (mis. `cloudflare.tunel.anda`)
 - Akun Cloudflare (gratis)
 
 #### 2. Install Cloudflared
@@ -1018,8 +981,6 @@ brew install cloudflared
 cloudflared tunnel login
 cloudflared tunnel create gambut-server
 ```
-
-Catat **UUID** yang muncul.
 
 #### 4. Configure Public Hostname
 
@@ -1043,14 +1004,10 @@ python run_hybrid_server.py
 #### 6. Akses
 
 ```
-https://gambutfr.osvpn.id/dashboard
+https://cloudflare.tunel.anda/dashboard
 ```
 
 </details>
-
-### 🐳 Docker (Rencana)
-
-Roadmap: Dockerfile + docker-compose untuk deployment containerized.
 
 ---
 
@@ -1078,31 +1035,30 @@ Roadmap: Dockerfile + docker-compose untuk deployment containerized.
   - [x] Telegram alert system
   - [x] Web Dashboard (PWA)
   - [x] Cloudflare Tunnel deployment
-
-- [ ] 🔄 **v3.1** — Enhancement (in progress)
+- [x] ✅ **v3.1** — Advanced Features
   - [x] Region-specific alerts
   - [x] Broadcast alert system
-  - [ ] Interactive map (Leaflet / Mapbox)
-  - [ ] Chart export (PNG/PDF)
-  - [ ] Email notification
-  - [ ] PostgreSQL migration
-  - [ ] Docker support
-
-- [ ] ⏳ **v4.0** — Advanced Features
+  - [x] Interactive choropleth map (Leaflet.js)
+  - [x] Drill-down wilayah sampai level desa (91.599 records)
+  - [x] Export Excel + PDF
+  - [x] Petugas wilayah assignment
+  - [x] Audit log semua aktivitas
+  - [x] Cascade PFVI (Region → Provinsi → Kab → Kec → Desa)
+- [ ] ⏳ **v4.0** — Future Enhancement (Vision)
   - [ ] Real-time WebSocket push
-  - [ ] Mobile native app (Flutter)
-  - [ ] Multi-language support
-  - [ ] Advanced ML (Transformer)
-  - [ ] Load balancing
-  - [ ] Redis caching
-  - [ ] CI/CD pipeline
-
-- [ ] 🔮 **v5.0** — Vision
+  - [ ] Mobile native app (Flutter/React Native)
+  - [ ] Timeline slider untuk evolusi PFVI
+  - [ ] Email report otomatis harian
+  - [ ] PostgreSQL migration untuk scale up
+  - [ ] Docker support untuk deployment
+  - [ ] Advanced ML (Transformer models)
+  - [ ] Layer NASA FIRMS hotspot di peta
   - [ ] IoT sensor integration
   - [ ] Drone imagery analysis
-  - [ ] Public API for researchers
-  - [ ] Integration with BMKG & BNPB
-  - [ ] National-scale deployment
+  - [ ] Integration dengan BMKG & BNPB
+  - [ ] Public API untuk peneliti
+  - [ ] CI/CD pipeline (GitHub Actions)
+  - [ ] Multi-language support (ID / EN)
 
 ---
 
@@ -1150,6 +1106,13 @@ Lihat [LICENSE](LICENSE) untuk detail.
 
 ## 🙏 Kredit
 
+### 📊 Data Sumber
+
+- **Wilayah Indonesia**: [cahyadsn/wilayah](https://github.com/cahyadsn/wilayah) — sesuai **Kepmendagri No 300.2.2-2430 Tahun 2025**
+  - 38 Provinsi, 514 Kabupaten/Kota, 7.285 Kecamatan, 83.762 Desa/Kelurahan
+- **Satelit**: [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) (Fire Information for Resource Management System)
+- **Tiles Peta**: [Esri World Dark Gray](https://www.esri.com/)
+
 ### 🎓 Inspirasi Ilmiah
 
 Proyek ini terinspirasi dari riset dan pengembangan metodologi **prediksi risiko kebakaran gambut tropis** yang menggunakan pendekatan:
@@ -1178,13 +1141,12 @@ Terima kasih kepada para peneliti yang telah membuka jalan di bidang ini. 🌱
 - [pmdarima](https://github.com/alkaline-ml/pmdarima) — Auto-ARIMA
 - [scipy](https://scipy.org/) — Scientific computing
 - [PyTorch](https://pytorch.org/) — Deep learning
-- [TensorFlow](https://tensorflow.org/) — Deep learning (alternatif)
 - [matplotlib](https://matplotlib.org/) — Plotting
 
 **Frontend & UI:**
 - [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) — Desktop GUI
 - [Chart.js](https://www.chartjs.org/) — Interactive charts
-- [Tailwind-inspired CSS](https://tailwindcss.com/) — Styling
+- [Leaflet.js](https://leafletjs.com/) — Interactive maps
 
 **Integrasi:**
 - [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) — Satellite data
