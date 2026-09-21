@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#10b981">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PeatFR">
+<title>PeatFR Web Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- PWA: Register service worker -->
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('✅ [PWA] Service worker terdaftar'))
+        .catch(err => console.warn('⚠️ [PWA] Gagal register SW:', err));
+}
+</script>
+<style>
+:root {
+    --bg-primary: #0b0f19;
+    --bg-card: #1e293b;
+    --border: #334155;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-neon: #10b981;
+    --accent-warning: #f59e0b;
+    --accent-danger: #ef4444;
+    --accent-primary: #0d6efd;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+/* Aurora glow */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+body::before {
+    top: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(16,185,129,0.35), transparent 70%);
+}
+body::after {
+    bottom: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(13,110,253,0.3), transparent 70%);
+}
+.container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+/* Header */
+.header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px;
+    background: rgba(30,41,59,0.7);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    margin-bottom: 24px;
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-emoji { font-size: 36px; }
+.logo-text h1 { font-size: 20px; font-weight: 700; }
+.logo-text p { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+.status-badge {
+    padding: 8px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 700;
+    border: 1px solid currentColor;
+}
+.status-aman { color: var(--accent-neon); background: rgba(16,185,129,0.15); }
+.status-siaga { color: var(--accent-warning); background: rgba(245,158,11,0.15); }
+.status-bahaya { color: var(--accent-danger); background: rgba(239,68,68,0.15); }
+
+/* KPI grid */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--accent-neon); }
+.kpi-label { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.kpi-value { font-size: 32px; font-weight: 700; margin: 8px 0 4px; }
+.kpi-sub { font-size: 11px; color: var(--text-muted); }
+.kpi-value.blue { color: var(--accent-primary); }
+.kpi-value.green { color: var(--accent-neon); }
+.kpi-value.amber { color: var(--accent-warning); }
+.kpi-value.red { color: var(--accent-danger); }
+
+/* Chart layout */
+.chart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+.chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+.chart-title { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+.chart-wrap { position: relative; height: 280px; }
+
+/* Table */
+.table-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+    background: rgba(15,23,42,0.5);
+    padding: 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+}
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    font-size: 13px;
+}
+tr:hover td { background: rgba(51,65,85,0.2); }
+
+/* Footer */
+.footer { text-align: center; padding: 24px; color: var(--text-muted); font-size: 12px; }
+.footer a { color: var(--accent-neon); text-decoration: none; }
+
+/* Loading */
+.loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--text-muted); }
+.spinner {
+    width: 20px; height: 20px; border: 2px solid var(--border);
+    border-top-color: var(--accent-neon); border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin-right: 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    .kpi-value { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-emoji">🔥</div>
+            <div class="logo-text">
+                <h1>PeatFR Web Dashboard</h1>
+                <p>PEAT FIRE RISK MONITORING</p>
+            </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <button onclick="window.open('/api/v1/export/excel','_blank')" style="
+                background: rgba(16,185,129,0.15);
+                color: #10b981;
+                border: 1px solid #10b981;
+                border-radius: 6px;
+                padding: 8px 14px;
+                font-size: 11px;
+                font-weight: 700;
+                cursor: pointer;
+            ">📊 Excel</button>
+            <button onclick="window.open('/api/v1/export/html','_blank')" style="
+                background: rgba(13,110,253,0.15);
+                color: #0d6efd;
+                border: 1px solid #0d6efd;
+                border-radius: 6px;
+                padding: 8px 14px;
+                font-size: 11px;
+                font-weight: 700;
+                cursor: pointer;
+            ">📄 PDF</button>
+            <div id="statusBadge" class="status-badge status-aman">🟢 AMAN</div>
+        </div>
+    </div>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-label">Total Observasi</div>
+            <div class="kpi-value blue" id="kpiTotal">—</div>
+            <div class="kpi-sub">baris data lapangan</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Muka Air (WT)</div>
+            <div class="kpi-value green" id="kpiWt">—</div>
+            <div class="kpi-sub">cm (terbaru)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Suhu</div>
+            <div class="kpi-value amber" id="kpiTemp">—</div>
+            <div class="kpi-sub">°C (terbaru)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Indeks Kerawanan</div>
+            <div class="kpi-value red" id="kpiScore">—</div>
+            <div class="kpi-sub">skor 0–100</div>
+        </div>
+    </div>
+
+    <!-- Manual Input Feed -->
+    <div class="chart-card" style="margin-bottom: 24px;">
+        <div class="chart-title">👥 Data Input Petugas Lapangan (per Region)</div>
+        <div id="manualFeed" style="margin-top: 16px;">
+            <div class="loading"><div class="spinner"></div> Memuat data petugas...</div>
+        </div>
+    </div>
+
+    <!-- Regional Overview -->
+    <div class="chart-card" style="margin-bottom: 24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="chart-title">🗺️ Ringkasan Per-Region</div>
+            <button id="btnBroadcast" style="
+                background: rgba(239,68,68,0.15);
+                color: #ef4444;
+                border: 1px solid #ef4444;
+                border-radius: 6px;
+                padding: 6px 14px;
+                font-size: 11px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(239,68,68,0.3)'"
+            onmouseout="this.style.background='rgba(239,68,68,0.15)'">
+                📢 Broadcast Alert
+            </button>
+        </div>
+        <div id="regionalGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 16px;">
+            <div class="loading"><div class="spinner"></div> Memuat regional...</div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-grid">
+        <div class="chart-card">
+            <div class="chart-title">📈 Tren Muka Air Tanah</div>
+            <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+            <div class="chart-title">🥧 Distribusi Status</div>
+            <div class="chart-wrap"><canvas id="pieChart"></canvas></div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-card">
+        <div class="chart-title">📋 Data Terbaru</div>
+        <div id="tableContainer">
+            <div class="loading"><div class="spinner"></div> Memuat data...</div>
+        </div>
+    </div>
+
+        <!-- ═══ PETA CHOROPLETH ═══ -->
+    <div class="chart-card" style="margin-bottom: 24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+            <div class="chart-title" style="margin-bottom: 0;">🗺️ Peta Risiko Kebakaran Gambut</div>
+            <div style="display:flex; gap:8px;">
+                <button id="btnMapRefresh" style="
+                    background: rgba(16,185,129,0.15);
+                    color: #10b981;
+                    border: 1px solid #10b981;
+                    border-radius: 6px;
+                    padding: 6px 14px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    cursor: pointer;
+                ">🔄 Refresh</button>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div style="display:flex; gap:16px; margin-bottom:12px; font-size:11px;">
+            <span style="color:#10b981;">● Aman (0-39)</span>
+            <span style="color:#f59e0b;">● Siaga (40-64)</span>
+            <span style="color:#ef4444;">● Bahaya (65-100)</span>
+            <span style="color:#64748b; margin-left:auto;">Klik marker untuk detail wilayah</span>
+        </div>
+
+        <!-- Map container -->
+        <div id="mapContainer" style="
+            width: 100%;
+            height: 500px;
+            background: rgba(15,23,42,0.5);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        ">
+            <div class="loading"><div class="spinner"></div> Memuat peta...</div>
+        </div>
+    </div>
+
+    <!-- Leaflet CSS + JS (sebelum footer) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Footer -->
+    <div class="footer">
+        PeatFR © 2026 — <a href="/docs">API Docs</a> · <a href="/api/v1/scheduler/status">Scheduler Status</a>
+    </div>
+
+</div>
+
+<script>
+const API_BASE = window.location.origin;
+let trendChart, pieChart;
+
+// ── Fetch data (butuh auth) ──
+async function fetchData() {
+    // Untuk demo, kita pakai endpoint publik read-only
+    // Di produksi, pakai login + JWT
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/data/public`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        return json.data || [];
+    } catch (e) {
+        console.error('Fetch error:', e);
+        return [];
+    }
+}
+
+function quickScore(wt, temp) {
+    if (typeof wt !== 'number' || typeof temp !== 'number') return 0;
+    return Math.max(0, Math.min(100, (-wt * 3) + ((temp - 25) * 2)));
+}
+
+function scoreToStatus(s) {
+    if (s >= 65) return 'bahaya';
+    if (s >= 40) return 'siaga';
+    return 'aman';
+}
+
+function scoreToLabel(s) {
+    if (s >= 65) return '🔴 BAHAYA';
+    if (s >= 40) return '🟡 SIAGA';
+    return '🟢 AMAN';
+}
+
+// ── Update KPI ──
+function updateKpi(data) {
+    document.getElementById('kpiTotal').textContent = data.length;
+
+    if (data.length === 0) return;
+    const latest = data[0];  // server return desc
+
+    const wt = parseFloat(latest.wt);
+    const temp = parseFloat(latest.temp);
+
+    document.getElementById('kpiWt').textContent = wt.toFixed(1);
+    document.getElementById('kpiTemp').textContent = temp.toFixed(1);
+
+    const score = quickScore(wt, temp);
+    document.getElementById('kpiScore').textContent = Math.round(score);
+
+    // Status badge
+    const badge = document.getElementById('statusBadge');
+    const status = scoreToStatus(score);
+    badge.textContent = scoreToLabel(score);
+    badge.className = `status-badge status-${status}`;
+}
+
+// ── Regional Summary ──
+async function fetchRegionalSummary() {
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/satellite/regional-summary`, {
+            headers: {
+                // Public read untuk demo — kalau butuh auth, tambah token
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!res.ok) return [];
+        const json = await res.json();
+        return json.data || [];
+    } catch (e) {
+        console.error('Regional fetch error:', e);
+        return [];
+    }
+}
+
+function renderRegionalGrid(regions) {
+    const container = document.getElementById('regionalGrid');
+
+    if (!regions || !regions.length) {
+        container.innerHTML = '<div class="loading">Belum ada data regional.</div>';
+        return;
+    }
+
+    const regionFlags = {
+        'kalimantan': '🌴', 'sumatera': '🌳', 'papua': '🦜',
+        'indonesia': '🇮🇩',
+    };
+
+    container.innerHTML = regions.map(r => {
+        const flag = regionFlags[r.region] || '📍';
+        const statusClass = r.status.includes('BAHAYA') ? 'status-bahaya'
+                          : r.status.includes('SIAGA') ? 'status-siaga'
+                          : 'status-aman';
+
+        return `
+            <div onclick="openRegionModal('${r.region}')"
+                 style="
+                    background: rgba(15,23,42,0.5);
+                    border: 1px solid #334155;
+                    border-radius: 10px;
+                    padding: 14px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                 "
+                 onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#10b981'; this.style.background='rgba(16,185,129,0.05)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#334155'; this.style.background='rgba(15,23,42,0.5)'">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <div style="font-size:14px; font-weight:700;">
+                        ${flag} ${r.region.charAt(0).toUpperCase() + r.region.slice(1)}
+                    </div>
+                    <div class="status-badge ${statusClass}" style="font-size:10px; padding:4px 8px;">${r.status}</div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:11px;">
+                    <div>
+                        <div style="color:#64748b;">Hotspot</div>
+                        <div style="color:#f59e0b; font-weight:700; font-size:15px;">${r.fetched.toLocaleString()}</div>
+                    </div>
+                    <div>
+                        <div style="color:#64748b;">PFVI</div>
+                        <div style="color:#ef4444; font-weight:700; font-size:15px;">${r.pfvi_score}</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px; font-size:10px; color:#10b981; text-align:center; padding-top:8px; border-top:1px solid #1e293b;">
+                    🔍 Klik untuk lihat semua wilayah
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ── Modal Drill-Down ──
+async function openRegionModal(regionKey) {
+    const modal = document.getElementById('regionModal');
+    const body = document.getElementById('modalBody');
+    const title = document.getElementById('modalTitle');
+    const subtitle = document.getElementById('modalSubtitle');
+
+    modal.style.display = 'flex';
+    title.textContent = 'Memuat...';
+    subtitle.textContent = '';
+    body.innerHTML = '<div class="loading"><div class="spinner"></div> Memuat data wilayah...</div>';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/wilayah/stats/${regionKey}`);
+        const json = await res.json();
+
+        if (!json.success) {
+            body.innerHTML = `<div style="padding:40px;text-align:center;color:#ef4444;">
+                ⚠️ ${json.message || 'Gagal memuat'}
+            </div>`;
+            return;
+        }
+
+        const data = json.data;
+        title.innerHTML = `${data.icon} ${data.region_name}`;
+        subtitle.textContent = `Drill-down wilayah administrasi (Kemendagri 2025)`;
+
+        // ═══════════════════════════════════════════════
+        // SUMMARY CARDS
+        // ═══════════════════════════════════════════════
+        const s = data.summary;
+
+        let totalKab = 0;
+        let kabAktual = 0;
+        let kabInherit = 0;
+        data.provinces.forEach(p => {
+            p.regencies.forEach(k => {
+                totalKab++;
+                if (k.pfvi_source === 'aktual') kabAktual++;
+                else kabInherit++;
+            });
+        });
+        const coveragePct = totalKab > 0 ? ((kabAktual / totalKab) * 100).toFixed(1) : 0;
+
+        let html = `
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;">
+                <div style="background:rgba(30,41,59,0.5);padding:14px;border-radius:8px;border:1px solid #334155;">
+                    <div style="color:#64748b;font-size:11px;">Provinsi</div>
+                    <div style="color:#0d6efd;font-size:20px;font-weight:700;">${s.n_provinces}</div>
+                </div>
+                <div style="background:rgba(30,41,59,0.5);padding:14px;border-radius:8px;border:1px solid #334155;">
+                    <div style="color:#64748b;font-size:11px;">Kabupaten/Kota</div>
+                    <div style="color:#10b981;font-size:20px;font-weight:700;">${s.n_regencies}</div>
+                </div>
+                <div style="background:rgba(30,41,59,0.5);padding:14px;border-radius:8px;border:1px solid #334155;">
+                    <div style="color:#64748b;font-size:11px;">Kecamatan</div>
+                    <div style="color:#f59e0b;font-size:20px;font-weight:700;">${s.n_districts}</div>
+                </div>
+                <div style="background:rgba(30,41,59,0.5);padding:14px;border-radius:8px;border:1px solid #334155;">
+                    <div style="color:#64748b;font-size:11px;">Desa/Kelurahan</div>
+                    <div style="color:#ef4444;font-size:20px;font-weight:700;">${s.n_villages.toLocaleString()}</div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+                <div style="background:rgba(30,41,59,0.5);padding:14px;border-radius:8px;border:1px solid #334155;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                        <span style="color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:1px;">CAKUPAN PREDIKSI</span>
+                        <span style="color:#10b981;font-size:14px;font-weight:700;">${coveragePct}%</span>
+                    </div>
+                    <div style="background:#1e293b;height:8px;border-radius:4px;overflow:hidden;">
+                        <div style="width:${coveragePct}%;height:100%;background:linear-gradient(90deg,#10b981,#0d6efd);"></div>
+                    </div>
+                    <div style="color:#64748b;font-size:10px;margin-top:6px;">
+                        ${kabAktual} dari ${totalKab} kabupaten punya data aktual
+                    </div>
+                </div>
+
+                <div style="background:rgba(16,185,129,0.08);padding:14px;border-radius:8px;border:1px solid rgba(16,185,129,0.3);">
+                    <div style="color:#94a3b8;font-size:11px;">Data Aktual</div>
+                    <div style="color:#10b981;font-size:20px;font-weight:700;">${kabAktual}</div>
+                    <div style="color:#64748b;font-size:10px;">kabupaten</div>
+                </div>
+
+                <div style="background:rgba(100,116,139,0.08);padding:14px;border-radius:8px;border:1px solid rgba(100,116,139,0.3);">
+                    <div style="color:#94a3b8;font-size:11px;">Inherit Region</div>
+                    <div style="color:#94a3b8;font-size:20px;font-weight:700;">${kabInherit}</div>
+                    <div style="color:#64748b;font-size:10px;">kabupaten</div>
+                </div>
+            </div>
+
+            <div style="
+                background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(16,185,129,0.08));
+                border: 1px solid rgba(16,185,129,0.3);
+                border-radius: 10px;
+                padding: 16px;
+                margin-bottom: 16px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            ">
+                <div>
+                    <div style="color:#94a3b8;font-size:11px;letter-spacing:1px;margin-bottom:4px;">PFVI REGION INDUK</div>
+                    <div style="display:flex;align-items:baseline;gap:8px;">
+                        <span style="color:#ef4444;font-size:28px;font-weight:700;">${data.region_pfvi}</span>
+                        <span style="color:#64748b;font-size:12px;">/ 100</span>
+                    </div>
+                </div>
+                <div style="
+                    color: ${data.region_status.includes('BAHAYA') ? '#ef4444' : data.region_status.includes('SIAGA') ? '#f59e0b' : '#10b981'};
+                    font-weight:700;
+                    font-size:14px;
+                    padding: 8px 16px;
+                    border: 2px solid currentColor;
+                    border-radius: 8px;
+                    background: rgba(0,0,0,0.2);
+                ">${data.region_status}</div>
+            </div>
+
+            <div style="
+                font-size: 11px;
+                color: #94a3b8;
+                margin-bottom: 14px;
+                padding: 10px 14px;
+                background: rgba(15,23,42,0.5);
+                border-left: 3px solid #0d6efd;
+                border-radius: 4px;
+                line-height: 1.6;
+            ">
+                <b style="color:#10b981;">✓ Data Aktual</b> — PFVI dihitung dari data lapangan petugas. <br>
+                <b style="color:#94a3b8;">* Inherit</b> — PFVI estimasi dari level di atasnya (belum ada data).
+            </div>
+
+            <div style="font-size:12px;font-weight:700;color:#94a3b8;margin-bottom:10px;letter-spacing:1px;">DAFTAR PROVINSI</div>
+        `;
+
+        data.provinces.forEach((prov) => {
+            let provAktual = 0;
+            let provTotal = prov.regencies.length;
+            prov.regencies.forEach(k => {
+                if (k.pfvi_source === 'aktual') provAktual++;
+            });
+
+            html += `
+                <details style="background:rgba(30,41,59,0.3);border:1px solid #1e293b;border-radius:8px;margin-bottom:8px;">
+                    <summary style="padding:14px;cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                        <span style="display:flex;align-items:center;gap:8px;">
+                            📍 ${prov.name}
+                            ${provAktual > 0 ? `<span style="background:rgba(16,185,129,0.15);color:#10b981;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;">${provAktual}/${provTotal} AKTUAL</span>` : ''}
+                        </span>
+                        <span style="color:#64748b;font-size:11px;">${prov.n_regencies} kabupaten/kota</span>
+                    </summary>
+                    <div style="padding:0 14px 14px 14px;">
+                        <table style="width:100%;font-size:12px;">
+                            <thead>
+                                <tr style="color:#64748b;border-bottom:1px solid #334155;">
+                                    <th style="text-align:left;padding:8px;">Kabupaten/Kota</th>
+                                    <th style="text-align:center;padding:8px;width:55px;">Kec</th>
+                                    <th style="text-align:center;padding:8px;width:55px;">Desa</th>
+                                    <th style="text-align:center;padding:8px;width:50px;">Data</th>
+                                    <th style="text-align:center;padding:8px;width:65px;">PFVI</th>
+                                    <th style="text-align:center;padding:8px;width:95px;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${prov.regencies.map(k => {
+                                    const statusClass = k.pfvi_status.includes('BAHAYA') ? 'status-bahaya'
+                                                    : k.pfvi_status.includes('SIAGA') ? 'status-siaga'
+                                                    : k.pfvi_status.includes('AMAN') ? 'status-aman' : '';
+                                    const isInherit = k.pfvi_source === 'inherit';
+                                    const opacity = isInherit ? '0.55' : '1';
+                                    const inheritMark = isInherit ? ' <span title="Data dari region induk" style="color:#64748b;font-size:9px;">*</span>' : '';
+
+                                    return `
+                                        <tr class="kabupaten-row"
+                                            data-kode="${k.kode}"
+                                            style="cursor:pointer;border-bottom:1px solid rgba(51,65,85,0.3);"
+                                            onmouseover="this.style.background='rgba(16,185,129,0.05)'"
+                                            onmouseout="this.style.background='transparent'"
+                                            onclick="toggleRegency('${k.kode}', this)">
+                                            <td style="padding:8px;color:#f8fafc;">
+                                                <span class="kab-icon" style="display:inline-block;width:14px;color:#10b981;">▸</span>
+                                                ${k.name}
+                                            </td>
+                                            <td style="padding:8px;text-align:center;color:#94a3b8;">${k.n_districts}</td>
+                                            <td style="padding:8px;text-align:center;color:#94a3b8;">${k.n_villages}</td>
+                                            <td style="padding:8px;text-align:center;color:${k.n_data > 0 ? '#10b981' : '#475569'};font-weight:600;">${k.n_data || '—'}</td>
+                                            <td style="padding:8px;text-align:center;color:${isInherit ? '#64748b' : '#ef4444'};font-weight:700;opacity:${opacity};">${k.pfvi_score}${inheritMark}</td>
+                                            <td style="padding:8px;text-align:center;">
+                                                <span class="status-badge ${statusClass}" style="font-size:9px;padding:3px 6px;opacity:${opacity};">${k.pfvi_status}</span>
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            `;
+        });
+
+        body.innerHTML = html;
+
+    } catch (e) {
+        body.innerHTML = `<div style="padding:40px;text-align:center;color:#ef4444;">
+            ⚠️ Error: ${e.message}
+        </div>`;
+    }
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// TOGGLE KABUPATEN → Tampil Kecamatan
+// ═══════════════════════════════════════════════════════════
+async function toggleRegency(kabKode, row) {
+    const nextRow = row.nextElementSibling;
+
+    // Kalau sudah ada, toggle saja
+    if (nextRow && nextRow.classList.contains('kecamatan-container')) {
+        const isHidden = nextRow.style.display === 'none';
+        nextRow.style.display = isHidden ? 'table-row' : 'none';
+        row.querySelector('.kab-icon').textContent = isHidden ? '▾' : '▸';
+        return;
+    }
+
+    // Buat row loading
+    const newRow = document.createElement('tr');
+    newRow.classList.add('kecamatan-container');
+    newRow.innerHTML = `
+        <td colspan="6" style="padding:0;">
+            <div style="padding:12px 20px;background:rgba(16,185,129,0.05);border-left:3px solid #10b981;">
+                <div class="loading" style="padding:10px;font-size:12px;">
+                    <div class="spinner"></div> Memuat kecamatan...
+                </div>
+            </div>
+        </td>
+    `;
+    row.parentNode.insertBefore(newRow, row.nextSibling);
+    row.querySelector('.kab-icon').textContent = '▾';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/wilayah/regency/${kabKode}/districts-detail`);
+        const json = await res.json();
+
+        if (!json.success || !json.data.length) {
+            newRow.querySelector('div').innerHTML =
+                '<div style="color:#64748b;font-size:12px;padding:10px;">Tidak ada kecamatan.</div>';
+            return;
+        }
+
+        const districts = json.data;
+        newRow.querySelector('div').innerHTML = `
+            <div style="font-size:11px;color:#10b981;font-weight:700;margin-bottom:8px;letter-spacing:1px;">
+                KECAMATAN (${districts.length}) — klik untuk lihat desa
+            </div>
+            <table style="width:100%;font-size:11px;">
+                <thead>
+                    <tr style="color:#64748b;">
+                        <th style="text-align:left;padding:6px 8px;">Kecamatan</th>
+                        <th style="text-align:center;padding:6px 8px;width:80px;">Desa/Kel</th>
+                        <th style="text-align:center;padding:6px 8px;width:55px;">Data</th>
+                        <th style="text-align:center;padding:6px 8px;width:60px;">PFVI</th>
+                        <th style="text-align:center;padding:6px 8px;width:90px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${districts.map(d => {
+                        const statusClass = d.pfvi_status.includes('BAHAYA') ? 'status-bahaya'
+                                          : d.pfvi_status.includes('SIAGA') ? 'status-siaga'
+                                          : 'status-aman';
+                        const isInherit = d.pfvi_source === 'inherit';
+                        const opacity = isInherit ? '0.55' : '1';
+                        const inheritMark = isInherit ? '*' : '';
+
+                        return `
+                            <tr class="kecamatan-row"
+                                data-kode="${d.kode}"
+                                style="cursor:pointer;border-bottom:1px solid rgba(51,65,85,0.2);"
+                                onmouseover="this.style.background='rgba(59,130,246,0.05)'"
+                                onmouseout="this.style.background='transparent'"
+                                onclick="toggleDistrict('${d.kode}', this)">
+                                <td style="padding:6px 8px;color:#cbd5e1;">
+                                    <span class="kec-icon" style="display:inline-block;width:12px;color:#3b82f6;">▸</span>
+                                    ${d.name}
+                                </td>
+                                <td style="padding:6px 8px;text-align:center;color:#94a3b8;">${d.n_villages}</td>
+                                <td style="padding:6px 8px;text-align:center;color:${d.n_data > 0 ? '#10b981' : '#475569'};font-weight:600;">${d.n_data || '—'}</td>
+                                <td style="padding:6px 8px;text-align:center;color:${isInherit ? '#64748b' : '#ef4444'};font-weight:700;opacity:${opacity};">${d.pfvi_score}${inheritMark}</td>
+                                <td style="padding:6px 8px;text-align:center;">
+                                    <span class="status-badge ${statusClass}" style="font-size:9px;padding:2px 6px;opacity:${opacity};">${d.pfvi_status}</span>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+        `;
+    } catch (e) {
+        newRow.querySelector('div').innerHTML =
+            `<div style="color:#ef4444;font-size:12px;padding:10px;">Error: ${e.message}</div>`;
+    }
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// TOGGLE KECAMATAN → Tampil Desa/Kelurahan
+// ═══════════════════════════════════════════════════════════
+async function toggleDistrict(distKode, row) {
+    const nextRow = row.nextElementSibling;
+
+    if (nextRow && nextRow.classList.contains('desa-container')) {
+        const isHidden = nextRow.style.display === 'none';
+        nextRow.style.display = isHidden ? 'table-row' : 'none';
+        row.querySelector('.kec-icon').textContent = isHidden ? '▾' : '▸';
+        return;
+    }
+
+    const newRow = document.createElement('tr');
+    newRow.classList.add('desa-container');
+    newRow.innerHTML = `
+        <td colspan="5" style="padding:0;">
+            <div style="padding:10px 20px 10px 36px;background:rgba(59,130,246,0.05);border-left:3px solid #3b82f6;">
+                <div class="loading" style="padding:8px;font-size:11px;">
+                    <div class="spinner"></div> Memuat desa...
+                </div>
+            </div>
+        </td>
+    `;
+    row.parentNode.insertBefore(newRow, row.nextSibling);
+    row.querySelector('.kec-icon').textContent = '▾';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/wilayah/district/${distKode}/villages-detail`);
+        const json = await res.json();
+
+        if (!json.success || !json.data.length) {
+            newRow.querySelector('div').innerHTML =
+                '<div style="color:#64748b;font-size:11px;padding:8px;">Tidak ada desa.</div>';
+            return;
+        }
+
+        const villages = json.data;
+        const totalData = villages.reduce((s, v) => s + v.n_data, 0);
+        const aktualCount = villages.filter(v => v.pfvi_source === 'aktual').length;
+
+        const gridHtml = villages.map(v => {
+            const statusClass = v.pfvi_status.includes('BAHAYA') ? 'status-bahaya'
+                              : v.pfvi_status.includes('SIAGA') ? 'status-siaga'
+                              : 'status-aman';
+            const isInherit = v.pfvi_source === 'inherit';
+            const opacity = isInherit ? '0.6' : '1';
+            const bgColor = isInherit ? 'rgba(30,41,59,0.4)' : 'rgba(16,185,129,0.1)';
+            const borderColor = isInherit ? '#334155' : '#10b981';
+
+            return `
+                <div style="
+                    background: ${bgColor};
+                    border: 1px solid ${borderColor};
+                    border-radius: 6px;
+                    padding: 8px 10px;
+                    font-size: 11px;
+                    opacity: ${opacity};
+                ">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                        <span style="color:#cbd5e1;font-weight:600;font-size:11px;">${v.name}</span>
+                        ${v.n_data > 0 ? `<span style="color:#10b981;font-size:9px;font-weight:700;background:rgba(16,185,129,0.2);padding:1px 6px;border-radius:8px;">${v.n_data} data</span>` : ''}
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
+                        <span style="color:${isInherit ? '#64748b' : '#ef4444'};font-weight:700;font-size:13px;">
+                            ${v.pfvi_score}${isInherit ? '*' : ''}
+                        </span>
+                        <span class="status-badge ${statusClass}" style="font-size:8px;padding:2px 5px;">${v.pfvi_status}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        newRow.querySelector('div').innerHTML = `
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <div style="font-size:11px;color:#3b82f6;font-weight:700;letter-spacing:1px;">
+                    DESA/KELURAHAN (${villages.length})
+                </div>
+                <div style="font-size:10px;color:#64748b;">
+                    ${aktualCount > 0 ? `<span style="color:#10b981;">${aktualCount} aktual</span>` : ''}
+                    ${aktualCount > 0 && totalData > 0 ? ' • ' : ''}
+                    ${totalData > 0 ? `${totalData} total data` : 'Belum ada data'}
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;">
+                ${gridHtml}
+            </div>
+        `;
+    } catch (e) {
+        newRow.querySelector('div').innerHTML =
+            `<div style="color:#ef4444;font-size:11px;padding:8px;">Error: ${e.message}</div>`;
+    }
+}
+
+function closeRegionModal() {
+    document.getElementById('regionModal').style.display = 'none';
+}
+
+// ESC untuk close
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeRegionModal();
+});
+
+// ── Line chart ──
+function renderTrendChart(data) {
+    const sorted = [...data].sort((a, b) => a.tanggal.localeCompare(b.tanggal));
+    const last7 = sorted.slice(-7);
+
+    const labels = last7.map(d => d.tanggal.slice(5));
+    const values = last7.map(d => parseFloat(d.wt));
+
+    const ctx = document.getElementById('trendChart').getContext('2d');
+
+    if (trendChart) trendChart.destroy();
+
+    trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: 'WT (cm)',
+                data: values,
+                borderColor: '#10b981',
+                backgroundColor: 'rgba(16,185,129,0.15)',
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointBackgroundColor: '#10b981',
+                pointBorderColor: '#0b0f19',
+                pointBorderWidth: 2,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                    titleColor: '#f8fafc',
+                    bodyColor: '#cbd5e1',
+                }
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(51,65,85,0.5)' },
+                    ticks: { color: '#94a3b8', font: { size: 10 } }
+                },
+                y: {
+                    grid: { color: 'rgba(51,65,85,0.5)' },
+                    ticks: { color: '#94a3b8', font: { size: 10 } }
+                }
+            }
+        }
+    });
+}
+
+// ── Pie chart ──
+function renderPieChart(data) {
+    let aman = 0, siaga = 0, bahaya = 0;
+
+    data.forEach(d => {
+        const score = quickScore(parseFloat(d.wt), parseFloat(d.temp));
+        if (score >= 65) bahaya++;
+        else if (score >= 40) siaga++;
+        else aman++;
+    });
+
+    const labels = [], sizes = [], colors = [];
+    if (aman > 0) { labels.push(`Aman (${aman})`); sizes.push(aman); colors.push('#10b981'); }
+    if (siaga > 0) { labels.push(`Siaga (${siaga})`); sizes.push(siaga); colors.push('#f59e0b'); }
+    if (bahaya > 0) { labels.push(`Bahaya (${bahaya})`); sizes.push(bahaya); colors.push('#ef4444'); }
+
+    if (sizes.length === 0) {
+        labels.push('Belum ada data');
+        sizes.push(1);
+        colors.push('#334155');
+    }
+
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    if (pieChart) pieChart.destroy();
+
+    pieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels,
+            datasets: [{
+                data: sizes,
+                backgroundColor: colors,
+                borderColor: '#0b0f19',
+                borderWidth: 3,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '55%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#cbd5e1', font: { size: 12 }, padding: 12 }
+                },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                }
+            }
+        }
+    });
+}
+
+// ── Table ──
+function renderTable(data) {
+    if (data.length === 0) {
+        document.getElementById('tableContainer').innerHTML =
+            '<div class="loading">Belum ada data</div>';
+        return;
+    }
+
+    const rows = data.slice(0, 10).map(d => `
+        <tr>
+            <td>${d.tanggal || '—'}</td>
+            <td>${parseFloat(d.wt || 0).toFixed(2)}</td>
+            <td>${parseFloat(d.sm || 0).toFixed(2)}</td>
+            <td>${parseFloat(d.rf || 0).toFixed(2)}</td>
+            <td>${parseFloat(d.temp || 0).toFixed(2)}</td>
+        </tr>
+    `).join('');
+
+    document.getElementById('tableContainer').innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>WT (cm)</th>
+                    <th>SM (%)</th>
+                    <th>RF (mm)</th>
+                    <th>Suhu (°C)</th>
+                </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+        </table>
+    `;
+}
+
+// ── Fetch manual feed (exclude satelit: temp < 45 & region != indonesia) ──
+async function fetchManualFeed() {
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/data/public?limit=200`);
+        if (!res.ok) return [];
+        const json = await res.json();
+        // Filter: hanya data manual (bukan satelit)
+        // Satelit: temp > 45°C atau region=indonesia dengan nilai unik satelit
+        return (json.data || []).filter(d => {
+            const temp = parseFloat(d.temp);
+            return temp < 45;  // satelit pakai brightness temp (>45)
+        });
+    } catch (e) {
+        return [];
+    }
+}
+
+function renderManualFeed(data) {
+    const container = document.getElementById('manualFeed');
+
+    // Group by region, ambil data terbaru per region
+    const byRegion = {};
+    data.forEach(d => {
+        const reg = d.region || 'indonesia';
+        if (!byRegion[reg] || d.tanggal > byRegion[reg].tanggal) {
+            byRegion[reg] = d;
+        }
+    });
+
+    const regions = Object.values(byRegion).sort((a, b) =>
+        (b.pfvi_score || 0) - (a.pfvi_score || 0)
+    );
+
+    if (!regions.length) {
+        container.innerHTML = '<div class="loading">Belum ada input petugas.</div>';
+        return;
+    }
+
+    const regionFlags = {
+        'kalimantan': '🌴', 'sumatera': '🌳', 'papua': '🦜',
+        'jawa': '🏙️', 'sulawesi': '🦎', 'bali-nusra': '🏝️',
+        'maluku': '🌺', 'indonesia': '🇮🇩',
+    };
+
+    container.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Tanggal</th>
+                    <th>WT (cm)</th>
+                    <th>SM (%)</th>
+                    <th>RF (mm)</th>
+                    <th>Suhu (°C)</th>
+                    <th>PFVI</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${regions.map(d => {
+                    const score = d.pfvi_score !== undefined ? d.pfvi_score : 0;
+                    const statusLabel = d.pfvi_status || '🟢 AMAN';
+                    const statusClass = statusLabel.includes('BAHAYA') ? 'status-bahaya'
+                                      : statusLabel.includes('SIAGA') ? 'status-siaga'
+                                      : 'status-aman';
+                    const flag = regionFlags[d.region] || '📍';
+
+                    return `
+                        <tr>
+                            <td><span style="color:#10b981; font-weight:600;">${flag} ${d.region || 'indonesia'}</span></td>
+                            <td>${d.tanggal || '—'}</td>
+                            <td>${parseFloat(d.wt || 0).toFixed(1)}</td>
+                            <td>${parseFloat(d.sm || 0).toFixed(1)}</td>
+                            <td>${parseFloat(d.rf || 0).toFixed(1)}</td>
+                            <td>${parseFloat(d.temp || 0).toFixed(1)}</td>
+                            <td style="font-weight:700; color:#f59e0b;">${score.toFixed(1)}</td>
+                            <td><span class="status-badge ${statusClass}" style="font-size:10px; padding:3px 8px;">${statusLabel}</span></td>
+                        </tr>
+                    `;
+                }).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+// ── Main ──
+async function init() {
+    const [data, regions, manual] = await Promise.all([
+        fetchData(),
+        fetchRegionalSummary(),
+        fetchManualFeed(),
+    ]);
+    updateKpi(data);
+    renderTrendChart(data);
+    renderPieChart(data);
+    renderTable(data);
+    renderRegionalGrid(regions);
+    renderManualFeed(manual);   // ← TAMBAH
+}
+
+init();
+// Auto-refresh tiap 60 detik
+setInterval(init, 60000);
+// ── Broadcast alert ke semua region ──
+document.getElementById('btnBroadcast')?.addEventListener('click', async () => {
+    if (!confirm('📢 Kirim alert ke Telegram untuk semua region dengan status BAHAYA/SIAGA?')) {
+        return;
+    }
+
+    const btn = document.getElementById('btnBroadcast');
+    btn.disabled = true;
+    btn.textContent = '⏳ Mengirim...';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/alert/broadcast-public`, {
+            method: 'POST',
+        });
+        const json = await res.json();
+
+        if (json.success) {
+            alert(`✅ ${json.message}`);
+        } else {
+            alert(`⚠️ ${json.message}`);
+        }
+    } catch (e) {
+        alert(`❌ Error: ${e.message}`);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '📢 Broadcast Alert';
+    }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// PETA CHOROPLETH (Leaflet.js)
+// ═══════════════════════════════════════════════════════════════
+let mapInstance = null;
+let markersLayer = null;
+
+async function initMap() {
+    const container = document.getElementById('mapContainer');
+    if (!container) return;
+
+    // Kalau Leaflet belum load
+    if (typeof L === 'undefined') {
+        container.innerHTML = '<div style="padding:40px;text-align:center;color:#64748b;">⚠️ Leaflet gagal dimuat</div>';
+        return;
+    }
+
+    // Cleanup old map
+    if (mapInstance) {
+        mapInstance.remove();
+        mapInstance = null;
+    }
+
+    container.innerHTML = '';
+
+    // Init map — center di Indonesia
+    mapInstance = L.map('mapContainer', {
+        center: [-2.5, 118],
+        zoom: 5,
+        zoomControl: true,
+        attributionControl: false,
+    });
+
+    // ─── Tile Layer: ESRI Dark Gray (gratis, no API key) ───
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
+        maxZoom: 16,
+    }).addTo(mapInstance);
+
+    // Load data
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/map/data`);
+        const json = await res.json();
+
+        if (!json.success) {
+            container.innerHTML = `<div style="padding:40px;text-align:center;color:#ef4444;">
+                ⚠️ ${json.message}
+            </div>`;
+            return;
+        }
+
+        const data = json.data;
+        console.log(`[MAP] Loaded ${data.length} kabupaten`);
+
+        // Coordinate lookup untuk centroid kabupaten (dari nama)
+        // Untuk simplifikasi, kita pakai lookup table sederhana
+        const COORDS = getKnownCoords();
+
+        markersLayer = L.layerGroup().addTo(mapInstance);
+        let plotted = 0;
+
+        data.forEach(item => {
+            // Cari coord dari lookup
+            const coord = findCoord(item.name, COORDS);
+            if (!coord) return;
+
+            plotted++;
+
+            const status = item.status.toUpperCase();
+            const color = status.includes('BAHAYA') ? '#ef4444'
+                        : status.includes('SIAGA') ? '#f59e0b'
+                        : '#10b981';
+
+            const radius = item.has_data ? 12 : 6;
+            const opacity = item.has_data ? 0.9 : 0.5;
+
+            const marker = L.circleMarker([coord.lat, coord.lng], {
+                radius: radius,
+                fillColor: color,
+                color: '#ffffff',
+                weight: 1.5,
+                opacity: 1,
+                fillOpacity: opacity,
+            });
+
+            marker.bindPopup(`
+                <div style="font-family: 'Segoe UI', sans-serif; min-width: 220px;">
+                    <div style="font-weight: 700; font-size: 14px; color: #0f172a; margin-bottom: 8px;">
+                        ${item.name}
+                    </div>
+                    <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">
+                        ${item.region.charAt(0).toUpperCase() + item.region.slice(1)} • ${item.province}
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;
+                                padding: 8px; background: rgba(0,0,0,0.05); border-radius: 6px;">
+                        <span style="color: #64748b; font-size: 11px;">PFVI Score</span>
+                        <span style="color: ${color}; font-weight: 700; font-size: 16px;">
+                            ${item.pfvi_score}
+                        </span>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 11px; color: ${color}; font-weight: 600;">
+                        ${item.status}
+                    </div>
+                    <div style="margin-top: 4px; font-size: 10px; color: #94a3b8;">
+                        ${item.has_data ? `${item.n_data} data lapangan` : 'Estimasi dari region'}
+                    </div>
+                </div>
+            `);
+
+            marker.addTo(markersLayer);
+        });
+
+        console.log(`[MAP] Plotted ${plotted} markers`);
+
+        if (plotted === 0) {
+            container.innerHTML = `
+                <div style="padding:40px;text-align:center;color:#64748b;">
+                    <div style="font-size:48px;margin-bottom:16px;">🗺️</div>
+                    <div>Peta siap, tapi koordinat kabupaten belum tersedia</div>
+                    <div style="font-size:11px;margin-top:8px;">Menampilkan dalam mode list — lihat modal per-region</div>
+                </div>
+            `;
+        }
+
+    } catch (e) {
+        container.innerHTML = `<div style="padding:40px;text-align:center;color:#ef4444;">
+            ⚠️ Error: ${e.message}
+        </div>`;
+    }
+}
+
+// Lookup koordinat sederhana untuk kabupaten utama
+function getKnownCoords() {
+    return {
+        // Kalimantan
+        'kota palangka raya': { lat: -2.21, lng: 113.92 },
+        'kotawaringin barat': { lat: -2.68, lng: 111.63 },
+        'kotawaringin timur': { lat: -2.53, lng: 112.95 },
+        'kapuas': { lat: -2.05, lng: 114.38 },
+        'barito selatan': { lat: -1.85, lng: 114.75 },
+        'barito utara': { lat: -1.05, lng: 114.90 },
+        'katingan': { lat: -1.95, lng: 113.40 },
+        'seruyan': { lat: -2.35, lng: 112.15 },
+        'sukamara': { lat: -2.85, lng: 111.05 },
+        'lamandau': { lat: -1.85, lng: 111.30 },
+        'gunung mas': { lat: -1.15, lng: 113.55 },
+        'pulang pisau': { lat: -2.75, lng: 114.10 },
+        'murung raya': { lat: -0.55, lng: 114.50 },
+        'barito timur': { lat: -1.75, lng: 115.10 },
+        'pontianak': { lat: -0.02, lng: 109.34 },
+        'kubu raya': { lat: -0.15, lng: 109.40 },
+        'sintang': { lat: 0.08, lng: 111.50 },
+        'sanggau': { lat: 0.10, lng: 110.60 },
+        'bengkayang': { lat: 1.05, lng: 109.65 },
+        'landak': { lat: 0.40, lng: 109.90 },
+        'melawi': { lat: -0.35, lng: 111.70 },
+        'kapuas hulu': { lat: 0.85, lng: 112.95 },
+        'sambas': { lat: 1.35, lng: 109.30 },
+        'singkawang': { lat: 0.90, lng: 108.98 },
+        'ketapang': { lat: -1.85, lng: 109.95 },
+        'kayong utara': { lat: -1.10, lng: 110.00 },
+        'sekadau': { lat: 0.02, lng: 110.90 },
+        'mempawah': { lat: 0.35, lng: 108.97 },
+        'banjarmasin': { lat: -3.32, lng: 114.60 },
+        'banjarbaru': { lat: -3.45, lng: 114.83 },
+        'banjar': { lat: -3.35, lng: 114.98 },
+        'barito kuala': { lat: -3.05, lng: 114.65 },
+        'tapin': { lat: -2.95, lng: 115.05 },
+        'hulu sungai selatan': { lat: -2.80, lng: 115.25 },
+        'hulu sungai tengah': { lat: -2.60, lng: 115.40 },
+        'hulu sungai utara': { lat: -2.42, lng: 115.25 },
+        'tabalong': { lat: -1.85, lng: 115.55 },
+        'tanah laut': { lat: -3.75, lng: 114.75 },
+        'tanah bumbu': { lat: -3.45, lng: 115.80 },
+        'kotabaru': { lat: -3.25, lng: 116.20 },
+        'balangan': { lat: -2.35, lng: 115.55 },
+        'samarinda': { lat: -0.50, lng: 117.15 },
+        'balikpapan': { lat: -1.24, lng: 116.85 },
+        'bontang': { lat: 0.13, lng: 117.50 },
+        'kutai kartanegara': { lat: -0.35, lng: 116.98 },
+        'kutai barat': { lat: 0.05, lng: 115.80 },
+        'kutai timur': { lat: 0.55, lng: 117.50 },
+        'berau': { lat: 2.15, lng: 117.50 },
+        'penajam paser utara': { lat: -1.30, lng: 116.60 },
+        'paser': { lat: -1.75, lng: 116.15 },
+        'mahakam ulu': { lat: 0.65, lng: 114.90 },
+        'tarakan': { lat: 3.32, lng: 117.58 },
+        'bulungan': { lat: 2.85, lng: 117.35 },
+        'malinau': { lat: 3.55, lng: 116.65 },
+        'nunukan': { lat: 4.15, lng: 117.50 },
+        'tana tidung': { lat: 3.55, lng: 117.00 },
+        // Sumatera
+        'pekanbaru': { lat: 0.51, lng: 101.45 },
+        'dumai': { lat: 1.67, lng: 101.45 },
+        'kampar': { lat: 0.30, lng: 101.00 },
+        'rokan hulu': { lat: 0.85, lng: 100.55 },
+        'rokan hilir': { lat: 1.55, lng: 100.85 },
+        'bengkalis': { lat: 1.50, lng: 102.10 },
+        'siak': { lat: 0.85, lng: 102.05 },
+        'pelalawan': { lat: 0.30, lng: 102.10 },
+        'indragiri hulu': { lat: -0.55, lng: 102.25 },
+        'indragiri hilir': { lat: -0.30, lng: 103.10 },
+        'kuantan singingi': { lat: -0.55, lng: 101.55 },
+        'kepulauan meranti': { lat: 0.95, lng: 102.65 },
+        'medan': { lat: 3.59, lng: 98.67 },
+        'palembang': { lat: -2.98, lng: 104.75 },
+        'jambi': { lat: -1.61, lng: 103.61 },
+        'bandar lampung': { lat: -5.42, lng: 105.26 },
+        'padang': { lat: -0.95, lng: 100.35 },
+        'batam': { lat: 1.05, lng: 104.03 },
+        'tanjungpinang': { lat: 0.92, lng: 104.45 },
+        'bintan': { lat: 1.05, lng: 104.50 },
+        // Papua
+        'jayapura': { lat: -2.53, lng: 140.71 },
+        'kota jayapura': { lat: -2.53, lng: 140.71 },
+        'merauke': { lat: -8.50, lng: 140.40 },
+        'mimika': { lat: -4.55, lng: 136.60 },
+        'nabire': { lat: -3.35, lng: 135.50 },
+        'biak numfor': { lat: -1.05, lng: 135.98 },
+        'kepulauan yapen': { lat: -1.75, lng: 136.20 },
+        'sarmi': { lat: -2.05, lng: 138.75 },
+        'keerom': { lat: -3.25, lng: 140.80 },
+        'waropen': { lat: -2.35, lng: 136.65 },
+        'supiori': { lat: -0.75, lng: 135.65 },
+        'mamberamo raya': { lat: -2.15, lng: 137.85 },
+        'manokwari': { lat: -0.85, lng: 134.05 },
+        'sorong': { lat: -0.88, lng: 131.25 },
+        'kota sorong': { lat: -0.88, lng: 131.25 },
+        'fakfak': { lat: -2.92, lng: 132.30 },
+        'kaimana': { lat: -3.65, lng: 133.75 },
+        'teluk bintuni': { lat: -2.10, lng: 133.50 },
+        'teluk wondama': { lat: -2.65, lng: 134.55 },
+        'manokwari selatan': { lat: -1.45, lng: 134.00 },
+        'pegunungan arfak': { lat: -1.15, lng: 133.85 },
+        'raja ampat': { lat: -0.55, lng: 130.15 },
+        'maybrat': { lat: -1.35, lng: 132.30 },
+        'tambrauw': { lat: -0.65, lng: 132.75 },
+        'sorong selatan': { lat: -1.55, lng: 132.30 },
+        'jayawijaya': { lat: -4.05, lng: 138.85 },
+        'tolikara': { lat: -3.55, lng: 137.95 },
+        'yahukimo': { lat: -4.35, lng: 139.45 },
+        'pegunungan bintang': { lat: -4.55, lng: 140.55 },
+        'boven digoel': { lat: -5.75, lng: 140.30 },
+        'mappi': { lat: -6.35, lng: 139.35 },
+        'asmat': { lat: -5.45, lng: 138.35 },
+        'deiyai': { lat: -4.05, lng: 136.40 },
+        'dogiyai': { lat: -3.95, lng: 135.75 },
+        'intan jaya': { lat: -3.55, lng: 136.65 },
+        'paniai': { lat: -3.95, lng: 136.35 },
+        'puncak': { lat: -4.05, lng: 137.20 },
+        'puncak jaya': { lat: -3.75, lng: 137.85 },
+        'nduga': { lat: -4.55, lng: 138.05 },
+        'lanny jaya': { lat: -3.95, lng: 138.15 },
+        'yalimo': { lat: -3.75, lng: 139.45 },
+        'mamberamo tengah': { lat: -3.45, lng: 138.85 },
+        'kota ternate': { lat: 0.80, lng: 127.35 },
+    };
+}
+
+function findCoord(name, coords) {
+    const key = name.toLowerCase()
+        .replace('kabupaten ', '')
+        .replace('kota ', 'kota ')
+        .trim();
+    if (coords[key]) return coords[key];
+    // Fuzzy: cari yang mengandung
+    for (const [k, v] of Object.entries(coords)) {
+        if (key.includes(k) || k.includes(key)) return v;
+    }
+    return null;
+}
+
+// Init map saat init()
+const originalInit = init;
+init = async function() {
+    await originalInit();
+    // Load map setelah init selesai
+    setTimeout(initMap, 1000);
+};
+
+// Refresh button
+document.getElementById('btnMapRefresh')?.addEventListener('click', () => {
+    initMap();
+});
+
+</script>
+
+<!-- Modal Drill-Down Region -->
+<div id="regionModal" style="
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+">
+    <div id="regionModalContent" style="
+        background: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 1000px;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 0;
+        position: relative;
+    ">
+        <!-- Header -->
+        <div style="
+            padding: 20px 24px;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: #0f172a;
+            z-index: 10;
+        ">
+            <div>
+                <div id="modalTitle" style="font-size: 22px; font-weight: 700;">—</div>
+                <div id="modalSubtitle" style="font-size: 12px; color: #94a3b8; margin-top: 4px;">—</div>
+            </div>
+            <button onclick="closeRegionModal()" style="
+                background: rgba(239,68,68,0.15);
+                border: 1px solid #ef4444;
+                color: #ef4444;
+                border-radius: 8px;
+                width: 36px; height: 36px;
+                font-size: 18px;
+                cursor: pointer;
+            ">✕</button>
+        </div>
+
+        <!-- Body -->
+        <div id="modalBody" style="padding: 24px;">
+            <div class="loading"><div class="spinner"></div> Memuat...</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

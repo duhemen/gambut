@@ -1,0 +1,406 @@
+{
+  "regions": {
+    "sumatera": {
+      "name": "Sumatera",
+      "icon": "🌳",
+      "priority": true,
+      "provinces": {
+        "aceh": {
+          "name": "Aceh",
+          "regencies": [
+            "Aceh Barat",
+            "Aceh Barat Daya",
+            "Aceh Besar",
+            "Aceh Jaya",
+            "Aceh Selatan",
+            "Aceh Singkil",
+            "Aceh Tamiang",
+            "Aceh Tengah",
+            "Aceh Tenggara",
+            "Aceh Timur",
+            "Aceh Utara",
+            "Bener Meriah",
+            "Bireuen",
+            "Gayo Lues",
+            "Nagan Raya",
+            "Pidie",
+            "Pidie Jaya",
+            "Simeulue",
+            "Banda Aceh",
+            "Langsa",
+            "Lhokseumawe",
+            "Sabang",
+            "Subulussalam"
+          ],
+          "n_regencies": 23
+        },
+        "sumatera_utara": {
+          "name": "Sumatera Utara",
+          "regencies": [
+            "Asahan",
+            "Batu Bara",
+            "Dairi",
+            "Deli Serdang",
+            "Humbang Hasundutan",
+            "Karo",
+            "Labuhanbatu",
+            "Labuhanbatu Selatan",
+            "Labuhanbatu Utara",
+            "Langkat",
+            "Mandailing Natal",
+            "Nias",
+            "Nias Barat",
+            "Nias Selatan",
+            "Nias Utara",
+            "Padang Lawas",
+            "Padang Lawas Utara",
+            "Pakpak Bharat",
+            "Samosir",
+            "Serdang Bedagai",
+            "Simalungun",
+            "Tapanuli Selatan",
+            "Tapanuli Tengah",
+            "Tapanuli Utara",
+            "Toba",
+            "Binjai",
+            "Gunungsitoli",
+            "Medan",
+            "Padangsidimpuan",
+            "Pematangsiantar",
+            "Sibolga",
+            "Tanjungbalai",
+            "Tebing Tinggi"
+          ],
+          "n_regencies": 33
+        },
+        "sumatera_barat": {
+          "name": "Sumatera Barat",
+          "regencies": [
+            "Agam",
+            "Dharmasraya",
+            "Kepulauan Mentawai",
+            "Lima Puluh Kota",
+            "Padang Pariaman",
+            "Pasaman",
+            "Pasaman Barat",
+            "Pesisir Selatan",
+            "Sijunjung",
+            "Solok",
+            "Solok Selatan",
+            "Tanah Datar",
+            "Bukittinggi",
+            "Padang",
+            "Padang Panjang",
+            "Pariaman",
+            "Payakumbuh",
+            "Sawahlunto",
+            "Solok (Kota)"
+          ],
+          "n_regencies": 19
+        },
+        "riau": {
+          "name": "Riau",
+          "regencies": [
+            "Bengkalis",
+            "Indragiri Hilir",
+            "Indragiri Hulu",
+            "Kampar",
+            "Kepulauan Meranti",
+            "Kuantan Singingi",
+            "Pelalawan",
+            "Rokan Hilir",
+            "Rokan Hulu",
+            "Siak",
+            "Dumai",
+            "Pekanbaru"
+          ],
+          "n_regencies": 12
+        },
+        "kepulauan_riau": {
+          "name": "Kepulauan Riau",
+          "regencies": [
+            "Bintan",
+            "Karimun",
+            "Kepulauan Anambas",
+            "Lingga",
+            "Natuna",
+            "Batam",
+            "Tanjungpinang"
+          ],
+          "n_regencies": 7
+        },
+        "jambi": {
+          "name": "Jambi",
+          "regencies": [
+            "Batanghari",
+            "Bungo",
+            "Kerinci",
+            "Merangin",
+            "Muaro Jambi",
+            "Sarolangun",
+            "Tanjung Jabung Barat",
+            "Tanjung Jabung Timur",
+            "Tebo",
+            "Jambi (Kota)",
+            "Sungai Penuh"
+          ],
+          "n_regencies": 11
+        },
+        "sumatera_selatan": {
+          "name": "Sumatera Selatan",
+          "regencies": [
+            "Banyuasin",
+            "Empat Lawang",
+            "Lahat",
+            "Muara Enim",
+            "Musi Banyuasin",
+            "Musi Rawas",
+            "Musi Rawas Utara",
+            "Ogan Ilir",
+            "Ogan Komering Ilir",
+            "Ogan Komering Ulu",
+            "Ogan Komering Ulu Selatan",
+            "Ogan Komering Ulu Timur",
+            "Penukal Abab Lematang Ilir",
+            "Lubuklinggau",
+            "Pagar Alam",
+            "Palembang",
+            "Prabumulih"
+          ],
+          "n_regencies": 17
+        },
+        "bangka_belitung": {
+          "name": "Bangka Belitung",
+          "regencies": [
+            "Bangka",
+            "Bangka Barat",
+            "Bangka Selatan",
+            "Bangka Tengah",
+            "Belitung",
+            "Belitung Timur",
+            "Pangkalpinang"
+          ],
+          "n_regencies": 7
+        },
+        "bengkulu": {
+          "name": "Bengkulu",
+          "regencies": [
+            "Bengkulu Selatan",
+            "Bengkulu Tengah",
+            "Bengkulu Utara",
+            "Kaur",
+            "Kepahiang",
+            "Lebong",
+            "Mukomuko",
+            "Rejang Lebong",
+            "Seluma",
+            "Bengkulu (Kota)"
+          ],
+          "n_regencies": 10
+        },
+        "lampung": {
+          "name": "Lampung",
+          "regencies": [
+            "Lampung Barat",
+            "Lampung Selatan",
+            "Lampung Tengah",
+            "Lampung Timur",
+            "Lampung Utara",
+            "Mesuji",
+            "Pesawaran",
+            "Pesisir Barat",
+            "Pringsewu",
+            "Tanggamus",
+            "Tulang Bawang",
+            "Tulang Bawang Barat",
+            "Way Kanan",
+            "Bandar Lampung",
+            "Metro"
+          ],
+          "n_regencies": 15
+        }
+      }
+    },
+    "kalimantan": {
+      "name": "Kalimantan",
+      "icon": "🌴",
+      "priority": true,
+      "provinces": {
+        "kalimantan_barat": {
+          "name": "Kalimantan Barat",
+          "regencies": [
+            "Bengkayang",
+            "Kapuas Hulu",
+            "Kayong Utara",
+            "Ketapang",
+            "Kubu Raya",
+            "Landak",
+            "Melawi",
+            "Mempawah",
+            "Sambas",
+            "Sanggau",
+            "Sekadau",
+            "Sintang",
+            "Pontianak (Kota)",
+            "Singkawang"
+          ],
+          "n_regencies": 14
+        },
+        "kalimantan_tengah": {
+          "name": "Kalimantan Tengah",
+          "regencies": [
+            "Barito Selatan",
+            "Barito Timur",
+            "Barito Utara",
+            "Gunung Mas",
+            "Kapuas",
+            "Katingan",
+            "Kotawaringin Barat",
+            "Kotawaringin Timur",
+            "Murung Raya",
+            "Pulang Pisau",
+            "Sukamara",
+            "Seruyan",
+            "Lamandau",
+            "Palangka Raya"
+          ],
+          "n_regencies": 14
+        },
+        "kalimantan_selatan": {
+          "name": "Kalimantan Selatan",
+          "regencies": [
+            "Balangan",
+            "Banjar",
+            "Barito Kuala",
+            "Hulu Sungai Selatan",
+            "Hulu Sungai Tengah",
+            "Hulu Sungai Utara",
+            "Kotabaru",
+            "Tabalong",
+            "Tanah Bumbu",
+            "Tanah Laut",
+            "Tapin",
+            "Banjarbaru",
+            "Banjarmasin"
+          ],
+          "n_regencies": 13
+        },
+        "kalimantan_timur": {
+          "name": "Kalimantan Timur",
+          "regencies": [
+            "Berau",
+            "Kutai Barat",
+            "Kutai Kartanegara",
+            "Kutai Timur",
+            "Mahakam Ulu",
+            "Paser",
+            "Penajam Paser Utara",
+            "Balikpapan",
+            "Bontang",
+            "Samarinda"
+          ],
+          "n_regencies": 10
+        },
+        "kalimantan_utara": {
+          "name": "Kalimantan Utara",
+          "regencies": [
+            "Bulungan",
+            "Malinau",
+            "Nunukan",
+            "Tana Tidung",
+            "Tarakan"
+          ],
+          "n_regencies": 5
+        }
+      }
+    },
+    "papua": {
+      "name": "Papua",
+      "icon": "🦜",
+      "priority": false,
+      "provinces": {
+        "papua": {
+          "name": "Papua",
+          "regencies": [
+            "Biak Numfor",
+            "Jayapura",
+            "Keerom",
+            "Kepulauan Yapen",
+            "Mamberamo Raya",
+            "Sarmi",
+            "Supiori",
+            "Waropen",
+            "Jayapura (Kota)"
+          ],
+          "n_regencies": 9
+        },
+        "papua_barat": {
+          "name": "Papua Barat",
+          "regencies": [
+            "Fakfak",
+            "Kaimana",
+            "Manokwari",
+            "Manokwari Selatan",
+            "Pegunungan Arfak",
+            "Teluk Bintuni",
+            "Teluk Wondama"
+          ],
+          "n_regencies": 7
+        },
+        "papua_barat_daya": {
+          "name": "Papua Barat Daya",
+          "regencies": [
+            "Maybrat",
+            "Raja Ampat",
+            "Sorong",
+            "Sorong Selatan",
+            "Tambrauw",
+            "Sorong (Kota)"
+          ],
+          "n_regencies": 6
+        },
+        "papua_tengah": {
+          "name": "Papua Tengah",
+          "regencies": [
+            "Deiyai",
+            "Dogiyai",
+            "Intan Jaya",
+            "Mimika",
+            "Nabire",
+            "Paniai",
+            "Puncak",
+            "Puncak Jaya"
+          ],
+          "n_regencies": 8
+        },
+        "papua_pegunungan": {
+          "name": "Papua Pegunungan",
+          "regencies": [
+            "Jayawijaya",
+            "Lanny Jaya",
+            "Mamberamo Tengah",
+            "Nduga",
+            "Pegunungan Bintang",
+            "Tolikara",
+            "Yahukimo",
+            "Yalimo"
+          ],
+          "n_regencies": 8
+        },
+        "papua_selatan": {
+          "name": "Papua Selatan",
+          "regencies": [
+            "Asmat",
+            "Boven Digoel",
+            "Mappi",
+            "Merauke"
+          ],
+          "n_regencies": 4
+        }
+      }
+    }
+  },
+  "last_updated": "2026-09-21",
+  "source": "wilayah_indonesia.json (filtered)",
+  "note": "Hanya region dengan lahan gambut tropis"
+}

@@ -1,0 +1,106 @@
+# ============================================================
+# GAMBUTFR — Git Ignore
+# ============================================================
+
+# === Environment & Secrets ===
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# === Virtual Environments ===
+.venv/
+venv/
+ENV/
+env/
+.conda/
+.condarc
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# === Testing ===
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# === Runtime Data (JANGAN COMMIT!) ===
+server/data/database_gambut.csv
+server/data/database_gambut.csv.bak
+server/data/database_gambut.csv.pre_v2
+server/data/users.csv
+server/data/config.json
+server/data/alert_config.json
+server/data/pfvi_params.json
+server/data/regional_latest.json
+server/data/districts_cache.json
+server/data/villages_cache.json
+server/data/regencies_index.json
+server/data/blockchain.jsonl
+server/data/*.bak
+server/data/wilayah.db
+
+# === Scripts Temporary ===
+scripts/wilayah_raw.sql
+scripts/*.bak
+
+# === Logs ===
+*.log
+logs/
+
+# === Backup & Temp ===
+*.bak
+*.backup
+*_backup_*/
+test_*.py
+check_*.py
+diagnose.py
+patch_*.py
+fix_*.py
+refresh_*.py
+refetch.py
+cleanup.py
+convert_wilayah.py
+download_geojson.py
+test.xlsx
+test.html
+test_export.*
+
+# === Distribusi ===
+*.zip
+*.tar.gz
+*.exe
+*.msi
+
+# === Cloudflare ===
+cloudflared/
+*.pem
+!docs/cloudflared/config.yml.example
+
+# === Keep Template Files ===
+!server/data/sample_satellite.csv
+!server/data/alert_config.example.json
+!server/data/regions.json
