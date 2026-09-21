@@ -1245,7 +1245,6 @@ GambutFR berdiri di atas fondasi dari dua proyek open source hebat dari komunita
 **Terima kasih khusus untuk komunitas open source Indonesia yang terus berkarya!** 🙏
 
 </div>
----
 
 <!-- ========================================================= -->
 <!--                  FOOTER                                  -->
