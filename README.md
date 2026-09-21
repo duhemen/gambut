@@ -1150,28 +1150,66 @@ Lihat [LICENSE](LICENSE) untuk detail.
 
 ---
 
-### 🎓 Inspirasi Ilmiah
+### 🌟 Special Thanks
 
-Proyek ini terinspirasi dari riset dan pengembangan metodologi **prediksi risiko kebakaran gambut tropis** yang menggunakan pendekatan:
-
-- **Stochastic methods** — ARIMA + Box-Cox transformation
-- **Machine learning** — LSTM & GRU neural networks
-- **Optimization** — Nelder-Mead untuk kalibrasi indeks kerawanan
-
-Terima kasih kepada para peneliti yang telah membuka jalan di bidang ini. 🌱
+GambutFR berdiri di atas fondasi dari dua proyek open source hebat dari komunitas Indonesia:
 
 ---
 
-### 📡 Data & Layanan
+#### 🎓 **[mellygsln/peatfr](https://github.com/mellygsln/peatfr)** — Fondasi Ilmiah
 
-| Sumber | Fungsi | Website |
+[![R](https://img.shields.io/badge/R-Package-276DC3?style=flat-square&logo=r&logoColor=white)](https://github.com/mellygsln/peatfr)
+[![Research](https://img.shields.io/badge/Research-ITB%20%7C%20IPB%20%7C%20Nottingham-critical?style=flat-square)](https://github.com/mellygsln/peatfr)
+
+> **Paket R akademik** dari **ITB**, **IPB University**, dan **University of Nottingham** yang menyediakan framework **stochastic + ML + optimization** untuk prediksi risiko kebakaran gambut tropis.
+>
+> **Metodologi yang diadopsi:** KNN/Spline/Linear/Loess imputation, ARIMA+Box-Cox, LSTM, GRU, dan PFVI Nelder-Mead.
+>
+> 👥 **Tim Peneliti:**
+> - Adilan W. Mahdiyasa (ITB)
+> - **Melly G. S.** ([@mellygsln](https://github.com/mellygsln)) — *Main Developer*
+> - Udjianna S. Pasaribu (ITB)
+> - Muh Taufik (IPB University)
+> - Bagus P. Muljadi (University of Nottingham)
+>
+> 📦 Repository: **[github.com/mellygsln/peatfr](https://github.com/mellygsln/peatfr)**
+
+---
+
+#### 📊 **[cahyadsn/wilayah](https://github.com/cahyadsn/wilayah)** — Data Wilayah Indonesia
+
+[![Wilayah](https://img.shields.io/badge/Data-Wilayah%20Indonesia-blueviolet?style=flat-square)](https://github.com/cahyadsn/wilayah)
+[![Kemendagri](https://img.shields.io/badge/Kepmendagri-2025-success?style=flat-square)](https://github.com/cahyadsn/wilayah)
+
+> **Database wilayah administrasi Indonesia terlengkap** sesuai **Kepmendagri No 300.2.2-2430 Tahun 2025**.
+>
+> **Data yang kami pakai:**
+> - ✅ 38 Provinsi • 514 Kabupaten/Kota • 7.285 Kecamatan • 83.762 Desa/Kelurahan
+> - ✅ **Total: 91.599 records** — terbesar di Indonesia
+>
+> 👤 **Author:** [@cahyadsn](https://github.com/cahyadsn)
+>
+> 📦 Repository: **[github.com/cahyadsn/wilayah](https://github.com/cahyadsn/wilayah)**
+
+---
+
+### 🗺️ Map Tiles
+
+[![Esri](https://img.shields.io/badge/Powered%20by-Esri%20ArcGIS-green?style=flat-square&logo=esri&logoColor=white)](https://www.esri.com/)
+
+> **Peta Choropleth GambutFR** menggunakan **Esri World Dark Gray Base Map** — tile berkualitas tinggi, gratis untuk non-commercial use.
+>
+> 🔗 Website: **[esri.com](https://www.esri.com/)**
+
+---
+
+### 🛰️ Data & API
+
+| Sumber | Fungsi | Link |
 |---|---|---|
-| 🌴 **[cahyadsn/wilayah](https://github.com/cahyadsn/wilayah)** | Database wilayah administrasi Indonesia (Kemendagri 2025) | [GitHub](https://github.com/cahyadsn/wilayah) |
-| 🗺️ **[Esri ArcGIS](https://www.esri.com/)** | Tile layer peta World Dark Gray Base | [esri.com](https://www.esri.com/) |
-| 🛰️ **[NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/)** | Data hotspot satelit (VIIRS + MODIS) | [firms.modaps.eosdis.nasa.gov](https://firms.modaps.eosdis.nasa.gov/) |
-| 🗺️ **[OpenStreetMap](https://www.openstreetmap.org/)** | Fallback tile layer (community-driven) | [openstreetmap.org](https://www.openstreetmap.org/) |
-| 📢 **[Telegram Bot API](https://core.telegram.org/bots/api)** | Notifikasi real-time ke petugas | [core.telegram.org](https://core.telegram.org/bots/api) |
-
+| 🛰️ [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) | Hotspot satelit real-time | [firms.modaps.eosdis.nasa.gov](https://firms.modaps.eosdis.nasa.gov/) |
+| 📢 [Telegram Bot API](https://core.telegram.org/bots/api) | Notifikasi real-time | [core.telegram.org](https://core.telegram.org/bots/api) |
+| ☁️ [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/) | Hybrid deployment | [cloudflare.com](https://www.cloudflare.com/) |
 ---
 
 ### 🔧 Library & Framework
