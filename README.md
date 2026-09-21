@@ -1236,7 +1236,7 @@ GambutFR berdiri di atas fondasi dari dua proyek open source hebat dari komunita
 - [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) — Desktop GUI
 - [Chart.js](https://www.chartjs.org/) — Interactive charts
 - [Leaflet.js](https://leafletjs.com/) — Interactive maps
-
+---
 <div align="center">
 ### 🌟 Made in Indonesia
 
@@ -1244,13 +1244,11 @@ GambutFR berdiri di atas fondasi dari dua proyek open source hebat dari komunita
 
 **Terima kasih khusus untuk komunitas open source Indonesia yang terus berkarya!** 🙏
 
-</div>
 
 <!-- ========================================================= -->
 <!--                  FOOTER                                  -->
 <!-- ========================================================= -->
 
-<div align="center">
 
 ### 🌱 "Deteksi dini, lahan gambut aman, Indonesia bebas kabut asap!" 🇮🇩
 
